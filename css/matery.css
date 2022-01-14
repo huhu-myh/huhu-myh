@@ -33,13 +33,21 @@
     }
 }
 
-body {
+/*body {
     background-color: #eaeaea;
     margin: 0;
     color: #34495e;
     overflow-x: hidden;
     overflow-y: auto;
+}*/
+body {
+    /* background-color: #eaeaea; */
+    background: linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)) 0% 0% / cover, url("https://ae01.alicdn.com/kf/H18a4b998752a4ae68b8e85d432a5aef0l.png"), url("https://ae01.alicdn.com/kf/H21b5f6b8496141a1979a33666e1074d9x.jpg") 0px 0px;
+    background-attachment: fixed;
+    margin: 0;
+    color: #7F95D1;
 }
+
 
 h1 {
     margin: 48px 0 22px -5px;
@@ -227,7 +235,7 @@ mark {
 
 .card {
     border-radius: 10px;
-    box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07) !important;
+    box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(255, 255, 255, .07) !important;
 }
 
 .card .card-image img {
@@ -241,11 +249,11 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #64b3f4 0%, #00ecbc 100%);
+    background-image: linear-gradient(to right, #FF9999 0%, #ff6666 100%);
 }
 
 .text-color {
-    color: #0f9d58 !important;
+    color: #FF9999 !important;
 }
 
 .white-color {
@@ -565,10 +573,10 @@ header .go-back i {
     height: 40vh !important;
 }
 
-.bg-cover:after {
+/*.bg-cover:after {
     -webkit-animation: rainbow 60s infinite;
     animation: rainbow 60s infinite;
-}
+}*/
 
 .bg-cover:before,
 .bg-cover:after {
@@ -1003,12 +1011,12 @@ article .article-tags .chip {
 
 #artDetail .post-cate {
     float: right;
-    color: #42b983;
+    color: #FF9999;
 }
 
 #artDetail .post-cate a {
     padding-right: 5px;
-    color: #42b983;
+    color: #FF9999;
     font-weight: 500;
 }
 
@@ -1090,7 +1098,7 @@ article .article-tags .chip {
 
 #artDetail .reprint a {
     font-size: 1.05rem;
-    color: #42b983;
+    color: #FF2A68;
     font-weight: 500;
 }
 
@@ -1249,7 +1257,7 @@ thead {
 
 .chip-container .chip:hover {
     color: #fff;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%) !important;
+    background: linear-gradient(to right, #FF9999 0%, #ff6666 100%) !important;
 }
 
 .chip .tag-length {
@@ -1325,7 +1333,7 @@ thead {
     left: 18px;
     height: 100%;
     width: 4px;
-    background: #0f9d58;
+    background: #FF9999;
 }
 
 @media only screen and (min-width: 900px) {
@@ -1561,8 +1569,8 @@ thead {
     margin: 0 0.5rem;
     padding: 0;
     color: #fff;
-    border: 1px solid #0f9d58;
-    background: radial-gradient(#4cbf30, #0f9d58);
+    border: 1px solid #FF9999;
+    background: radial-gradient(#FF9999, #ff6666);
     font-size: 0.9rem;
     border-radius: 50%;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .21), 0 2px 3px rgba(0, 0, 0, .1);
@@ -1738,8 +1746,8 @@ thead {
 
 .other-skills .chip:hover {
     color: #fff;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
-    border: 1px solid #4cbf30;
+    background: linear-gradient(to right, #FF9999 0%, #ff6666 100%);
+    border: 1px solid #FF9999;
     box-shadow: 0 5px 5px rgba(0, 0, 0, .25)
 }
 
@@ -1896,7 +1904,7 @@ footer .copy-right {
 }
 
 .center-caption {
-    color: #525f7f;
+    color: #7F95D1;
     padding: 5px;
     border-bottom: 1px solid #d9d9d9;
 }
@@ -2109,66 +2117,3 @@ footer .copy-right {
     content: "\f086";
 }
 
-/* 深色模式设置 */
-/* 字体颜色变灰白色 */
-body.dark .fas,
-body.dark .sub-nav li span,
-body.dark .publish-date,
-body.dark .title,
-body.dark .row .text,
-body.dark article .article-content .summary,
-body.dark .card .card-image .card-title,
-body.dark .fa-moon-o:before,
-body.dark .fa-lightbulb:before,
-body.dark article .article-tags .chip,
-body.dark .chip-container .tag-title,
-body.dark div.jqcloud a,
-body.dark .friends-container .tag-title,
-body.dark .frind-ship .title h1,
-body.dark .card .card-content p,
-body.dark .v[data-class=v] .vcount,
-body.dark .v[data-class=v] .vcount .vnum,
-body.dark pre code,
-body.dark h1,
-body.dark h2,
-body.dark h3,
-body.dark h4,
-body.dark h5,
-body.dark h6,
-body.dark li,
-body.dark p,
-body.dark header .side-nav .mobile-head .logo-name,
-body.dark header .side-nav .mobile-head .logo-desc,
-body.dark header .side-nav .menu-list a,
-body.dark .bg-cover .post-title,
-body.dark a
-{
-    color: rgba(255, 255, 255, 0.6);
-}
-
-/* 背景颜色变灰色 */
-body.dark .card,
-body.dark .sub-nav,
-body.dark #toc-content,
-body.dark .toc-title,
-body.dark .toc-list,
-body.dark .block-with-text:after
-{
-    background-color: #282c34;
-}
-
-/* 背景颜色变黑色 */
-body.dark,
-body.dark .v[data-class=v] .vcount,
-body.dark #rewardModal .modal-content,
-body.dark .modal,
-body.dark header .side-nav,
-body.dark header .side-nav .menu-list .m-nav-show
-{
-    background-color: #12121c;
-}
-
-/* 改变透明度 */
-body.dark .aplayer{background: #2f3742!important;}
-body.dark img, body.dark strong {
-    filter: brightness(.7);
