@@ -58,14 +58,14 @@
   </url>
   
   <url>
-    <loc>https://huhu-myh.github.io/census/index.html</loc>
+    <loc>https://huhu-myh.github.io/categories/index.html</loc>
     
     <lastmod>2022-01-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://huhu-myh.github.io/categories/index.html</loc>
+    <loc>https://huhu-myh.github.io/census/index.html</loc>
     
     <lastmod>2022-01-13</lastmod>
     
@@ -93,14 +93,14 @@
   </url>
   
   <url>
-    <loc>https://huhu-myh.github.io/List/movies/index.html</loc>
+    <loc>https://huhu-myh.github.io/List/tools/index.html</loc>
     
     <lastmod>2022-01-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://huhu-myh.github.io/List/tools/index.html</loc>
+    <loc>https://huhu-myh.github.io/List/movies/index.html</loc>
     
     <lastmod>2022-01-13</lastmod>
     
@@ -114,14 +114,14 @@
   </url>
   
   <url>
-    <loc>https://huhu-myh.github.io/List/galleries/%E7%94%9C%E7%BE%8E%E9%A3%9F%E5%93%81/index.html</loc>
+    <loc>https://huhu-myh.github.io/List/galleries/%E8%87%AA%E7%84%B6%E9%A3%8E%E6%99%AF/index.html</loc>
     
     <lastmod>2022-01-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://huhu-myh.github.io/List/galleries/%E8%87%AA%E7%84%B6%E9%A3%8E%E6%99%AF/index.html</loc>
+    <loc>https://huhu-myh.github.io/List/galleries/%E7%94%9C%E7%BE%8E%E9%A3%9F%E5%93%81/index.html</loc>
     
     <lastmod>2022-01-13</lastmod>
     
@@ -156,13 +156,6 @@
   </url>
   
   <url>
-    <loc>https://huhu-myh.github.io/List/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/index.html</loc>
-    
-    <lastmod>2022-01-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://huhu-myh.github.io/List/galleries/%E5%91%86%E8%90%8C%E7%8C%AB%E5%92%AA/index.html</loc>
     
     <lastmod>2022-01-13</lastmod>
@@ -170,7 +163,7 @@
   </url>
   
   <url>
-    <loc>https://huhu-myh.github.io/List/galleries/%E5%8A%A8%E6%BC%AB%E4%BA%BA%E7%89%A9/index.html</loc>
+    <loc>https://huhu-myh.github.io/List/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/index.html</loc>
     
     <lastmod>2022-01-13</lastmod>
     
@@ -185,6 +178,13 @@
   
   <url>
     <loc>https://huhu-myh.github.io/List/galleries/%E5%8A%A8%E6%BC%AB%E6%8F%92%E7%94%BB/index.html</loc>
+    
+    <lastmod>2022-01-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://huhu-myh.github.io/List/galleries/%E5%8A%A8%E6%BC%AB%E4%BA%BA%E7%89%A9/index.html</loc>
     
     <lastmod>2022-01-13</lastmod>
     
@@ -221,14 +221,14 @@
 
   
   <url>
-    <loc>https://huhu-myh.github.io/tags/%E6%B8%97%E9%80%8F/</loc>
+    <loc>https://huhu-myh.github.io/tags/diary/</loc>
     <lastmod>2022-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://huhu-myh.github.io/tags/diary/</loc>
+    <loc>https://huhu-myh.github.io/tags/%E6%B8%97%E9%80%8F/</loc>
     <lastmod>2022-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -237,14 +237,14 @@
 
   
   <url>
-    <loc>https://huhu-myh.github.io/categories/%E7%BD%91%E5%AE%89/</loc>
+    <loc>https://huhu-myh.github.io/categories/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2022-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://huhu-myh.github.io/categories/%E6%97%A5%E5%B8%B8/</loc>
+    <loc>https://huhu-myh.github.io/categories/%E7%BD%91%E5%AE%89/</loc>
     <lastmod>2022-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
