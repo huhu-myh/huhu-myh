@@ -3,11 +3,11 @@
   <title>huhu</title>
   
   <subtitle>myhの博客</subtitle>
-  <link href="https://huhumyh.xyz/atom.xml" rel="self"/>
+  <link href="https://huhu-myh.github.io/atom.xml" rel="self"/>
   
-  <link href="https://huhumyh.xyz/"/>
+  <link href="https://huhu-myh.github.io/"/>
   <updated>2022-01-14T07:02:27.882Z</updated>
-  <id>https://huhumyh.xyz/</id>
+  <id>https://huhu-myh.github.io/</id>
   
   <author>
     <name>huhu</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>hello</title>
-    <link href="https://huhumyh.xyz/posts/myh10000.html"/>
-    <id>https://huhumyh.xyz/posts/myh10000.html</id>
+    <link href="https://huhu-myh.github.io/posts/myh10000.html"/>
+    <id>https://huhu-myh.github.io/posts/myh10000.html</id>
     <published>2022-01-14T05:21:39.000Z</published>
     <updated>2022-01-14T07:02:27.882Z</updated>
     
@@ -33,17 +33,17 @@
     
     
     
-    <category term="日常" scheme="https://huhumyh.xyz/categories/%E6%97%A5%E5%B8%B8/"/>
+    <category term="日常" scheme="https://huhu-myh.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
     
     
-    <category term="diary" scheme="https://huhumyh.xyz/tags/diary/"/>
+    <category term="diary" scheme="https://huhu-myh.github.io/tags/diary/"/>
     
   </entry>
   
   <entry>
     <title>渗透学习</title>
-    <link href="https://huhumyh.xyz/posts/myh10001.html"/>
-    <id>https://huhumyh.xyz/posts/myh10001.html</id>
+    <link href="https://huhu-myh.github.io/posts/myh10001.html"/>
+    <id>https://huhu-myh.github.io/posts/myh10001.html</id>
     <published>2022-01-14T05:13:01.000Z</published>
     <updated>2022-01-14T06:23:46.401Z</updated>
     
@@ -57,10 +57,10 @@
     
     
     
-    <category term="网安" scheme="https://huhumyh.xyz/categories/%E7%BD%91%E5%AE%89/"/>
+    <category term="网安" scheme="https://huhu-myh.github.io/categories/%E7%BD%91%E5%AE%89/"/>
     
     
-    <category term="渗透" scheme="https://huhumyh.xyz/tags/%E6%B8%97%E9%80%8F/"/>
+    <category term="渗透" scheme="https://huhu-myh.github.io/tags/%E6%B8%97%E9%80%8F/"/>
     
   </entry>
   
