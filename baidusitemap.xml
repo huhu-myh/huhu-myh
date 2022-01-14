@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://huhu-myh.github.io/posts/myh10000.html</loc>
+    <loc>https://huhu-myh.github.io/posts/myh10002.html</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
     <loc>https://huhu-myh.github.io/posts/myh10001.html</loc>
+    <lastmod>2022-01-14</lastmod>
+  </url>
+  <url>
+    <loc>https://huhu-myh.github.io/posts/myh10000.html</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
 </urlset> 
