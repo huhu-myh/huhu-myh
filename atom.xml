@@ -6,7 +6,7 @@
   <link href="https://huhumyh.xyz/atom.xml" rel="self"/>
   
   <link href="https://huhumyh.xyz/"/>
-  <updated>2022-01-14T05:31:51.188Z</updated>
+  <updated>2022-01-14T06:18:00.675Z</updated>
   <id>https://huhumyh.xyz/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://huhumyh.xyz/posts/myh10000.html"/>
     <id>https://huhumyh.xyz/posts/myh10000.html</id>
     <published>2022-01-14T05:21:39.000Z</published>
-    <updated>2022-01-14T05:31:51.188Z</updated>
+    <updated>2022-01-14T06:18:00.675Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>hello，这是我的第一篇博客,以后这里会记录我的日常生活和学习!</p><p>大概更新的学习内容会有CTF，渗透，机器学习，python，Java的相关知识，期待您的来访~</p><hr><img src="/posts/myh10000.htm/1.jpg" alt="相对路径图片" style="zoom:55%;"><p><img src="/posts/myh10000.htm/2.png"></p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>hello，这是我的第一篇博客,以后这里会记录我的日常生活和学习!</p><p>大概更新的学习内容会有CTF，渗透，机器学习，python，Java的相关知识，期待您的来访~</p><hr><img src="/images/1.png" alt="hello" style="zoom:55%;">]]></content>
     
     
       
@@ -45,7 +45,7 @@
     <link href="https://huhumyh.xyz/posts/myh10001.html"/>
     <id>https://huhumyh.xyz/posts/myh10001.html</id>
     <published>2022-01-14T05:13:01.000Z</published>
-    <updated>2022-01-14T05:35:04.784Z</updated>
+    <updated>2022-01-14T06:18:14.385Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
     
