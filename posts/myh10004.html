@@ -728,9 +728,9 @@ public static function checkFile(&amp;$page)
 
 
 
-<img src="E:\myblog\source\_posts\buuctf练习.assets\1.png" style="zoom:150%;">
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948708.png" style="zoom:150%;">
 
-<img src="E:\myblog\source\_posts\buuctf练习.assets\2.png" style="zoom:150%;">
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948710.png" style="zoom:150%;">
 
 <p>如图，以这个文件夹为例，在buu文件中，有2.png，那就表示为</p>
 <pre class="line-numbers language-none"><code class="language-none">./buuctf练习/1.png<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -745,7 +745,7 @@ public static function checkFile(&amp;$page)
 
 <hr>
 <h2 id="2-极客大挑战-2019-EasySQL"><a href="#2-极客大挑战-2019-EasySQL" class="headerlink" title="2.[极客大挑战 2019]EasySQL"></a>2.[极客大挑战 2019]EasySQL</h2><p>根据题目提示是SQL注入，所以先试着判断注入点和引号闭合方式：在username输入：1’，密码随便输：1，出现语法报错：</p>
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\2.1-16422306237011.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948711.png"></p>
 <p>则可以知道是单引号闭合，接着开始试试万能密码：1’ or 1=1#     ,则输入后后台语句大致就是：</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select * from table_name where username='1' or 1=1 # ' and password='1' ;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -753,7 +753,7 @@ public static function checkFile(&amp;$page)
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select * from table_name where username='1' or 1=1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>可知 1=1 是个恒等式，所以就登陆成功了，得到flag~</p>
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\2.2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948712.png"></p>
 <p>下面收集一些万能密码：</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">'or'='or'
 'or 1=1--
@@ -777,13 +777,13 @@ admin' or 'a'='a 密码随便<span aria-hidden="true" class="line-numbers-rows">
 
 <hr>
 <h2 id="3-极客大挑战-2019-Havefun"><a href="#3-极客大挑战-2019-Havefun" class="headerlink" title="3.[极客大挑战 2019]Havefun"></a>3.[极客大挑战 2019]Havefun</h2><p>这题还是比较简单的哈，进去之后就是一张可爱的猫猫图，有点乖哈哈，查看网页源代码，发现有一段PHP代码，就是get型参数传入：</p>
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\3.1.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948713.png"></p>
 <p>然后构造payload为：<a target="_blank" rel="noopener" href="http://49122460-5b04-4fd8-b15c-e5fad13e769c.node4.buuoj.cn:81/?cat=dog%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86">http://49122460-5b04-4fd8-b15c-e5fad13e769c.node4.buuoj.cn:81/?cat=dog就可以了</a>~</p>
 <hr>
 <h2 id="4-ACTF2020-新生赛-Include"><a href="#4-ACTF2020-新生赛-Include" class="headerlink" title="4.[ACTF2020 新生赛]Include"></a>4.[ACTF2020 新生赛]Include</h2><p>从题目可以看出来考察的是文件包含，进入题目看到tip，点击，网页进行了跳转，此时发现url为：</p>
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\4.1.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948714.png"></p>
 <p>可以看到后面有get型参数file值传入，此时传入参数后回显为这句话，那我们就直接通过==<strong>php://filter伪协议</strong>==读取整个flag.php，构造payload为：</p>
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\4.2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948715.png"></p>
 <p>可以看到有一串base64加密的编码，解密后得到flag：</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 <span class="token keyword">echo</span> <span class="token double-quoted-string string">"Can you find out the flag?"</span><span class="token punctuation">;</span>
@@ -793,23 +793,23 @@ admin' or 'a'='a 密码随便<span aria-hidden="true" class="line-numbers-rows">
 
 <hr>
 <h2 id="5-强网杯-2019-随便注"><a href="#5-强网杯-2019-随便注" class="headerlink" title="5.[强网杯 2019]随便注"></a>5.[强网杯 2019]随便注</h2><p>从题目知应该是SQL注入，进入题目看到有一个输入框，输入 1 ，正常返回，加个<strong>单引号 1’</strong> 返回SQL语句错误，即存在SQL注入</p>
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\5.1.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948716.png"></p>
 <p>然后使用order by 2,order by 3 查看列数，发现<strong>只有两列</strong></p>
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\5.2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948717.png"></p>
 <p>尝试使用联合查询union select 发现回显语是<strong>select被正则过滤</strong>了</p>
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\5.3.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948718.png"></p>
 <p>emmm,开始大小写、联合注释等绕过waf,但是没得用就很气呦……，后来查了下资料原来是忽略掉的<font color="#FF5E3A" size="4">堆叠注入！</font>，那就开始直接查看表名：</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1';show tables; --+
 //在SQL中，分号（;）是用来表示一条sql语句的结束。堆叠注入就是结束一个sql语句后，会继续执行下一条构造的SQL语句。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\5.6.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948719.png"></p>
 <p>然后对应查看对应的列名：</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1';show columns from words; --+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\5.4.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948720.png"></p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1';show columns from `1919810931114514`; --+   //字符串为表名操作时要加反引号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\5.5.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948721.png"></p>
 <p>这里可以看到我们要的flag是在对应的表中，根据第一次输入 1 的结果来看后台的语句应该是:</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select * from words where id = <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -824,11 +824,11 @@ admin' or 'a'='a 密码随便<span aria-hidden="true" class="line-numbers-rows">
 //注意一定要使用反引号！<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>接着再查看下表，其实就已经查出来flag了，啊tql，学到了~</p>
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\5.7.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948722.png"></p>
 <p>最后感谢有人复现让我学习：<a target="_blank" rel="noopener" href="https://github.com/CTFTraining/qwb_2019_supersqli">https://github.com/CTFTraining/qwb_2019_supersqli</a></p>
 <hr>
 <p>最后吐槽一下自己，看了warmup题，看好长时间不会，哎，还是太菜了，慢慢学吧~</p>
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\bz.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948723.png"></p>
 
                 
             </div>
@@ -1373,9 +1373,9 @@ new Valine({
                 <a href="/posts/myh10005.html">
                     <div class="card-image">
                         
-                        <img src="/medias/img/7.jpg" class="responsive-img" alt="linux2">
+                        <img src="/medias/img/7.jpg" class="responsive-img" alt="Linux学习-第二章">
                         
-                        <span class="card-title">linux2</span>
+                        <span class="card-title">Linux学习-第二章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
