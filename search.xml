@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Linux登录mysql报错</title>
+      <link href="/posts/myh10006.html"/>
+      <url>/posts/myh10006.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr><hr><h2 id="mysql登录报错：ERROR-1045-28000"><a href="#mysql登录报错：ERROR-1045-28000" class="headerlink" title="mysql登录报错：ERROR 1045 (28000)"></a>mysql登录报错：ERROR 1045 (28000)</h2><p>在使用xshell连接服务器登陆mysql的时候，出现Access denied for user ‘root’@’localhost’ (using password: YES) 拒绝访问。emmm这就很尴尬，接着我登上服务器的终端也不行，查了一下解决方法如下：</p><h4 id="1、vim-etc-my-cnf文件"><a href="#1、vim-etc-my-cnf文件" class="headerlink" title="1、vim /etc/my.cnf文件"></a>1、vim /etc/my.cnf文件</h4><pre class="line-numbers language-none"><code class="language-none">sudo vim /etc/my.cnf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>在 [mysqld] 后添加  skip-grant-tables （跳过检查），然后按esc、ZZ退出。</p><h4 id="2、重启MySQL服务："><a href="#2、重启MySQL服务：" class="headerlink" title="2、重启MySQL服务："></a>2、重启MySQL服务：</h4><pre class="line-numbers language-none"><code class="language-none">sudo systemctl restart mysqld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h4 id="3、修改密码"><a href="#3、修改密码" class="headerlink" title="3、修改密码"></a>3、修改密码</h4><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">set password for 'root'@'localhost'=password('你的密码');<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>可能会出现  ERROR 1290 (HY000): The MySQL server is running with the –skip-grant-tables option so it cannot execute this statement  的报错，输入 ：flush privileges;</p><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">flush privileges;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h4 id="4、再次重新设置密码"><a href="#4、再次重新设置密码" class="headerlink" title="4、再次重新设置密码"></a>4、再次重新设置密码</h4><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">set password for 'root'@'localhost'=password('你的密码');<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h4 id="5、重设远程访问"><a href="#5、重设远程访问" class="headerlink" title="5、重设远程访问"></a>5、重设远程访问</h4><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Mingloveyh1314' WITH GRANT OPTION;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h4 id="6、把skip-grant-tables删除"><a href="#6、把skip-grant-tables删除" class="headerlink" title="6、把skip-grant-tables删除"></a>6、把skip-grant-tables删除</h4><pre class="line-numbers language-none"><code class="language-none">sudo vim /etc/my.cnf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h4 id="7、重启MySQL"><a href="#7、重启MySQL" class="headerlink" title="7、重启MySQL"></a>7、重启MySQL</h4><pre class="line-numbers language-none"><code class="language-none">sudo systemctl restart mysqld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>之后就可以正常登陆了~</p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202201161214197.png" style="zoom:150%;"><hr><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202201161214199.jpg" style="zoom:150%;">]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux学习-第二章</title>
       <link href="/posts/myh10005.html"/>
       <url>/posts/myh10005.html</url>
