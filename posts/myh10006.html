@@ -619,13 +619,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr>
-<hr>
-<h2 id="mysql登录报错：ERROR-1045-28000"><a href="#mysql登录报错：ERROR-1045-28000" class="headerlink" title="mysql登录报错：ERROR 1045 (28000)"></a>mysql登录报错：ERROR 1045 (28000)</h2><p>在使用xshell连接服务器登陆mysql的时候，出现Access denied for user ‘root’@’localhost’ (using password: YES) 拒绝访问。emmm这就很尴尬，接着我登上服务器的终端也不行，查了一下解决方法如下：</p>
-<h4 id="1、vim-etc-my-cnf文件"><a href="#1、vim-etc-my-cnf文件" class="headerlink" title="1、vim /etc/my.cnf文件"></a>1、vim /etc/my.cnf文件</h4><pre class="line-numbers language-none"><code class="language-none">sudo vim /etc/my.cnf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h2 id="mysql登录报错：ERROR-1045-28000"><a href="#mysql登录报错：ERROR-1045-28000" class="headerlink" title="mysql登录报错：ERROR 1045 (28000)"></a>mysql登录报错：ERROR 1045 (28000)</h2><p>在使用xshell连接服务器登陆mysql的时候，出现Access denied for user ‘root’@’localhost’ (using password: YES) 拒绝访问。emmm这就很尴尬，接着我登上服务器的终端也不行，查了一下解决方法如下：</p>
+<h4 id="1、vim-etc-my-cnf文件"><a href="#1、vim-etc-my-cnf文件" class="headerlink" title="1、vim /etc/my.cnf文件"></a>1、vim /etc/my.cnf文件</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/my.cnf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>在 [mysqld] 后添加  skip-grant-tables （跳过检查），然后按esc、ZZ退出。</p>
-<h4 id="2、重启MySQL服务："><a href="#2、重启MySQL服务：" class="headerlink" title="2、重启MySQL服务："></a>2、重启MySQL服务：</h4><pre class="line-numbers language-none"><code class="language-none">sudo systemctl restart mysqld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="2、重启MySQL服务："><a href="#2、重启MySQL服务：" class="headerlink" title="2、重启MySQL服务："></a>2、重启MySQL服务：</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart mysqld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="3、修改密码"><a href="#3、修改密码" class="headerlink" title="3、修改密码"></a>3、修改密码</h4><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">set password for 'root'@'localhost'=password('你的密码');<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -636,9 +634,9 @@
 
 <h4 id="5、重设远程访问"><a href="#5、重设远程访问" class="headerlink" title="5、重设远程访问"></a>5、重设远程访问</h4><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Mingloveyh1314' WITH GRANT OPTION;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h4 id="6、把skip-grant-tables删除"><a href="#6、把skip-grant-tables删除" class="headerlink" title="6、把skip-grant-tables删除"></a>6、把skip-grant-tables删除</h4><pre class="line-numbers language-none"><code class="language-none">sudo vim /etc/my.cnf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="6、把skip-grant-tables删除"><a href="#6、把skip-grant-tables删除" class="headerlink" title="6、把skip-grant-tables删除"></a>6、把skip-grant-tables删除</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/my.cnf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h4 id="7、重启MySQL"><a href="#7、重启MySQL" class="headerlink" title="7、重启MySQL"></a>7、重启MySQL</h4><pre class="line-numbers language-none"><code class="language-none">sudo systemctl restart mysqld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="7、重启MySQL"><a href="#7、重启MySQL" class="headerlink" title="7、重启MySQL"></a>7、重启MySQL</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart mysqld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>之后就可以正常登陆了~</p>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202201161214197.png" style="zoom:150%;">
@@ -1510,7 +1508,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.7k</span>&nbsp;字
+                class="white-color">5.5k</span>&nbsp;字
             
             
             

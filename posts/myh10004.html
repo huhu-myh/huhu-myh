@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-15
+                    2022-01-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 
@@ -826,6 +826,32 @@ admin' or 'a'='a 密码随便<span aria-hidden="true" class="line-numbers-rows">
 <p>接着再查看下表，其实就已经查出来flag了，啊tql，学到了~</p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948722.png"></p>
 <p>最后感谢有人复现让我学习：<a target="_blank" rel="noopener" href="https://github.com/CTFTraining/qwb_2019_supersqli">https://github.com/CTFTraining/qwb_2019_supersqli</a></p>
+<hr>
+<h2 id="6-SUCTF-2019-EasySQL"><a href="#6-SUCTF-2019-EasySQL" class="headerlink" title="6.[SUCTF 2019]EasySQL"></a>6.[SUCTF 2019]EasySQL</h2><p>这题给我整不会了，刚开始试了联合不行，也没报错，报错注入也没了，布尔、时间也不得行了，又是看别人解题的一次，原来还可以猜后端代码:惊恐:。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select $_GET['query'] || flag from flag<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后构造payload为：*,1(或者其他常数)</p>
+<p>我接着自己在本地的test数据库尝试了一下，直接构造：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select 1 from salaries;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="E:\myblog\source\_posts\buuctf练习.assets\6.1-16423143076251.png" style="zoom:150%;">
+
+<p>确实<strong>直接 select 一个常数会直接新增一个临时的列，并且每一行的数值都是这个常数</strong>，再来说一下这个 || ，在mysql里，<strong>只要 || 前面的成立，后面的便不再执行</strong>，同理，前面的不成立会执行后面的 。如果我们直接构造 :</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select *||salary from salaries<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="E:\myblog\source_posts\buuctf练习.assets\6.2.png"></p>
+<p>可以看到会报语法错误，所以最终就是大佬的构造方法：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select *,1||salary from salaries<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="E:\myblog\source\_posts\buuctf练习.assets\6.3.png" style="zoom:150%;">
+
+<p>可以看到新增加了一列并且这个表中的数据也都显示出来了，大佬们牛批！最后解题拿flag：</p>
+<img src="E:\myblog\source\_posts\buuctf练习.assets\6.4.png" style="zoom:150%;">
+
+
+
+
+
 <hr>
 <p>最后吐槽一下自己，看了warmup题，看好长时间不会，哎，还是太菜了，慢慢学吧~</p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948723.png"></p>
@@ -1692,7 +1718,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.7k</span>&nbsp;字
+                class="white-color">5.5k</span>&nbsp;字
             
             
             

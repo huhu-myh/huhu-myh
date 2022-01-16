@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-15
+                    2022-01-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    2.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    9 分
                 </div>
                 
 
@@ -619,11 +619,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr>
-<h2 id="第二章：基本的-bash-shell-命令"><a href="#第二章：基本的-bash-shell-命令" class="headerlink" title="第二章：基本的 bash shell 命令"></a>第二章：基本的 bash shell 命令</h2><h3 id="3-1浏览文件系统"><a href="#3-1浏览文件系统" class="headerlink" title="3.1浏览文件系统"></a>3.1浏览文件系统</h3><h4 id="3-1-1-Linux文件系统"><a href="#3-1-1-Linux文件系统" class="headerlink" title="3.1.1 Linux文件系统"></a>3.1.1 Linux文件系统</h4><p>Linux不同于WIndows，在路径名中不使用驱动器盘符。  </p>
-<p>Linux将文件存储在<font color="#FF5E3A" size="4"><strong>单个目录结构</strong></font>中，这个目录被称为<font color="#FF5E3A" size="4"><strong>虚拟目录（ virtual directory）</strong></font>。虚拟目录将安装在PC上的所有存储设备的文件路径纳入单个目录结构中。Linux虚拟目录结构<strong>只包含一个称为<font color="#FF5E3A" size="4">根（ root）目录</font>的基础目录</strong>。根目录下的目录和文件会按照访问它们的目录路径一一列出，这点跟Windows类似。  </p>
-<p>在Linux PC上安装的<strong>第一块硬盘</strong>称为根驱动器。<strong>根驱动器包含了虚拟目录的核心</strong>，其他目录都是从那里开始构建的。Linux会在根驱动器上创建一些特别的目录，我们称之为<strong>挂载点（ mount point）</strong>。<font color="#FF5E3A" size="4">挂载点是虚拟目录中用于分配额外存储设备的目录</font>。虚拟目录会让文件和目录出现在这些挂载点目录中，然而<strong>实际上它们却存储在另外一个驱动器</strong>中。 </p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928213.png"> </p>
+                <h2 id="第二章：基本的-bash-shell-命令"><a href="#第二章：基本的-bash-shell-命令" class="headerlink" title="第二章：基本的 bash shell 命令"></a>第二章：基本的 bash shell 命令</h2><h3 id="2-1浏览文件系统"><a href="#2-1浏览文件系统" class="headerlink" title="2.1浏览文件系统"></a>2.1浏览文件系统</h3><h4 id="2-1-1-Linux文件系统"><a href="#2-1-1-Linux文件系统" class="headerlink" title="2.1.1 Linux文件系统"></a>2.1.1 Linux文件系统</h4><p>Linux不同于WIndows，在路径名中不使用驱动器盘符。  </p>
+<p>Linux将文件存储在<font color="#FF5E2A" size="4"><strong>单个目录结构</strong></font>中，这个目录被称为<font color="#FF5E2A" size="4"><strong>虚拟目录（ virtual directory）</strong></font>。虚拟目录将安装在PC上的所有存储设备的文件路径纳入单个目录结构中。Linux虚拟目录结构<strong>只包含一个称为<font color="#FF5E2A" size="4">根（ root）目录</font>的基础目录</strong>。根目录下的目录和文件会按照访问它们的目录路径一一列出，这点跟Windows类似。  </p>
+<p>在Linux PC上安装的<strong>第一块硬盘</strong>称为根驱动器。<strong>根驱动器包含了虚拟目录的核心</strong>，其他目录都是从那里开始构建的。Linux会在根驱动器上创建一些特别的目录，我们称之为<strong>挂载点（ mount point）</strong>。<font color="#FF5E2A" size="4">挂载点是虚拟目录中用于分配额外存储设备的目录</font>。虚拟目录会让文件和目录出现在这些挂载点目录中，然而<strong>实际上它们却存储在另外一个驱动器</strong>中。 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635094.png"></p>
 <p>如图Disk1硬盘和虚拟目录的根目录关联起来。Disk2硬盘就可以挂载到虚拟目录结构中的任何地方。在这个例子中，第二块硬盘被挂载到了/home位置，home这个目录就是一个挂载点，用户目录都位于这个位置。</p>
 <p>​                                                                                        <strong>常见的Linux目录名称</strong></p>
 <table>
@@ -706,9 +705,9 @@
 <td align="center">可变目录，用以存放经常变化的文件，比如<strong>日志文件</strong></td>
 </tr>
 </tbody></table>
-<h4 id="3-1-2-遍历目录"><a href="#3-1-2-遍历目录" class="headerlink" title="3.1.2 遍历目录"></a>3.1.2 遍历目录</h4><p>在Linux文件系统上，可以使用<font color="#FF5E3A" size="3">切换目录命令cd将shell会话切换到另一个目录</font>。 cd命令的格式非常简单：<strong>cd destination</strong><br>cd命令可接受单个参数destination，用以指定想切换到的目录名。<strong>如果没有为cd命令指定目标路径，它将切换到用户主目录。</strong><br>destination参数可以用两种方式表示：一种是使用<strong>绝对文件路径</strong>，另一种是使用<strong>相对文件路径</strong>。</p>
+<h4 id="2-1-2-遍历目录"><a href="#2-1-2-遍历目录" class="headerlink" title="2.1.2 遍历目录"></a>2.1.2 遍历目录</h4><p>在Linux文件系统上，可以使用<font color="#FF5E2A" size="2">切换目录命令cd将shell会话切换到另一个目录</font>。 cd命令的格式非常简单：<strong>cd destination</strong><br>cd命令可接受单个参数destination，用以指定想切换到的目录名。<strong>如果没有为cd命令指定目标路径，它将切换到用户主目录。</strong><br>destination参数可以用两种方式表示：一种是使用<strong>绝对文件路径</strong>，另一种是使用<strong>相对文件路径</strong>。</p>
 <p><strong>1.绝对文件路径</strong></p>
-<p>​            <font color="#FF5E3A" size="3">对文件路径总是以正斜线（ /）作为起始，指明虚拟文件系统的根目录。</font>  </p>
+<p>​            <font color="#FF5E2A" size="2">对文件路径总是以正斜线（ /）作为起始，指明虚拟文件系统的根目录。</font>  </p>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928215.png" style="zoom:200%;">
 
 <p>如图刚开始是在/root目录中，如果切换到usr/bin目录中，就直接使用 cd /usr/bin，（一定最开始是根目录！）</p>
@@ -728,9 +727,147 @@
 
 
 
+<h3 id="2-2-文件和目录列表"><a href="#2-2-文件和目录列表" class="headerlink" title="2.2 文件和目录列表"></a>2.2 文件和目录列表</h3><h4 id="2-2-1-基本列表功能"><a href="#2-2-1-基本列表功能" class="headerlink" title="2.2.1 基本列表功能"></a>2.2.1 基本列表功能</h4><p><strong><code>ls [path]</code> - 列出文件</strong></p>
+<p>该程序<code>ls</code>允许您列出<strong>目录中的文件和其子目录</strong>。它可以传递许多不同的参数（或“标志”）来控制输出。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635096.png"></p>
+<p><strong><code>ls -F</code></strong>  带-F参数的ls命令<strong>轻松区分文件和目录</strong>  </p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635097.png"></p>
+<p>Linux经常<strong>采用隐藏文件来保存配置信息</strong>。在Linux上，隐藏文件通常是<strong>文件名以点号开始</strong>的文件。这些文件并<strong>没有</strong>在默认的ls命令输出中显示出来，因此我们称其为<font color="#FF5E3A" size="3">隐藏文件</font>。  </p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635098.png"></p>
+<p>ls支持选项合并如：<code>ls -Fa</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635100.png"></p>
+<p><strong><code>ls -l</code> 显示附加信息，长列表输出</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635101.png" style="zoom:150%;">
+
+<p> 文件类型，比如目录（ d）、文件（ -）、字符型文件（ c）或块设备（ b）；<br> 文件的权限；<br> 文件的硬链接总数；<br> 文件属主的用户名；<br> 文件属组的组名；<br> 文件的大小（以<strong>字节</strong>为单位）；<br> 文件的上次<strong>修改时间</strong>；<br> 文件名或目录名。  </p>
+<h4 id="2-2-2-过滤输出列表"><a href="#2-2-2-过滤输出列表" class="headerlink" title="2.2.2 过滤输出列表"></a>2.2.2 过滤输出列表</h4><p>当要输出指定文件或者指定开头等的文件时，可以使用过滤查询：**<code>ls -l x</code>** ，过滤器就是一个进行简单文本匹配的字符串。可以在要用的命令行参数之后添加这个过滤器  。<strong>同时支持通配符匹配</strong>。</p>
+<p> 问号（ ?）代表<strong>一个</strong>字符；<br> 星号（ *）代表<strong>零个或多个</strong>字符。  </p>
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635102.png" style="zoom:150%;">
+
+
+
+<h4 id="2-2-3-tree"><a href="#2-2-3-tree" class="headerlink" title="2.2.3 tree"></a>2.2.3 tree</h4><p>还有一个遍历文件功能指令tree,能较好地展示文件之间的层级结构，将本目录中的文件、子目录、子目录中的文件都以树形展示出来：（Debian 版本没有这个指令，可以<code>apt-get tree</code>安装），不要尝试<code>tree /</code>,除非你觉着很炫酷hhhh</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635103.png"></p>
+<h3 id="2-3-处理文件"><a href="#2-3-处理文件" class="headerlink" title="2.3 处理文件"></a>2.3 处理文件</h3><h4 id="2-3-1-创建文件"><a href="#2-3-1-创建文件" class="headerlink" title="2.3.1 创建文件"></a>2.3.1 创建文件</h4><p><strong>touch</strong>命令轻松创建<strong>空文件</strong>（<strong>注意是空文件，不代表可以是空目录哦</strong>）。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">touch</span> test_one<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635104.png" style="zoom:150%;">
+
+
+
+<h4 id="2-3-2-复制文件"><a href="#2-3-2-复制文件" class="headerlink" title="2.3.2 复制文件"></a>2.3.2 复制文件</h4><p><strong>cp</strong>命令将文件或目录从一个位置复制到另一个位置  。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cp</span> <span class="token operator">&lt;</span>source<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>destination<span class="token operator">&gt;</span> - 复制文件
+-i选项，强制shell询问是否需要覆盖已有文件。
+-R参数，可以用它在一条命令中递归地复制整个目录的内容<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635105.png"></p>
+<p>可以看到加上 -i 选项，就会强制询问是否覆盖，<strong>最好每次都带上</strong>，写 yes/no 就可。可以看到修改时间没变。</p>
+<p>cp命令的-<strong>R参数</strong>。可以用它在一条命令中<strong>递归地复制整个目录的内容</strong>。  </p>
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635106.png" style="zoom:150%;">
+
+
+
+<h4 id="2-3-3-移动和重命名文件"><a href="#2-3-3-移动和重命名文件" class="headerlink" title="2.3.3 移动和重命名文件"></a>2.3.3 移动和重命名文件</h4><p>在Linux中，<strong>重命名文件称为移动（ moving）</strong> 。 mv命令可以将文件和目录移动到另一个位置或重新命名。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Moving a file "into" another file is how you rename files</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># mv test_file test_file1</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># ls -F</span>
+test2/	testdir/  test_file1  test_file2
+
+<span class="token comment"># Move file into directory</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># mv test_file1 testdir/</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># tree</span>
+<span class="token builtin class-name">.</span>
+├── test2
+│   ├── test_file
+│   └── test_file2
+├── testdir
+│   └── test_file1
+└── test_file2
+
+<span class="token number">2</span> directories, <span class="token number">4</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-3-4-删除文件"><a href="#2-3-4-删除文件" class="headerlink" title="2.3.4 删除文件"></a>2.3.4 删除文件</h4><p>在Linux中，删除（ deleting）叫作移除（ removing） 。 bash shell中删除文件的命令是 <strong>rm</strong>。  -+</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token variable"><span class="token variable">`</span><span class="token function">rm</span> <span class="token operator">&lt;</span>filename<span class="token operator">&gt;</span><span class="token variable">`</span></span> - 永久删除文件
+-i命令参数提示你是不是要真的删除该文件
+-r参数删除目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test/test2<span class="token comment"># rm -i test_file</span>
+rm: remove regular empty <span class="token function">file</span> <span class="token string">'test_file'</span>? y
+root@VM-16-11-debian:/tmp/test/test2<span class="token comment"># ls -l</span>
+total <span class="token number">0</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jan <span class="token number">16</span> <span class="token number">15</span>:35 test_file2
+
+-r参数删除目录：
+root@VM-16-11-debian:/tmp/test<span class="token comment"># rm -r test2</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># tree</span>
+<span class="token builtin class-name">.</span>
+├── testdir
+│   └── test_file1
+└── test_file2
+
+<span class="token number">1</span> directory, <span class="token number">2</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="2-4-处理目录"><a href="#2-4-处理目录" class="headerlink" title="2.4 处理目录"></a>2.4 处理目录</h3><h4 id="2-4-1-创建目录"><a href="#2-4-1-创建目录" class="headerlink" title="2.4.1 创建目录"></a>2.4.1 创建目录</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">mkdir</span> New_Dir
+-p参数：同时创建多个目录和子目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># mkdir -p test2/test3</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># tree</span>
+<span class="token builtin class-name">.</span>
+├── test2
+│   └── test3
+├── testdir
+│   └── test_file1
+└── test_file2
+
+<span class="token number">3</span> directories, <span class="token number">2</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-4-2-删除目录"><a href="#2-4-2-删除目录" class="headerlink" title="2.4.2 删除目录"></a>2.4.2 删除目录</h4><p>rmdir命令<strong>只删除空目录</strong>。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">rmdir</span> mydir<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># rmdir test2</span>
+rmdir: failed to remove <span class="token string">'test2'</span><span class="token builtin class-name">:</span> Directory not empty<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="2-5-查看文件"><a href="#2-5-查看文件" class="headerlink" title="2.5 查看文件"></a>2.5 查看文件</h3><h4 id="2-5-1-查看文件类型"><a href="#2-5-1-查看文件类型" class="headerlink" title="2.5.1  查看文件类型"></a>2.5.1  查看文件类型</h4><p>在显示文件内容之前，应该先了解一下文件的类型。如果打开了一个二进制文件，你会在屏幕上看到各种乱码，甚至会把你的终端仿真器挂起。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">file</span> my_file<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># file testdir</span>
+testdir: directory<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-5-2-查看整个文件"><a href="#2-5-2-查看整个文件" class="headerlink" title="2.5.2 查看整个文件"></a>2.5.2 查看整个文件</h4><p><strong><code>cat &lt;filename&gt;</code> - 打印文件</strong></p>
+<p>要将文件的内容快速转储到控制台，请使用<code>cat</code>.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cat</span> file1
+-n参数会给所有的行加上行号。
+-b参数会给只是文本的行加上行号。
+The quick brown fox jumped over the lazy dog.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><strong><code>more</code>命令</strong></p>
+<p><code>cat</code>命令的主要缺陷是：一旦运行，你就无法控制后面的操作。为了解决这个问题，开发人员编写了<code>more</code>命令。 <code>more</code>命令会显示文本文件的内容，但会在显示每页数据之后停下来。 可以通过按空格键或回车键以逐行向前的方式浏览文本文件。浏览完之后，按q键退出。 </p>
+<p><strong><code>less</code>命令</strong></p>
+<p><strong><code>less &lt;filename&gt;</code> - 显示和滚动文件</strong></p>
+<p><code>less</code>如果您想查看一个不完全适合一个屏幕的长文件的内容，该程序很有用。要在运行后退出，请按 <code>q</code>。</p>
+<p>你可以用更少的时间做很多其他的事情，但一件有用的事情是能够搜索。您可以搜索<code>/banana</code>以查找文件中“香蕉”的所有实例。</p>
+<h4 id="2-5-3-查看部分文件"><a href="#2-5-3-查看部分文件" class="headerlink" title="2.5.3 查看部分文件"></a>2.5.3 查看部分文件</h4><ol>
+<li><p><strong><code>tail</code>命令</strong><br>tail命令会显示文件最后几行的内容（文件的“尾部”）。默认情况下，它会显示文件的末尾10行。  可以向tail命令中加入-n参数来修改所显示的行数:  <code>tail -2 text</code> 。</p>
+</li>
+<li><p><strong><code>head</code>命令</strong>  </p>
+<p>head命令，顾名思义，会显示文件开头那些行的内容。默认情况下，它会显示文件前10行的文本。同理可以加入 -n 参数指定行数。 </p>
+</li>
+</ol>
 <hr>
-<p>先写到这~</p>
-<p><font color="#FF9999" size="3">文章参考：Linux命令行与shell脚本编程大全.第3版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
+<p>本章的学习就到这啦，下章将继续讨论bash shell的命令，并了解更多管理Linux系统时经常用到的高级系统管理命令。  </p>
+<p><font color="#FF9999" size="2">文章参考：Linux命令行与shell脚本编程大全.第2版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928218.jpg"></p>
 
                 
@@ -1595,7 +1732,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.7k</span>&nbsp;字
+                class="white-color">5.5k</span>&nbsp;字
             
             
             
