@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-16
+                    2022-01-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    2.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    10 分
                 </div>
                 
 
@@ -834,24 +834,70 @@ admin' or 'a'='a 密码随便<span aria-hidden="true" class="line-numbers-rows">
 <p>我接着自己在本地的test数据库尝试了一下，直接构造：</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select 1 from salaries;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<img src="E:\myblog\source\_posts\buuctf练习.assets\6.1-16423143076251.png" style="zoom:150%;">
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042456.png" style="zoom:150%;">
 
 <p>确实<strong>直接 select 一个常数会直接新增一个临时的列，并且每一行的数值都是这个常数</strong>，再来说一下这个 || ，在mysql里，<strong>只要 || 前面的成立，后面的便不再执行</strong>，同理，前面的不成立会执行后面的 。如果我们直接构造 :</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select *||salary from salaries<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="E:\myblog\source_posts\buuctf练习.assets\6.2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042458.png"></p>
 <p>可以看到会报语法错误，所以最终就是大佬的构造方法：</p>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select *,1||salary from salaries<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<img src="E:\myblog\source\_posts\buuctf练习.assets\6.3.png" style="zoom:150%;">
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042459.png" style="zoom:150%;">
 
 <p>可以看到新增加了一列并且这个表中的数据也都显示出来了，大佬们牛批！最后解题拿flag：</p>
-<img src="E:\myblog\source\_posts\buuctf练习.assets\6.4.png" style="zoom:150%;">
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042460.png" style="zoom:150%;">
 
 
 
+<h2 id="7-ACTF2020-新生赛-Exec"><a href="#7-ACTF2020-新生赛-Exec" class="headerlink" title="7.[ACTF2020 新生赛]Exec"></a>7.[ACTF2020 新生赛]Exec</h2><p>考察的是<strong>远程命令执行</strong>，emm我也是第一次做这种题，百度了一下网站的ping漏洞，发现可能存在远程执行命令的漏洞，就开始尝试~</p>
+<p>首先讲几个知识点：</p>
+<ul>
+<li><p><strong>命令连接符</strong></p>
+<p>cmd1 ; cmd2 ; cmd3                分号   <strong>;</strong>    可以进行多条命令的<strong>无关联执行</strong>，每一条执行结果<strong>不会影响其他命令</strong>的执行</p>
+<p>cmd1 &amp;&amp; cmd2                        左边的command1执行<strong>成功</strong>(返回0表示成功)后，**&amp;&amp;**右边的command2才能被执行。<br>cmd1 | cmd2                            | 表示管道，上一条命令的输出，作为下一条命令的输入<br>cmd1 || cmd2                           || 表示上一条命令执行失败后，才执行下一条命令</p>
+</li>
+</ul>
+<p>下面开始做题：</p>
+<p>首先<code>ls</code>查看一下当前目录有没有flag文件等，发现没得：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042461.png"></p>
+<p>然后尝试遍历父目录可以看到有flag文件：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042462.png"></p>
+<p>这样直接<code>cat ../../../flag</code>拿到flag:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042463.png"></p>
+<h2 id="8-极客大挑战-2019-Secret-File"><a href="#8-极客大挑战-2019-Secret-File" class="headerlink" title="8.[极客大挑战 2019]Secret File"></a>8.[极客大挑战 2019]Secret File</h2><p>考察的是<strong>伪协议读取文件</strong>，难点就是怎么读到flag.php中的flag。</p>
+<p>进入题目查看源代码发现提示有：/Archive_room.php ，接着点发现有：/action.php ，但是访问直接过去了跳到：/end.php，开始抓包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171145471.png"></p>
+<p>发现有secr3t.php，访问之后看到一段代码：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>secret<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token prolog">&lt;?php
+    highlight_file(__FILE__);
+    error_reporting(0);
+    $file=$_GET['file'];
+    if(strstr($file,"../")||stristr($file, "tp")||stristr($file,"input")||stristr($file,"data")){
+        echo "Oh no!";
+        exit();
+    }
+    include($file); 
+//flag放在了flag.php里
+?&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>							 					<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>直接访问flag.php会出现贱贱的话，看不到flag，看到php代码里有过滤的，先解释下这两个函数：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token function">strstr</span><span class="token punctuation">(</span>string<span class="token punctuation">,</span>search<span class="token punctuation">,</span>before_search<span class="token punctuation">)</span>
+	搜索字符串在另一字符串中的第一次出现。
+	返回字符串的剩余部分（从匹配点）。如果未找到所搜索的字符串，则返回 <span class="token boolean constant">FALSE</span>。
+ 
+<span class="token function">stristr</span><span class="token punctuation">(</span>string<span class="token punctuation">,</span>search<span class="token punctuation">,</span>before_search<span class="token punctuation">)</span>
+    不区分大小写的strstr（）版本。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>看到过滤了input、data，是伪协议里的，那就考虑filter读取文件，构造payload:</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token operator">?</span>file<span class="token operator">=</span>php<span class="token punctuation">:</span><span class="token comment">//filter/read=convert.base64-encode/resource=flag.php</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>页面返回flag.php的源码，解密后看到flag：<code>flag{b3f2f2c1-5e4f-4b48-8bc5-1cf85ef574b2}</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171145473.png"></p>
 <hr>
 <p>最后吐槽一下自己，看了warmup题，看好长时间不会，哎，还是太菜了，慢慢学吧~</p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948723.png"></p>
@@ -1718,7 +1764,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.5k</span>&nbsp;字
+                class="white-color">6k</span>&nbsp;字
             
             
             
