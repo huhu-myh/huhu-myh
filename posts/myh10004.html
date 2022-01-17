@@ -854,8 +854,11 @@ admin' or 'a'='a 密码随便<span aria-hidden="true" class="line-numbers-rows">
 <p>首先讲几个知识点：</p>
 <ul>
 <li><p><strong>命令连接符</strong></p>
-<p>cmd1 ; cmd2 ; cmd3                分号   <strong>;</strong>    可以进行多条命令的<strong>无关联执行</strong>，每一条执行结果<strong>不会影响其他命令</strong>的执行</p>
-<p>cmd1 &amp;&amp; cmd2                        左边的command1执行<strong>成功</strong>(返回0表示成功)后，**&amp;&amp;**右边的command2才能被执行。<br>cmd1 | cmd2                            | 表示管道，上一条命令的输出，作为下一条命令的输入<br>cmd1 || cmd2                           || 表示上一条命令执行失败后，才执行下一条命令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">cmd1 <span class="token punctuation">;</span> cmd2 <span class="token punctuation">;</span> cmd3         分号 <span class="token punctuation">;</span> 可以进行多条命令的无关联执行，每一条执行结果不会影响其他命令的执行
+cmd1 <span class="token operator">&amp;&amp;</span> cmd2               左边的command1执行成功<span class="token punctuation">(</span>返回0表示成功<span class="token punctuation">)</span>后，  <span class="token operator">&amp;&amp;</span>  右边的command2才能被执行。
+cmd1 <span class="token operator">|</span> cmd2                <span class="token operator">|</span> 表示管道，上一条命令的输出，作为下一条命令的输入
+cmd1 <span class="token operator">||</span> cmd2               <span class="token operator">||</span> 表示上一条命令执行失败后，才执行下一条命令<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 </li>
 </ul>
 <p>下面开始做题：</p>
