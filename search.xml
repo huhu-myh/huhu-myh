@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>buuctf练习[11-20]</title>
+      <link href="/posts/myh10008.html"/>
+      <url>/posts/myh10008.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr><h2 id="11-极客大挑战-2019-Knife"><a href="#11-极客大挑战-2019-Knife" class="headerlink" title="11.[极客大挑战 2019]Knife"></a>11.[极客大挑战 2019]Knife</h2><p>题目都告诉了是白给的shell，直接连就好了拿到webshell，找到根目录下有个flag，读取拿到flag:</p><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659622.png"></p><h2 id="12-极客大挑战-2019-Http"><a href="#12-极客大挑战-2019-Http" class="headerlink" title="12.[极客大挑战 2019]Http"></a>12.[极客大挑战 2019]Http</h2><p>考察的主要是http头部的一些信息，按着改就行了。首先那道题进入网页看到源码里面隐藏一个：<code>Secret.php</code>，进入后看到提示信息：</p><p>It doesn’t come from ‘<a href="https://sycsecret.buuoj.cn&amp;/#39;%EF%BC%8C%E7%9B%B4%E6%8E%A5%E6%8A%93%E5%8C%85%E6%94%B9%EF%BC%9A">https://Sycsecret.buuoj.cn'，直接抓包改：</a></p><ul><li>加个<code>Referer</code>: <a href="https://sycsecret.buuoj.cn,/">https://Sycsecret.buuoj.cn，</a></li></ul><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659623.png"></p><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659625.png"></p><ul><li>看到又说必须使用”syclover browser”,接着改<code>User-Agent</code></li></ul><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659626.png" style="zoom:150%;"><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659627.png" style="zoom:150%;"><ul><li>这又说必须本地访问，再改<code>X-Forwarded-For</code>拿到flag:</li></ul><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659628.png"></p><p>这里讲一下这三个参数：</p><ul><li><code>Referer</code>: 浏览器向 WEB 服务器表明自己是从哪个 网页/URL 获得/点击 当前请求中的网址/URL(你从哪来的)。</li><li><code>User-Agent</code>: 浏览器表明自己的身份（是哪种浏览器）。 </li><li><code>X-Forwarded-For</code>: 表示 HTTP 请求端真实 IP。</li></ul><hr><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659121.jpg" style="zoom:150%;">]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> buu练习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux学习-第三章</title>
       <link href="/posts/myh10007.html"/>
       <url>/posts/myh10007.html</url>
@@ -73,7 +98,7 @@
     
     
     <entry>
-      <title>buuctf练习</title>
+      <title>buuctf练习[1-10]</title>
       <link href="/posts/myh10004.html"/>
       <url>/posts/myh10004.html</url>
       

