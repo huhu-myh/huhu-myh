@@ -594,14 +594,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    488
+                    588
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -619,8 +619,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr>
-<h2 id="11-极客大挑战-2019-Knife"><a href="#11-极客大挑战-2019-Knife" class="headerlink" title="11.[极客大挑战 2019]Knife"></a>11.[极客大挑战 2019]Knife</h2><p>题目都告诉了是白给的shell，直接连就好了拿到webshell，找到根目录下有个flag，读取拿到flag:</p>
+                <h2 id="11-极客大挑战-2019-Knife"><a href="#11-极客大挑战-2019-Knife" class="headerlink" title="11.[极客大挑战 2019]Knife"></a>11.[极客大挑战 2019]Knife</h2><p>题目都告诉了是白给的shell，直接连就好了拿到webshell，找到根目录下有个flag，读取拿到flag:</p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659622.png"></p>
 <h2 id="12-极客大挑战-2019-Http"><a href="#12-极客大挑战-2019-Http" class="headerlink" title="12.[极客大挑战 2019]Http"></a>12.[极客大挑战 2019]Http</h2><p>考察的主要是http头部的一些信息，按着改就行了。首先那道题进入网页看到源码里面隐藏一个：<code>Secret.php</code>，进入后看到提示信息：</p>
 <p>It doesn’t come from ‘<a target="_blank" rel="noopener" href="https://sycsecret.buuoj.cn&amp;/#39;%EF%BC%8C%E7%9B%B4%E6%8E%A5%E6%8A%93%E5%8C%85%E6%94%B9%EF%BC%9A">https://Sycsecret.buuoj.cn'，直接抓包改：</a></p>
@@ -665,6 +664,10 @@
 <p>最后在连的时候要猜一下文件上传到哪里了！<strong>常规的目录/upload下面</strong>，然后直接连  /upload/2.phtml  就可以了</p>
 <p>蚁剑连一下flag就在根目录，拿到flag:flag{07b9cce3-4089-4384-a26a-4572c9c90566}。</p>
 <p>总体思路大概就是先上传个马，看返回信息，然后对应改就可以了，还有很多过滤，以后慢慢遇见~</p>
+<p>这里推荐一篇博客，讲解了一句话木马的原理：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39190897/article/details/86772765">https://blog.csdn.net/weixin_39190897/article/details/86772765</a></p>
+<h2 id="14-ACTF2020-新生赛-Upload"><a href="#14-ACTF2020-新生赛-Upload" class="headerlink" title="14.[ACTF2020 新生赛]Upload"></a>14.[ACTF2020 新生赛]Upload</h2><p>这题和上题差不多，多了一个<strong>前端验证</strong>，所以可以先制作一个图片木马上传抓包，然后改文件后缀为：phtml，成功上传，然后就可以直接连了拿到webshell：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201201639371.png"></p>
+<p>拿到flag：flag{7facc008-0a13-457f-9a24-3f63516cd0c8}</p>
 <hr>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659121.jpg" style="zoom:150%;">
 
@@ -1524,7 +1527,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">8.7k</span>&nbsp;字
+                class="white-color">8.8k</span>&nbsp;字
             
             
             
