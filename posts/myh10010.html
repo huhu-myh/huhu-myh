@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-22
+                    2022-01-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    14 分
                 </div>
                 
 
@@ -813,6 +813,178 @@ $<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><s
 <hr>
 <p><font color="red" size="3">警告</font> 以root用户身份登录系统时，使用killall命令要特别小心，因为很容易就会误用通配符而结束了重要的系统进程。这可能会破坏文件系统。</p>
 <hr>
+<h3 id="4-2-监测磁盘空间"><a href="#4-2-监测磁盘空间" class="headerlink" title="4.2 监测磁盘空间"></a>4.2 监测磁盘空间</h3><h4 id="4-2-1-df-命令"><a href="#4-2-1-df-命令" class="headerlink" title="4.2.1 df 命令"></a>4.2.1 <code>df </code>命令</h4><p>df命令可以方便地查看所有<strong>已挂载磁盘</strong>的使用情况。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">df</span>
+Filesystem     1K-blocks    Used Available Use% Mounted on
+udev             <span class="token number">1939124</span>       <span class="token number">0</span>   <span class="token number">1939124</span>   <span class="token number">0</span>% /dev
+tmpfs             <span class="token number">391044</span>   <span class="token number">39556</span>    <span class="token number">351488</span>  <span class="token number">11</span>% /run
+/dev/vda1       <span class="token number">82503044</span> <span class="token number">5996440</span>  <span class="token number">73051148</span>   <span class="token number">8</span>% /
+tmpfs            <span class="token number">1955208</span>      <span class="token number">32</span>   <span class="token number">1955176</span>   <span class="token number">1</span>% /dev/shm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li> 设备的设备文件位置；</li>
+<li> 能容纳多少个1024字节大小的块；</li>
+<li> 已用了多少个1024字节大小的块；</li>
+<li> 还有多少个1024字节大小的块可用；</li>
+<li> 已用空间所占的比例；</li>
+<li> 设备挂载到了哪个挂载点上  </li>
+</ul>
+<p>一个常用的参数是<code>-h</code>。它会把输出中的磁盘空间按照用户易读的形式显示，通常用M来替代兆字节，用G替代吉字节。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">df</span> -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            <span class="token number">1</span>.9G     <span class="token number">0</span>  <span class="token number">1</span>.9G   <span class="token number">0</span>% /dev
+tmpfs           382M   39M  344M  <span class="token number">11</span>% /run
+/dev/vda1        79G  <span class="token number">5</span>.8G   70G   <span class="token number">8</span>% /
+tmpfs           <span class="token number">1</span>.9G   32K  <span class="token number">1</span>.9G   <span class="token number">1</span>% /dev/shm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-2-2-du命令"><a href="#4-2-2-du命令" class="headerlink" title="4.2.2 du命令"></a>4.2.2 <code>du</code>命令</h4><p>du命令可以显示某个特定目录（默认情况下是当前目录）的磁盘使用情况。这一方法可用来快速判断系统上某个目录下是不是有超大文件。  </p>
+<p>默认情况下， du命令会显示当前目录下所有的文件、目录和子目录的磁盘使用情况，它会以磁盘块为单位来表明每个文件或目录占用了多大存储空间。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">du</span>
+<span class="token number">484</span> ./.gstreamer-0.10
+<span class="token number">8</span> ./Templates
+<span class="token number">8</span> ./Download
+<span class="token number">8</span> ./.ccache/7/0
+<span class="token number">24</span> ./.ccache/7
+<span class="token number">368</span> ./.ccache/a/d
+<span class="token number">384</span> ./.ccache/a
+<span class="token number">424</span> ./.ccache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>每行输出左边的数值是每个文件或目录占用的<strong>磁盘块数</strong>。列表是从目录层级的<strong>最底部开始</strong>，然后按文件、子目录、目录逐级向上。  同理，也有<code>-h</code>参数按用户易读的格式输出大小 。</p>
+<h3 id="4-3-处理数据文件"><a href="#4-3-处理数据文件" class="headerlink" title="4.3 处理数据文件"></a>4.3 处理数据文件</h3><h4 id="4-3-1-排序数据"><a href="#4-3-1-排序数据" class="headerlink" title="4.3.1 排序数据"></a>4.3.1 排序数据</h4><p><code>sort</code>命令按照会话指定的默认语言的排序规则对文本文件中的数据行排序。 </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cat</span> file1
+one
+two
+three
+four
+five
+$ <span class="token function">sort</span> file1
+five
+four
+one
+three
+two<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 但是如果对数字进行排序，可能会出点差错：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cat</span> file2
+<span class="token number">1</span>
+<span class="token number">2</span>
+<span class="token number">100</span>
+<span class="token number">45</span>
+<span class="token number">3</span>
+<span class="token number">10</span>
+<span class="token number">145</span>
+$ <span class="token function">sort</span> file2
+<span class="token number">1</span>
+<span class="token number">10</span>
+<span class="token number">100</span>
+<span class="token number">145</span>
+<span class="token number">2</span>
+<span class="token number">3</span>
+<span class="token number">45</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>默认情况下， sort命令会把<strong>数字当做字符来执行</strong>标准的字符排序。解决这个问题可用-n参数 ，告诉sort命令把数字识别成数字而不是字符，并且按值排序  。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sort</span> -n file2
+<span class="token number">1</span>
+<span class="token number">2</span>
+<span class="token number">3</span>
+<span class="token number">10</span>
+<span class="token number">45</span>
+<span class="token number">100</span>
+<span class="token number">145</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>另一个常用的参数是-M，按月排序。 Linux的<strong>日志文件</strong>经常会在每行的<strong>起始位置有一个时间戳</strong>，用来表明事件是什么时候发生的。如果用-M参数， sort命令就能识别三字符的月份名，并相应地排序。   </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Sep <span class="token number">13</span> 07:10:09 testbox smartd<span class="token punctuation">[</span><span class="token number">2718</span><span class="token punctuation">]</span>: Device: /dev/sda, opened  <span class="token comment">#日志文件</span>
+$ <span class="token function">sort</span> -M file3
+Jan
+Feb
+Mar
+Apr<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>常用参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">描 述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-f</td>
+<td align="center">参数会忽略大小写</td>
+</tr>
+<tr>
+<td align="center">-r</td>
+<td align="center">反序排序（升序变成降序）</td>
+</tr>
+<tr>
+<td align="center">-t</td>
+<td align="center">指定一个用来区分键位置的字符</td>
+</tr>
+<tr>
+<td align="center">-n</td>
+<td align="center">按字符串数值来排序（并不转换为浮点数）</td>
+</tr>
+<tr>
+<td align="center">-g</td>
+<td align="center">按通用数值来排序（跟-n不同，把值当浮点数来排序，支持科学 计数法表示的值）</td>
+</tr>
+</tbody></table>
+<p>-k和-t参数在对按字段分隔的数据进行排序时非常有用，例如/etc/passwd文件。可以用-t参数来指定字段分隔符，然后用-k参数来指定排序的字段。举个例子，要对前面提到的密码文件/etc/passwd根据用户ID进行数值排序，可以这么做：  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sort</span> -t <span class="token string">':'</span> -k <span class="token number">3</span> -n /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 此时数据已经按第三个字段——用户ID的数值排序。</p>
+<h4 id="4-3-2-搜索数据"><a href="#4-3-2-搜索数据" class="headerlink" title="4.3.2 搜索数据"></a>4.3.2 搜索数据</h4><p>格式：<code>grep [options] pattern [file]  </code></p>
+<p><code>grep</code>命令会在输入或指定的文件中查找包含匹配指定模式的字符的行。 grep的输出就是包含了匹配模式的行（并不是行号是一行内容）。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># cat test1.txt </span>
+teacher zhao
+Teacher wang
+student li
+Student qin
+teach him
+sovle it
+root@VM-16-11-debian:/tmp/test<span class="token comment"># grep teacher test1.txt </span>
+teacher zhao
+root@VM-16-11-debian:/tmp/test<span class="token comment"># grep t test1.txt </span>
+teacher zhao
+student li
+Student qin
+teach him
+sovle it<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>-v</code>参数：进行反向搜索（输出不匹配该模式的行） 。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># grep -v t test1.txt </span>
+Teacher wang<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>  <code>-n</code>参数：显示匹配模式的行所在的行号 。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># grep -n t test1.txt </span>
+<span class="token number">1</span>:teacher zhao
+<span class="token number">3</span>:student li
+<span class="token number">4</span>:Student qin
+<span class="token number">5</span>:teach him
+<span class="token number">6</span>:sovle it<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>-c</code>参数：显示多少行含有匹配的模式 。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># grep -c t test1.txt </span>
+<span class="token number">5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p> <code>-e  </code>参数：指定多个匹配模式 。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># grep -e t -e a test1.txt </span>
+teacher zhao
+Teacher wang
+student li
+Student qin
+teach him
+sovle it<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>通用的可以使用通配符、正则表达式来匹配~</p>
 <hr>
 <p><font color="#FF9999" size="3">文章参考：Linux命令行与shell脚本编程大全.第3版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux4/202201221842398.jpg" style="zoom:150%;">
@@ -1681,7 +1853,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.2k</span>&nbsp;字
+                class="white-color">13.1k</span>&nbsp;字
             
             
             

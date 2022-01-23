@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-20
+                    2022-01-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    588
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 
@@ -668,6 +668,33 @@
 <h2 id="14-ACTF2020-新生赛-Upload"><a href="#14-ACTF2020-新生赛-Upload" class="headerlink" title="14.[ACTF2020 新生赛]Upload"></a>14.[ACTF2020 新生赛]Upload</h2><p>这题和上题差不多，多了一个<strong>前端验证</strong>，所以可以先制作一个图片木马上传抓包，然后改文件后缀为：phtml，成功上传，然后就可以直接连了拿到webshell：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201201639371.png"></p>
 <p>拿到flag：flag{7facc008-0a13-457f-9a24-3f63516cd0c8}</p>
+<h2 id="15-RoarCTF-2019-Easy-Calc"><a href="#15-RoarCTF-2019-Easy-Calc" class="headerlink" title="15.[RoarCTF 2019]Easy Calc"></a>15.[RoarCTF 2019]Easy Calc</h2><p>这题难道我了，首先题目考察的是命令执行。但是设置了WAF和一些字符过滤，里面涉及了挺多不知道的知识点。首先访问页面是一个输入框，看页面源码看到提示设置了WAF来阻止你的一些输入，还可以看到一个calc.php，看到里面也有一些匹配限制。注意一下，这个WAF不仅仅是这个php还有你看不到的，就比如先输入calc.php?num=a，可以看到返回403，因为这里过滤了字母你只能是数字。所以这里运用到了<code>php字符串解析特性</code>：</p>
+<p>我们知道PHP将查询字符串（在URL或正文中）转换为内部$_GET或的关联数组$_POST。例如：/?foo=bar变成Array([foo] =&gt; “bar”)。值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。例如，/?%20news[id%00=42会转换为Array([news_id] =&gt; 42)。如果一个IDS/IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
+<pre class="line-numbers language-none"><code class="language-none">/news.php?%20news[id%00=42"+AND+1=0--<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在解析查询字符串时，它会做两件事：</p>
+<blockquote>
+<p>​    1.删除空白符</p>
+<p>​    2.将某些字符转换为下划线（包括空格）</p>
+</blockquote>
+<p>具体可以参考这篇文章：<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/213359.html">https://www.freebuf.com/articles/web/213359.html</a></p>
+<p>所以接下来我们可以构造payload: /calc.php? num=a，可以发现此时页面能够回显ａ，这里在num前面加了空格，WAF检测的是num，但是我们输入的是‘　num’，所以就绕过了WAF，但是PHP在解析的时候会删除空白字符，就会存储为Array([num] =&gt; “ａ”)，同时实现了给num赋非数字值。这样就过了第一关。</p>
+<p>下一个是绕过正则匹配了，有两种方法：</p>
+<ol>
+<li>使用chr()绕过，将ascii码转成单个字符串在用<code>.</code>拼接。</li>
+<li>使用字符取反绕过，如<code>~%9e</code>就代表字符串<code>a</code>。</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">这里/=chr(47)
+?%20num=var_dump(scandir(chr(47)))　　// 列出根目录下的全部文件名 
+?%20num=var_dump(file_get_contents(~%D0%99%CE%9E%98%98))　// 读flag文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这里的取反就是将二进制0变为1，1变为0，具体实现就如：</p>
+<p><img src="E:\myblog\source_posts\buuctf练习-11-20.assets\4.1.png"></p>
+<p>所以我们在读的时候<font color="#FF5E3A" size="3">再取反一次</font>就是等价于读f1agg。</p>
+<p>还有一些绕过技巧见：<a target="_blank" rel="noopener" href="https://www.hetianlab.com/specialized/20201124173456">https://www.hetianlab.com/specialized/20201124173456</a></p>
+<p>这里还有另外一种方法HTTP走私，具体可见：</p>
+<p><a target="_blank" rel="noopener" href="https://paper.seebug.org/1048/">https://paper.seebug.org/1048/</a></p>
+<p><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1715478145881946407&amp;wfr=spider&amp;for=pc">https://baijiahao.baidu.com/s?id=1715478145881946407&amp;wfr=spider&amp;for=pc</a></p>
 <hr>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659121.jpg" style="zoom:150%;">
 
@@ -1533,7 +1560,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.2k</span>&nbsp;字
+                class="white-color">13.1k</span>&nbsp;字
             
             
             
