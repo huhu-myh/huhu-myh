@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-25
+                    2022-02-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    4.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    17 分
                 </div>
                 
 
@@ -985,6 +985,121 @@ teach him
 sovle it<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>通用的可以使用通配符、正则表达式来匹配~</p>
+<h4 id="4-3-3-压缩数据"><a href="#4-3-3-压缩数据" class="headerlink" title="4.3.3 压缩数据"></a>4.3.3 压缩数据</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">gzip</span> myprog
+$ <span class="token function">ls</span> -l my*
+-rwxrwxr-x <span class="token number">1</span> rich rich <span class="token number">2197</span> <span class="token number">2007</span>-09-13 <span class="token number">11</span>:29 myprog.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>gzip命令会压缩你在命令行指定的文件。也可以在命令行指定多个文件名甚至用通配符来一次性批量压缩文件。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">gzip</span> my*
+$ <span class="token function">ls</span> -l my*
+-rwxr--r-- <span class="token number">1</span> rich rich <span class="token number">103</span> Sep <span class="token number">6</span> <span class="token number">13</span>:43 myprog.c.gz
+-rwxr-xr-x <span class="token number">1</span> rich rich <span class="token number">5178</span> Sep <span class="token number">6</span> <span class="token number">13</span>:43 myprog.gz
+-rwxr--r-- <span class="token number">1</span> rich rich <span class="token number">59</span> Sep <span class="token number">6</span> <span class="token number">13</span>:46 myscript.gz
+-rwxr--r-- <span class="token number">1</span> rich rich <span class="token number">60</span> Sep <span class="token number">6</span> <span class="token number">13</span>:44 myscript2.gz
+$<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-3-4-归档数据"><a href="#4-3-4-归档数据" class="headerlink" title="4.3.4 归档数据"></a>4.3.4 归档数据</h4><p>虽然<code>zip</code>命令能够很好地将数据压缩和归档进单个文件，但它不是Unix和Linux中的标准归档工具。目前， Unix和Linux上最广泛使用的归档工具是<code>tar</code>命令。  </p>
+<p>tar命令的格式：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token keyword">function</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> object1 object2 <span class="token punctuation">..</span>.  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>function参数定义了tar命令应该做什么 :</p>
+<table>
+<thead>
+<tr>
+<th align="center">功 能</th>
+<th align="center">长名称</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-A</td>
+<td align="center">–concatenate</td>
+<td align="center">将一个已有tar归档文件追加到另一个已有tar归档文件</td>
+</tr>
+<tr>
+<td align="center">-c</td>
+<td align="center">–create</td>
+<td align="center">创建一个新的tar归档文件</td>
+</tr>
+<tr>
+<td align="center">-d</td>
+<td align="center">–diff</td>
+<td align="center">检查归档文件和文件系统的不同之处</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">–delete</td>
+<td align="center">从已有tar归档文件中删除</td>
+</tr>
+<tr>
+<td align="center">-r</td>
+<td align="center">–append</td>
+<td align="center">追加文件到已有tar归档文件末尾</td>
+</tr>
+<tr>
+<td align="center">-t</td>
+<td align="center">–list</td>
+<td align="center">列出已有tar归档文件的内容</td>
+</tr>
+<tr>
+<td align="center">-u</td>
+<td align="center">–update</td>
+<td align="center">将比tar归档文件中已有的同名文件新的文件追加到该tar归档文件中</td>
+</tr>
+<tr>
+<td align="center">-x</td>
+<td align="center">–extract</td>
+<td align="center">从已有tar归档文件中提取文件</td>
+</tr>
+</tbody></table>
+<p>每个功能可用选项来针对tar归档文件定义一个特定行为。下表列出了这些选项中能和tar<br>命令一起使用的常见选项🤪。  </p>
+<table>
+<thead>
+<tr>
+<th align="center">选 项</th>
+<th align="center">描 述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-C dir</td>
+<td align="center">切换到指定目录</td>
+</tr>
+<tr>
+<td align="center">-f file</td>
+<td align="center">输出结果到文件或设备file</td>
+</tr>
+<tr>
+<td align="center">-j</td>
+<td align="center">将输出重定向给bzip2命令来压缩内容</td>
+</tr>
+<tr>
+<td align="center">-p</td>
+<td align="center">保留所有文件权限</td>
+</tr>
+<tr>
+<td align="center">-v</td>
+<td align="center">在处理文件时显示文件</td>
+</tr>
+<tr>
+<td align="center">-z</td>
+<td align="center">将输出重定向给gzip命令来压缩内容</td>
+</tr>
+</tbody></table>
+<p>这些选项经常合并到一起使用。首先，你可以用下列命令来创建一个归档文件：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -cvf test.tar test/ test2/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>上面的命令创建了名为test.tar的归档文件，含有test和test2目录内容。接着，用下列命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -tf test.tar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>列出tar文件test.tar的内容（但并不提取文件）。最后，用命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -xvf test.tar  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>通过这一命令从tar文件test.tar中<strong>提取内容</strong>。如果tar文件是从一个目录结构创建的，那整个目录结构都会在当前目录下重新创建。  </p>
+<hr>
+<p><strong>窍门</strong> 下载了开源软件之后，你会经常看到文件名以.tgz结尾。这些是gzip压缩过的tar文件可以<br>用命令tar -zxvf filename.tgz来解压。</p>
+<hr>
 <hr>
 <p><font color="#FF9999" size="3">文章参考：Linux命令行与shell脚本编程大全.第3版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux4/202201221842398.jpg" style="zoom:150%;">
@@ -1851,7 +1966,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">16.8k</span>&nbsp;字
+                class="white-color">17.9k</span>&nbsp;字
             
             
             

@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-26
+                    2022-02-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.3k
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    11 分
                 </div>
                 
 
@@ -835,7 +835,49 @@ web.rar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <pre class="line-numbers language-php" data-language="php"><code class="language-php">“<span class="token number">1</span>admin” <span class="token operator">==</span> <span class="token number">1</span>   <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>类似的还有MD5弱类型比较等。所以payload就为：<code>index.php?key=123</code>，得到flag{0951de20-f469-458f-8e3b-ffc4d519580a}</p>
+<h2 id="19-护网杯-2018-easy-tornado"><a href="#19-护网杯-2018-easy-tornado" class="headerlink" title="19.[护网杯 2018]easy_tornado"></a>19.[护网杯 2018]easy_tornado</h2><p>主要考察的是<font color="#FF5E3A" size="3">模板注入</font></p>
+<p>首先根据<code>easy_tornado</code>和<code>render</code>函数可知这个题和服务器模板注入有关。因为<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=render&amp;spm=1001.2101.3001.7020">render</a>（）是tornado里的函数，可以生成html模板。tornado是用Python编写的Web服务器兼Web应用框架，简单来说就是用来生成模板的东西。和Python相关，和模板相关，就可以推测这可能是个ssti注入题了。（详情请看<a target="_blank" rel="noopener" href="https://blog.csdn.net/zz_Caleb/article/details/96480967">SSTI完全学习</a>）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202202041535246.png" alt="验证"></p>
+<p>但是目前还缺一个<code>cookie_secret</code>，这是就可以查这个一般在模板框架的什么位置，通过查阅发现在handler.settings中，详细说明见：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45642610/article/details/112519061">https://blog.csdn.net/weixin_45642610/article/details/112519061</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202202041535249.png" alt="handler.settings"></p>
+<p>这样就得到密钥了，就可以根据公式拿flag了。这里贴上md5加密脚本：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> hashlib
+
+<span class="token builtin">hash</span> <span class="token operator">=</span> hashlib<span class="token punctuation">.</span>md5<span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment">#创建md5加密对象</span>
+<span class="token builtin">hash</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token string">"/fllllllllllllag"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'UTF-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#更新对象要加密的字符串，要先UTF-8编码成二进制，因为md5只加密二进制</span>
+s1<span class="token operator">=</span><span class="token builtin">hash</span><span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">#以十六进制输出密文</span>
+<span class="token builtin">hash</span> <span class="token operator">=</span> hashlib<span class="token punctuation">.</span>md5<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">#按要求重复步骤</span>
+<span class="token builtin">hash</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">"88418b16-e8cf-4a57-9b43-2abd81796dea"</span><span class="token operator">+</span>s1<span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">hash</span><span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="20-极客大挑战-2019-BuyFlag"><a href="#20-极客大挑战-2019-BuyFlag" class="headerlink" title="20.[极客大挑战 2019]BuyFlag"></a>20.[极客大挑战 2019]BuyFlag</h2><p>这题考查的主要是</p>
+<p>进入题目看到一段话：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202202041535251.png"></p>
+<p>可以看到有身份认证相关，同时还有password，可以先看看cookie，看到user=0，大致猜个0是false，1是true，所以改为1。</p>
+<p>然后查看页面源代码发现有段代码：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>
+	<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>post money <span class="token keyword">and</span> password<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'password'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token variable">$password</span> <span class="token operator">=</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'password'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is_numeric</span><span class="token punctuation">(</span><span class="token variable">$password</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">echo</span> <span class="token double-quoted-string string">"password can't be number&lt;/br&gt;"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token keyword">elseif</span> <span class="token punctuation">(</span><span class="token variable">$password</span> <span class="token operator">==</span> <span class="token number">404</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">echo</span> <span class="token double-quoted-string string">"Password Right!&lt;/br&gt;"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token operator">--</span><span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>就是弱比较，payload：password=404a，成功绕过:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202202041535252.png"></p>
+<p>此时就差买flag了，注意上面的源码，也有<code>post money</code>，这个别忘了！那就payload：password=404a&amp;money=100000000:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202202041535253.png"></p>
+<p>提示太长了，那就用<font color="#FF5E3A" size="3">科学计数法</font>，payload：password=404a&amp;money=10e8，得到flag😊：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202202041535254.png"></p>
 <hr>
+<p>好啦，又是十道题，继续努力，主要就是见题型吧，以及拿到一道题该怎么出发。</p>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202201191659121.jpg" style="zoom:150%;">
 
                 
@@ -1700,7 +1742,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">16.8k</span>&nbsp;字
+                class="white-color">17.9k</span>&nbsp;字
             
             
             
