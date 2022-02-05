@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-04
+                    2022-02-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    7 分
                 </div>
                 
 
@@ -702,6 +702,110 @@ Hello World<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 -bash: my_variable: <span class="token builtin class-name">command</span> not found<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
+
+<h4 id="6-2-2-设置全局环境变量"><a href="#6-2-2-设置全局环境变量" class="headerlink" title="6.2.2 设置全局环境变量"></a>6.2.2 设置全局环境变量</h4><p>创建全局环境变量的方法是<font color="#FF5E3A" size="3">先创建一个局部环境变量，然后再把它导出到全局环境中</font>。通过<code>export</code>命令来完成，变量名前面不需要加$。    </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span>
+
+root@VM-16-11-debian:~<span class="token comment"># myvar="I am global now"</span>
+root@VM-16-11-debian:~<span class="token comment"># export myvar</span>
+root@VM-16-11-debian:~<span class="token comment"># bash  	//创建子shell</span>
+root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span>
+I am global now
+root@VM-16-11-debian:~<span class="token comment"># exit</span>
+<span class="token builtin class-name">exit</span>
+root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span>
+I am global now<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>修改子shell中全局环境变量并不会影响到父shell中该变量的值：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">my_variable</span><span class="token operator">=</span><span class="token string">"I am Global now"</span>
+$ <span class="token builtin class-name">export</span> my_variable
+$
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
+I am Global now
+$
+$ <span class="token function">bash</span>
+$
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
+I am Global now
+$
+$ <span class="token assign-left variable">my_variable</span><span class="token operator">=</span><span class="token string">"Null"</span>
+$
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
+Null
+$
+$ <span class="token builtin class-name">exit</span>
+<span class="token builtin class-name">exit</span>
+$
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
+I am Global now<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>子shell甚至无法使用export命令改变父shell中全局环境变量的值：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">my_variable</span><span class="token operator">=</span><span class="token string">"I am Global now"</span>
+$ <span class="token builtin class-name">export</span> my_variable
+$
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
+I am Global now
+$
+$ <span class="token function">bash</span>
+$
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
+I am Global now
+$
+$ <span class="token assign-left variable">my_variable</span><span class="token operator">=</span><span class="token string">"Null"</span>
+$
+$ <span class="token builtin class-name">export</span> my_variable
+$
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
+Null
+$
+$ <span class="token builtin class-name">exit</span>
+<span class="token builtin class-name">exit</span>
+$
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
+I am Global now<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>尽管子shell重新定义并导出了变量my_variable，但<strong>父shell</strong>中的my_variable变量<strong>依然保留着原先的值</strong>。 </p>
+<h3 id="6-3-删除环境变量"><a href="#6-3-删除环境变量" class="headerlink" title="6.3 删除环境变量"></a>6.3 删除环境变量</h3><p>可以用unset命令删除已经存在的环境变量。在unset命令中引用环境变量时，记住**不要使用$**。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span>
+I am global now
+root@VM-16-11-debian:~<span class="token comment"># unset myvar </span>
+root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<p><strong>窍门</strong>     在涉及环境变量名时，记住一点就行了：如果要用到变量，使用$；如果要操作变量不适用。这条规则的一个例外就是使用printenv显示某个变量的值。  </p>
+<hr>
+<p>如果你是<font color="#FF5E3A" size="3">在子进程中删除了一个全局环境变量，这只对子进程有效</font>。该全局环境变量在父进程中依然可用。  </p>
+<h3 id="6-4-设置-PATH-环境变量"><a href="#6-4-设置-PATH-环境变量" class="headerlink" title="6.4 设置 PATH 环境变量"></a>6.4 设置 PATH 环境变量</h3><p>当在shell命令行界面中输入一个外部命令时， shell必须<strong>搜索系统来找到对应的程序</strong>。 <font color="#FF5E3A" size="3">PATH环境变量定义了用于进行命令和程序查找的目录</font>。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># echo $PATH</span>
+/usr/local/java/jdk-16.0.1+9/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+<span class="token comment">#PATH中的目录使用冒号分隔。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>如果命令或者程序的位置没有包括在PATH变量中，那么如果不使用绝对路径的话， shell是没法找到的。如果shell找不到指定的命令或程序，它会产生一个错误信息：  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># myprog</span>
+-bash: myprog: <span class="token builtin class-name">command</span> not found<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>若要添加新的搜索目录，只需引用原来的PATH值，然后再给这个字符串添加新目录就行了。  将目录加到PATH环境变量之后，就可以在虚拟目录结构中的任何位置执行程序。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">echo</span> <span class="token environment constant">$PATH</span>
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:
+/sbin:/bin:/usr/games:/usr/local/games
+$
+$ <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/home/christine/Scripts
+$
+$ <span class="token builtin class-name">echo</span> <span class="token environment constant">$PATH</span>
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/
+games:/usr/local/games:/home/christine/Scripts
+$
+$ myprog
+The factorial of <span class="token number">5</span> is <span class="token number">120</span>.
+$<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<p><strong>窍门</strong>    如果希望子shell也能找到你的程序的位置，一定要记得把修改后的PATH环境变量导出。  </p>
+<hr>
+<p><font color="#FF5E3A" size="3"> 这种对PATH变量的修改只能持续到退出或重启系统。这种效果并不能一直持续。</font>  </p>
+<hr>
+<p><font color="#FF9999" size="3">文章参考：Linux命令行与shell脚本编程大全.第3版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux6/202202051442126.jpg" style="zoom:150%;">
 
                 
             </div>
@@ -1567,7 +1671,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">19.1k</span>&nbsp;字
+                class="white-color">20.8k</span>&nbsp;字
             
             
             

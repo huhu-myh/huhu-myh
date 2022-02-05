@@ -587,7 +587,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-04
+                    2022-02-05
                 </div>
                 
 
@@ -836,6 +836,7 @@ web.rar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 
 <p>类似的还有MD5弱类型比较等。所以payload就为：<code>index.php?key=123</code>，得到flag{0951de20-f469-458f-8e3b-ffc4d519580a}</p>
 <h2 id="19-护网杯-2018-easy-tornado"><a href="#19-护网杯-2018-easy-tornado" class="headerlink" title="19.[护网杯 2018]easy_tornado"></a>19.[护网杯 2018]easy_tornado</h2><p>主要考察的是<font color="#FF5E3A" size="3">模板注入</font></p>
+<p>相关学习：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wjw-zm/p/12741047.html">Python-模板注入 - ZM思 - 博客园</a></p>
 <p>首先根据<code>easy_tornado</code>和<code>render</code>函数可知这个题和服务器模板注入有关。因为<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=render&amp;spm=1001.2101.3001.7020">render</a>（）是tornado里的函数，可以生成html模板。tornado是用Python编写的Web服务器兼Web应用框架，简单来说就是用来生成模板的东西。和Python相关，和模板相关，就可以推测这可能是个ssti注入题了。（详情请看<a target="_blank" rel="noopener" href="https://blog.csdn.net/zz_Caleb/article/details/96480967">SSTI完全学习</a>）。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu2/202202041535246.png" alt="验证"></p>
 <p>但是目前还缺一个<code>cookie_secret</code>，这是就可以查这个一般在模板框架的什么位置，通过查阅发现在handler.settings中，详细说明见：</p>
@@ -1742,7 +1743,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">19.1k</span>&nbsp;字
+                class="white-color">20.8k</span>&nbsp;字
             
             
             
