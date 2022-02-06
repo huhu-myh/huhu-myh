@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux学习-第六章, 计算机 网络安全 渗透测试">
+    <meta name="keywords" content="Linux学习-第七章, 计算机 网络安全 渗透测试">
     <meta name="description" content="本科 | 软件工程 | 网络安全">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Linux学习-第六章 | huhu</title>
+    <title>Linux学习-第七章 | huhu</title>
 
     <link rel="icon" type="image/jpeg" href="/medias/tx.jpg">
 
@@ -429,12 +429,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux学习-第六章</h1>
+                    <h1 class="description center-align post-title">Linux学习-第七章</h1>
                 </div>
             </div>
         </div>
@@ -580,7 +580,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-04
+                    2022-02-06
                 </div>
                 
 
@@ -594,7 +594,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    1.9k
                 </div>
                 
 
@@ -619,193 +619,151 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="第六章：使用Linux环境变量"><a href="#第六章：使用Linux环境变量" class="headerlink" title="第六章：使用Linux环境变量"></a>第六章：使用Linux环境变量</h2><h3 id="6-1-什么是环境变量"><a href="#6-1-什么是环境变量" class="headerlink" title="6.1 什么是环境变量"></a>6.1 什么是环境变量</h3><p>bash shell用一个叫作环境变量（ environment variable）的特性来<font color="#FF5E3A" size="3">存储有关shell会话和工作环境的信息</font>（这也是它们被称作环境变量的原因）。这项特性允许你在内存中存储数据，以便程序或shell中运行的脚本能够轻松访问到它们。这也是存储持久数据的一种简便方法。在bash shell中，环境变量分为两类：</p>
+                <h2 id="第七章：理解Linux文件权限"><a href="#第七章：理解Linux文件权限" class="headerlink" title="第七章：理解Linux文件权限"></a>第七章：理解Linux文件权限</h2><h3 id="7-1-Linux-的安全性"><a href="#7-1-Linux-的安全性" class="headerlink" title="7.1 Linux 的安全性"></a>7.1 Linux 的安全性</h3><p>Linux安全系统的核心是<font color="#FF5E3A" size="3">用户账户</font>。每个能进入Linux系统的用户都会被分配唯一的用户账户。用户对系统中各种对象的访问权限取决于他们登录系统时用的账户。  </p>
+<p>用户权限是通过<font color="#FF5E3A" size="3">创建用户时分配的用户ID（ User ID，通常缩写为UID）来跟踪的</font>。 UID是数值，每个用户都有唯一的UID，但在登录系统时用的不是UID，而是登录名。 Linux系统使用特定的文件和工具来跟踪和管理系统上的用户账户。  </p>
+<h4 id="7-1-1-etc-passwd-文件"><a href="#7-1-1-etc-passwd-文件" class="headerlink" title="7.1.1 /etc/passwd 文件"></a>7.1.1<code> /etc/passwd</code> 文件</h4><p>Linux系统使用一个专门的文件来将用户的登录名匹配到对应的UID值。这个文件就是<code>/etc/passwd</code>文件，它包含了一些与用户有关的信息。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># cat /etc/passwd</span>
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+……<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><font color="#FF5E3A" size="3">root用户账户是Linux系统的管理员，固定分配给它的UID是0</font>。就像上例中显示的， Linux系统会为各种各样的功能创建不同的用户账户，而这些账户并不是真的用户，这些账户叫作<font color="#FF5E3A" size="3">系统账户</font>，是系统上运行的各种服务进程访问资源用的特殊账户。所有运行在后台的服务都需要用一个系统用户账户登录到Linux系统上 。</p>
+<p>Linux为系统账户预留了500以下的UID值。有些服务甚至要用特定的UID才能正常工作。为普通用户创建账户时，大多数Linux系统会从500开始，将第一个可用UID分配给这个账户（并非所有的Linux发行版都是这样）。  </p>
+<p><code>etc/passwd</code>文件的字段包含了如下信息：</p>
 <ul>
-<li>全局变量</li>
-<li>局部变量  </li>
+<li> 登录用户名</li>
+<li> 用户密码</li>
+<li> 用户账户的UID（数字形式）</li>
+<li> 用户账户的组ID（ GID）（数字形式）</li>
+<li> 用户账户的文本描述（称为备注字段）</li>
+<li> 用户HOME目录的位置</li>
+<li> 用户的默认shell  </li>
 </ul>
-<h4 id="6-1-1-全局环境变量"><a href="#6-1-1-全局环境变量" class="headerlink" title="6.1.1 全局环境变量"></a>6.1.1 全局环境变量</h4><p>全局环境变量对于<font color="#FF5E3A" size="3">shell会话和所有生成的子shell</font>都是可见的。局部变量则<font color="#FF5E3A" size="3">只对创建它们的shell</font>可见。全局环境变量对那些所创建的子shell需要获取父shell信息的程序来说非常有用。  系统环境变量基本上都是使用全大写字母，以区别于普通用户的环境变量。  </p>
-<p>查看全局变量，可以使用<code>env</code>或<code>printenv</code>命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/<span class="token comment"># printenv</span>
-<span class="token assign-left variable"><span class="token environment constant">SHELL</span></span><span class="token operator">=</span>/bin/bash
-<span class="token assign-left variable"><span class="token environment constant">HISTSIZE</span></span><span class="token operator">=</span><span class="token number">3000</span>
-<span class="token assign-left variable"><span class="token environment constant">LANGUAGE</span></span><span class="token operator">=</span>en_US.utf8
-<span class="token assign-left variable">JRE_HOME</span><span class="token operator">=</span>/usr/local/java/jdk-16.0.1+9/jre
-<span class="token assign-left variable">HISTTIMEFORMAT</span><span class="token operator">=</span>%F %T 
-<span class="token assign-left variable"><span class="token environment constant">PWD</span></span><span class="token operator">=</span>/
-<span class="token assign-left variable"><span class="token environment constant">LOGNAME</span></span><span class="token operator">=</span>root
-<span class="token assign-left variable"><span class="token environment constant">XDG_SESSION_TYPE</span></span><span class="token operator">=</span>tty
-<span class="token assign-left variable"><span class="token environment constant">HOME</span></span><span class="token operator">=</span>/root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>出于安全，<code>etc/passwd</code>文件中的密码字段都被设置成了x，这并不是说所有的用户账户都用相同的密码。绝大多数Linux系统都将用户密码保存在另一个单独的文件中（叫作shadow文件，位置在<code>/etc/shadow</code>）。只有特定的程序（比如登录程序）才能访问这个文件。    </p>
+<p> <code> /etc/passwd</code>是一个标准的文本文件。可以用任何文本编辑器在<code>/etc/password</code>文件里直接进行用户管理（比如添加、修改或删除用户账户）。但这样做极其危险。如果<code>/etc/passwd</code>文件出现损坏，系统就无法读取它的内容了，这样会导致用户无法正常登录（即便是root用户）。  </p>
+<h4 id="7-1-2-etc-shadow-文件"><a href="#7-1-2-etc-shadow-文件" class="headerlink" title="7.1.2 /etc/shadow 文件"></a>7.1.2<code> /etc/shadow</code> 文件</h4><p>只有root用户才能访问<code>/etc/shadow</code>文件，这让它比起<code>/etc/passwd</code>安全许多 。</p>
+<p><code>/etc/shadow</code>文件为系统上的每个用户账户都保存了一条记录。记录就像下面这样：  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rich:<span class="token variable">$1</span>$.FfcK0ns<span class="token variable">$f1UgiyHQ25wrB</span>/hykCn020:11627:0:99999:7:::<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p> 要<strong>显示个别环境变量</strong>的值，可以使用<code>printenv</code>命令，但是不要用<code>env</code>命令:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">printenv</span> <span class="token environment constant">HOME</span>
-/home/Christine
-$
-$ <span class="token function">env</span> <span class="token environment constant">HOME</span>
-env: <span class="token environment constant">HOME</span><span class="token builtin class-name">:</span> No such <span class="token function">file</span> or directory<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li> 与<code>/etc/passwd</code>文件中的登录名字段对应的登录名</li>
+<li> 加密后的密码</li>
+<li> 自上次修改密码后过去的天数密码（自1970年1月1日开始计算）</li>
+<li> 多少天后才能更改密码</li>
+<li> 多少天后必须更改密码</li>
+<li> 密码过期前提前多少天提醒用户更改密码  </li>
+<li> 密码过期后多少天禁用用户账户</li>
+<li> 用户账户被禁用的日期（用自1970年1月1日到当天的天数表示）</li>
+<li> 预留字段给将来使用  </li>
+</ul>
+<p>使用shadow密码系统后， Linux系统可以更好地控制用户密码。可以控制用户多久更改一次密码，以及什么时候禁用该用户账户，如果密码未更新的话。  </p>
+<h4 id="7-1-3-添加新用户"><a href="#7-1-3-添加新用户" class="headerlink" title="7.1.3 添加新用户"></a>7.1.3 添加新用户</h4><p>向Linux系统添加新用户的主要工具是<code>useradd </code>，可以一次性创建新用户账户及设置用户HOME目录结构。<code>useradd</code>命令使用系统的默认值以及命令行参数来设置用户账户。系统默认值被设置在<code>/etc/default/useradd</code>文件中。可以使用加入了-D选项的<code>useradd</code>命令查看所用Linux系统中的这些默认值。     </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># /usr/sbin/useradd -D</span>
+<span class="token assign-left variable">GROUP</span><span class="token operator">=</span><span class="token number">100</span>
+<span class="token assign-left variable"><span class="token environment constant">HOME</span></span><span class="token operator">=</span>/home
+<span class="token assign-left variable">INACTIVE</span><span class="token operator">=</span>-1
+<span class="token assign-left variable">EXPIRE</span><span class="token operator">=</span>
+<span class="token assign-left variable"><span class="token environment constant">SHELL</span></span><span class="token operator">=</span>/bin/sh
+<span class="token assign-left variable">SKEL</span><span class="token operator">=</span>/etc/skel
+<span class="token assign-left variable">CREATE_MAIL_SPOOL</span><span class="token operator">=</span>no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>也可以使用echo显示变量的值。在这种情况下引用某个环境变量的时候，必须在<font color="#FF5E3A" size="3">变量前面加上一个美元符（ $）</font>:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/<span class="token comment"># echo $HOME</span>
-/root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>在创建新用户时，如果不在命令行中指定具体的值， <code>useradd</code>命令会使用-D选项显示的那些默认值。这个例子列出的默认值如下：  </p>
+<ul>
+<li> 新用户会被添加到GID为100的公共组；</li>
+<li> 新用户的HOME目录将会位于/<code>home/loginname</code>；</li>
+<li> 新用户账户密码在过期后不会被禁用；</li>
+<li> 新用户账户未被设置过期日期；</li>
+<li> 新用户账户将bash shell作为默认shell；</li>
+<li> 系统会将<code>/etc/skel</code>目录下的内容复制到用户的HOME目录下；</li>
+<li> 系统为该用户账户在mail目录下创建一个用于接收邮件的文件。  </li>
+</ul>
+<p>倒数第二个值很有意思。 <code>useradd</code>命令允许管理员创建一份默认的HOME目录配置，然后把它作为<strong>创建新用户HOME目录的模板</strong>。这样就能自动在每个新用户的HOME目录里放置默认的系统文件。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># ls -al /etc/skel</span>
+total <span class="token number">20</span>
+drwxr-xr-x  <span class="token number">2</span> root root <span class="token number">4096</span> Jan <span class="token number">10</span>  <span class="token number">2020</span> <span class="token builtin class-name">.</span>
+drwxr-xr-x <span class="token number">89</span> root root <span class="token number">4096</span> Jan <span class="token number">28</span> <span class="token number">14</span>:47 <span class="token punctuation">..</span>
+-rw-r--r--  <span class="token number">1</span> root root  <span class="token number">220</span> Apr <span class="token number">18</span>  <span class="token number">2019</span> .bash_logout
+-rw-r--r--  <span class="token number">1</span> root root <span class="token number">3526</span> Apr <span class="token number">18</span>  <span class="token number">2019</span> .bashrc
+-rw-r--r--  <span class="token number">1</span> root root  <span class="token number">807</span> Apr <span class="token number">18</span>  <span class="token number">2019</span> .profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>在echo命令中，在变量名前加上$可不仅仅是要显示变量当前的值。它能够<font color="#FF5E3A" size="3">让变量作为命令行参数</font>：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/<span class="token comment"># ls $HOME</span>
-disk.sh  install.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="6-1-2-局部环境变量"><a href="#6-1-2-局部环境变量" class="headerlink" title="6.1.2 局部环境变量"></a>6.1.2 局部环境变量</h4><p>局部环境变量只能在定义它们的进程中可见。事实上， Linux系统也默认定义了标准的局部环境变量。也可以定义自己的局部变量，这些变量被称为用户定义局部变量。  </p>
-<p>在Linux系统并没有一个只显示局部环境变量的命令。<code> set</code>命令会显示为某个特定进程设置的<strong>所有环境变量</strong>，包括<strong>局部变量、全局变量以及用户定义变量。</strong>  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">set</span>
-<span class="token assign-left variable"><span class="token environment constant">BASH</span></span><span class="token operator">=</span>/bin/bash
-<span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
-<span class="token assign-left variable"><span class="token environment constant">BASH_ALIASES</span></span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token assign-left variable"><span class="token environment constant">BASH_ARGC</span></span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token assign-left variable"><span class="token environment constant">BASH_ARGV</span></span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token assign-left variable"><span class="token environment constant">BASH_CMDS</span></span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token assign-left variable"><span class="token environment constant">BASH_LINENO</span></span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token assign-left variable"><span class="token environment constant">BASH_SOURCE</span></span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
-<span class="token assign-left variable">colors</span><span class="token operator">=</span>/etc/DIR_COLORS
-<span class="token assign-left variable">my_variable</span><span class="token operator">=</span><span class="token string">'Hello World'</span>
-<span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>通过<code>printenv</code>命令能看到的全局环境变量都出现在了<code>set</code>命令的输出中。但在<code>set</code>命令的输出中<strong>还有其他一些环境变量</strong>，即局部环境变量和用户定义变量。  </p>
-<hr>
-<p><strong>说明</strong>  命令env、 printenv和set之间的差异很细微。 set命令会显示出全局变量、局部变量以及用户定义变量。它还会按照字母顺序对结果进行排序。 env和printenv命令同set命令的区别在于前两个命令不会对变量排序，也不会输出局部变量和用户定义变量。  </p>
-<hr>
-<h3 id="6-2-设置用户定义变量"><a href="#6-2-设置用户定义变量" class="headerlink" title="6.2 设置用户定义变量"></a>6.2 设置用户定义变量</h3><p>可以在bash shell中直接设置自己的变量。本节将介绍怎样在交互式shell或shell脚本程序中创建自己的变量并引用它们。  </p>
-<h4 id="6-2-1-设置局部用户定义变量"><a href="#6-2-1-设置局部用户定义变量" class="headerlink" title="6.2.1 设置局部用户定义变量"></a>6.2.1 设置局部用户定义变量</h4><p>启动了bash shell（或者执行一个shell脚本），就能创建在这个shell<strong>进程内可见的局部变量</strong>了。可以<font color="#FF5E3A" size="3">通过等号给环境变量赋值，值可以是数值或字符串</font>。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># bash    //创建子进程</span>
-root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span>
-
-root@VM-16-11-debian:~<span class="token comment"># myvar=hello</span>
-root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span>
-hello
-root@VM-16-11-debian:~<span class="token comment"># exit  //退出子进程</span>
-<span class="token builtin class-name">exit</span>
-root@VM-16-11-debian:~<span class="token comment"># echo $myvar  //不可见其他进程的环境变量</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>现在每次引用my_variable 环境变量的值，只要通过<code>$my_variable</code>引用即可。</p>
-<p>如果要给变量赋一个<strong>含有空格</strong>的字符串值，<font color="#FF5E3A" size="3">必须用引号来界定字符串的首和尾</font>。    </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">my_variable</span><span class="token operator">=</span>Hello World
--bash: World: <span class="token builtin class-name">command</span> not found
-$
-$ <span class="token assign-left variable">my_variable</span><span class="token operator">=</span><span class="token string">"Hello World"</span>
-$
-$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
-Hello World<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>没有单引号的话， bash shell会以为下一个词是另一个要执行的命令。注意，<strong>定义的局部环境变量用的是小写字母，而到目前为止你所看到的系统环境变量都是大写字母。</strong>  </p>
-<p>记住，变量名、等号和值之间没有空格，这一点非常重要。如果在赋值表达式中加上了空格，bash shell就会把值当成一个单独的命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ my_variable <span class="token operator">=</span> <span class="token string">"Hello World"</span>
--bash: my_variable: <span class="token builtin class-name">command</span> not found<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="6-2-2-设置全局环境变量"><a href="#6-2-2-设置全局环境变量" class="headerlink" title="6.2.2 设置全局环境变量"></a>6.2.2 设置全局环境变量</h4><p>创建全局环境变量的方法是<font color="#FF5E3A" size="3">先创建一个局部环境变量，然后再把它导出到全局环境中</font>。通过<code>export</code>命令来完成，变量名前面不需要加$。    </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span>
-
-root@VM-16-11-debian:~<span class="token comment"># myvar="I am global now"</span>
-root@VM-16-11-debian:~<span class="token comment"># export myvar</span>
-root@VM-16-11-debian:~<span class="token comment"># bash  	//创建子shell</span>
-root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span>
-I am global now
-root@VM-16-11-debian:~<span class="token comment"># exit</span>
-<span class="token builtin class-name">exit</span>
-root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span>
-I am global now<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>修改子shell中全局环境变量并不会影响到父shell中该变量的值：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">my_variable</span><span class="token operator">=</span><span class="token string">"I am Global now"</span>
-$ <span class="token builtin class-name">export</span> my_variable
-$
-$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
-I am Global now
-$
-$ <span class="token function">bash</span>
-$
-$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
-I am Global now
-$
-$ <span class="token assign-left variable">my_variable</span><span class="token operator">=</span><span class="token string">"Null"</span>
-$
-$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
-Null
-$
-$ <span class="token builtin class-name">exit</span>
-<span class="token builtin class-name">exit</span>
-$
-$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
-I am Global now<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>子shell甚至无法使用export命令改变父shell中全局环境变量的值：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">my_variable</span><span class="token operator">=</span><span class="token string">"I am Global now"</span>
-$ <span class="token builtin class-name">export</span> my_variable
-$
-$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
-I am Global now
-$
-$ <span class="token function">bash</span>
-$
-$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
-I am Global now
-$
-$ <span class="token assign-left variable">my_variable</span><span class="token operator">=</span><span class="token string">"Null"</span>
-$
-$ <span class="token builtin class-name">export</span> my_variable
-$
-$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
-Null
-$
-$ <span class="token builtin class-name">exit</span>
-<span class="token builtin class-name">exit</span>
-$
-$ <span class="token builtin class-name">echo</span> <span class="token variable">$my_variable</span>
-I am Global now<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>尽管子shell重新定义并导出了变量my_variable，但<strong>父shell</strong>中的my_variable变量<strong>依然保留着原先的值</strong>。 </p>
-<h3 id="6-3-删除环境变量"><a href="#6-3-删除环境变量" class="headerlink" title="6.3 删除环境变量"></a>6.3 删除环境变量</h3><p>可以用unset命令删除已经存在的环境变量。在unset命令中引用环境变量时，记住**不要使用$**。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span>
-I am global now
-root@VM-16-11-debian:~<span class="token comment"># unset myvar </span>
-root@VM-16-11-debian:~<span class="token comment"># echo $myvar</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p><strong>窍门</strong>     在涉及环境变量名时，记住一点就行了：如果要用到变量，使用$；如果要操作变量不适用。这条规则的一个例外就是使用printenv显示某个变量的值。  </p>
-<hr>
-<p>如果你是<font color="#FF5E3A" size="3">在子进程中删除了一个全局环境变量，这只对子进程有效</font>。该全局环境变量在父进程中依然可用。  </p>
-<h3 id="6-4-设置-PATH-环境变量"><a href="#6-4-设置-PATH-环境变量" class="headerlink" title="6.4 设置 PATH 环境变量"></a>6.4 设置 PATH 环境变量</h3><p>当在shell命令行界面中输入一个外部命令时， shell必须<strong>搜索系统来找到对应的程序</strong>。 <font color="#FF5E3A" size="3">PATH环境变量定义了用于进行命令和程序查找的目录</font>。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># echo $PATH</span>
-/usr/local/java/jdk-16.0.1+9/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-<span class="token comment">#PATH中的目录使用冒号分隔。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>如果命令或者程序的位置没有包括在PATH变量中，那么如果不使用绝对路径的话， shell是没法找到的。如果shell找不到指定的命令或程序，它会产生一个错误信息：  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:~<span class="token comment"># myprog</span>
--bash: myprog: <span class="token builtin class-name">command</span> not found<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>若要添加新的搜索目录，只需引用原来的PATH值，然后再给这个字符串添加新目录就行了。  将目录加到PATH环境变量之后，就可以在虚拟目录结构中的任何位置执行程序。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">echo</span> <span class="token environment constant">$PATH</span>
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:
-/sbin:/bin:/usr/games:/usr/local/games
-$
-$ <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/home/christine/Scripts
-$
-$ <span class="token builtin class-name">echo</span> <span class="token environment constant">$PATH</span>
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/
-games:/usr/local/games:/home/christine/Scripts
-$
-$ myprog
-The factorial of <span class="token number">5</span> is <span class="token number">120</span>.
-$<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p><strong>窍门</strong>    如果希望子shell也能找到你的程序的位置，一定要记得把修改后的PATH环境变量导出。  </p>
-<hr>
-<p><font color="#FF5E3A" size="3"> 这种对PATH变量的修改只能持续到退出或重启系统。这种效果并不能一直持续。</font>  </p>
+<p>它们是bash shell环境的标准启动文件。系统会自动将这些默认文件复制到创建的每个用户的HOME目录。 </p>
+<table>
+<thead>
+<tr>
+<th align="center">参 数</th>
+<th align="center">描 述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-c comment</td>
+<td align="center">给新用户添加备注</td>
+</tr>
+<tr>
+<td align="center">-d home_dir</td>
+<td align="center">为主目录指定一个名字（如果不想用登录名作为主目录名的话）</td>
+</tr>
+<tr>
+<td align="center">-e expire_date</td>
+<td align="center">用YYYY-MM-DD格式指定一个账户过期的日期</td>
+</tr>
+<tr>
+<td align="center">-f inactive_days</td>
+<td align="center">指定这个账户密码过期后多少天这个账户被禁用； 0表示密码一过期就立即禁用， 1表示 禁用这个功能</td>
+</tr>
+<tr>
+<td align="center">-g initial_group</td>
+<td align="center">指定用户登录组的GID或组名</td>
+</tr>
+<tr>
+<td align="center">-G group …</td>
+<td align="center">指定用户除登录组之外所属的一个或多个附加组</td>
+</tr>
+<tr>
+<td align="center">-k</td>
+<td align="center">必须和-m一起使用，将<code>/etc/skel</code>目录的内容复制到用户的HOME目录</td>
+</tr>
+<tr>
+<td align="center">-m</td>
+<td align="center">创建用户的HOME目录</td>
+</tr>
+<tr>
+<td align="center">-M</td>
+<td align="center">不创建用户的HOME目录（当默认设置里要求创建时才使用这个选项）</td>
+</tr>
+<tr>
+<td align="center">-n</td>
+<td align="center">创建一个与用户登录名同名的新组</td>
+</tr>
+<tr>
+<td align="center">-r</td>
+<td align="center">创建系统账户</td>
+</tr>
+<tr>
+<td align="center">-p passwd</td>
+<td align="center">为用户账户指定默认密码</td>
+</tr>
+<tr>
+<td align="center">-s shell</td>
+<td align="center">指定默认的登录shell</td>
+</tr>
+<tr>
+<td align="center">-u uid</td>
+<td align="center">为账户指定唯一的UID</td>
+</tr>
+</tbody></table>
 <hr>
 <p><font color="#FF9999" size="3">文章参考：Linux命令行与shell脚本编程大全.第3版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux6/202202051442126.jpg" style="zoom:150%;">
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux7/202202062048582.jpg" style="zoom:150%;">
 
                 
             </div>
@@ -832,7 +790,7 @@ $<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://huhu-myh.github.io/posts/myh10013.html">https://huhu-myh.github.io/posts/myh10013.html</a>
+                    <a href="https://huhu-myh.github.io/posts/myh10014.html">https://huhu-myh.github.io/posts/myh10014.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1343,9 +1301,10 @@ new Valine({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/myh10014.html">
                     <div class="card-image">
@@ -1362,9 +1321,9 @@ new Valine({
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1377,6 +1336,7 @@ new Valine({
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1395,30 +1355,30 @@ new Valine({
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/myh10012.html">
+                <a href="/posts/myh10013.html">
                     <div class="card-image">
                         
-                        <img src="/medias/img/11.jpg" class="responsive-img" alt="buuctf练习：21-30">
+                        <img src="/medias/img/12.jpg" class="responsive-img" alt="Linux学习-第六章">
                         
-                        <span class="card-title">buuctf练习：21-30</span>
+                        <span class="card-title">Linux学习-第六章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            准备一天一题buu~。
+                            本章学习Linux的环境变量~。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF/" class="post-category">
-                                    CTF
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
                             
                             
@@ -1428,8 +1388,8 @@ new Valine({
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/buu%E7%BB%83%E4%B9%A0/">
-                        <span class="chip bg-color">buu练习</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
