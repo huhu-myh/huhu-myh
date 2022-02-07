@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-06
+                    2022-02-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    9 分
                 </div>
                 
 
@@ -761,7 +761,7 @@ data://text/plain;base64,<span aria-hidden="true" class="line-numbers-rows"><spa
 <span class="token delimiter important">?&gt;</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 要想读到flag，就把file赋值为flag.php，然后序列化作为参数password值传进去就好。</p>
-<h2 id="24-SUCTF-2019-CheckIn"><a href="#24-SUCTF-2019-CheckIn" class="headerlink" title="24.[SUCTF 2019]CheckIn"></a>24.[SUCTF 2019]CheckIn</h2><p>又是一个文件上传题，不过有难倒我了。首先这个题有源，先来分析一下：</p>
+<h2 id="24-SUCTF-2019-CheckIn"><a href="#24-SUCTF-2019-CheckIn" class="headerlink" title="24.[SUCTF 2019]CheckIn"></a>24.[SUCTF 2019]CheckIn</h2><p>又是一个文件上传题，不过又难倒我了。首先这个题有源，先来分析一下：</p>
 <p>源码地址：<a target="_blank" rel="noopener" href="https://github.com/team-su/SUCTF-2019/tree/master/Web/checkIn">https://github.com/team-su/SUCTF-2019/tree/master/Web/checkIn</a></p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php">if (isset($_POST["upload"])) {
     $tmp_name = $_FILES["fileUpload"]["tmp_name"];
@@ -829,6 +829,18 @@ LEFT、RIGHT函数返回ARG最左边、右边的LENGTH个字符串，ARG可以�
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这里注意，在爆破数据的时候，<code>select(right((password),30))from(H4rDsq1)</code>，这个<font color="red" size="3">表名绝对不可以打双引号!!!</font></p>
+<h2 id="26-MRCTF2020-你传你🐎呢"><a href="#26-MRCTF2020-你传你🐎呢" class="headerlink" title="26.[MRCTF2020]你传你🐎呢"></a>26.[MRCTF2020]你传你🐎呢</h2><p>这个文件上传题目和上次那个checkin差不多也是修改配置文件。但是不知道为什么连正常图片都上传不了，好像只能上传一句话的图🤪</p>
+<p>上传成功之后显示文件路径：/var/www/html/upload/3d785937f598842209769fd5c7df8958/2.jpg，但这里是绝对路径并不是我们直接添加到url后面的，一般都是/upload/3d785937f598842209769fd5c7df8958/2.jpg！</p>
+<p>接下来就是如何解析我们的jpg文件为PHP文件，那就是更改配置文件.htaccess:</p>
+<p>.htaccess文件(或者”分布式配置文件”）,全称是Hypertext Access(超文本入口)。提供了针对目录改变配置的方法，  即，在一个特定的文档目录中放置一个包含一个或多个指令的文件，  以作用于此目录及其所有子目录。作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。概述来说，<a target="_blank" rel="noopener" href="http://www.lvjiyong.com/tag/htaccess/">htaccess</a>文件是<a target="_blank" rel="noopener" href="http://www.lvjiyong.com/tag/apache/">Apache</a>服务器中的一个配置文件，它负责相关目录下的网页配置。详细讲解见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cmzhuang/article/details/53537591">https://blog.csdn.net/cmzhuang/article/details/53537591</a></p>
+<p>我们需要用到的就是下面这个，所有jpg文件都会被当作php文件执行：</p>
+<pre class="line-numbers language-none"><code class="language-none">ForceType application/x-httpd-php
+SetHandler application/x-httpd-php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这里在上传配置文件时注意抓包修改<code>Content-Type: image/jpeg</code>，否则上传不了：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202070953868.png"></p>
+<p>之后直接连接jpg文件就可以了，flag在根目录：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202070953870.png"></p>
 <hr>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054294.jpg" style="zoom:150%;">
 
@@ -1694,7 +1706,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">22.9k</span>&nbsp;字
+                class="white-color">23.3k</span>&nbsp;字
             
             
             
