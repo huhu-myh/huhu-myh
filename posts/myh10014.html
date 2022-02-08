@@ -40,9 +40,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="huhu" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="huhu" type="application/atom+xml">
 </head>
 
 
@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-07
+                    2022-02-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    4.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    10 分
+                    18 分
                 </div>
                 
 
@@ -828,27 +828,27 @@ ls: cannot access /home/test: No such <span class="token function">file</span> o
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">usermod</td>
+<td align="center"><code>usermod</code></td>
 <td align="center">修改用户账户的字段，还可以指定主要组以及附加组的所属关系</td>
 </tr>
 <tr>
-<td align="center">passwd</td>
+<td align="center"><code>passwd</code></td>
 <td align="center">修改已有用户的密码</td>
 </tr>
 <tr>
-<td align="center">chpasswd</td>
+<td align="center"><code>chpasswd</code></td>
 <td align="center">从文件中读取登录名密码对，并更新密码</td>
 </tr>
 <tr>
-<td align="center">chage</td>
+<td align="center"><code>chage</code></td>
 <td align="center">修改密码的过期日期</td>
 </tr>
 <tr>
-<td align="center">chfn</td>
+<td align="center"><code>chfn</code></td>
 <td align="center">修改用户账户的备注信息</td>
 </tr>
 <tr>
-<td align="center">chsh</td>
+<td align="center"><code>chsh</code></td>
 <td align="center">修改用户账户的默认登录shell</td>
 </tr>
 </tbody></table>
@@ -867,6 +867,174 @@ Retype new UNIX password:
 passwd: all authentication tokens updated successfully.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>-e</code>选项能强制用户下次登录时修改密码。你可以先给用户设置一个简单的密码，之后再强制`在下次登录时改成他们能记住的更复杂的密码。  </p>
+<h3 id="7-2-使用-Linux-组"><a href="#7-2-使用-Linux-组" class="headerlink" title="7.2 使用 Linux 组"></a>7.2 使用 Linux 组</h3><p>组权限允许多个用户对系统中的对象（比如文件、目录或设备等）共享一组共用的权限。</p>
+<h4 id="7-2-1-etc-group-文件"><a href="#7-2-1-etc-group-文件" class="headerlink" title="7.2.1 /etc/group 文件"></a>7.2.1 <code>/etc/group </code>文件</h4><p>与用户账户类似，组信息也保存在系统的一个文件中。<code> /etc/group</code>文件包含系统上用到的每个组的信息。下面是一些来自Linux系统上<code>/etc/group</code>文件中的典型例子：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root:x:0:root
+bin:x:1:root,bin,daemon
+daemon:x:2:root,bin,daemon
+sys:x:3:root,bin,adm
+adm:x:4:root,adm,daemon
+rich:x:500:
+mama:x:501:
+katie:x:502:
+jessica:x:503:
+mysql:x:27:
+test:x:504:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> <code> /etc/group</code>文件有4个字段：</p>
+<ul>
+<li> 组名</li>
+<li> 组密码</li>
+<li> GID</li>
+<li> 属于该组的用户列表  </li>
+</ul>
+<p>和UID一样， GID在分配时也采用了特定的格式。系统账户用的组通常会分配低于500的GID值，而用户组的GID则会从500开始分配。   </p>
+<p><font color="red" size="3">千万不能通过直接修改<code>/etc/group</code>文件来添加用户到一个组，要用<code>usermod</code>命令</font>（在7.1节中介绍过）。在添加用户到不同的组之前，首先得创建组。  </p>
+<h4 id="7-2-2-创建新组"><a href="#7-2-2-创建新组" class="headerlink" title="7.2.2 创建新组"></a>7.2.2 创建新组</h4><p><code>groupadd</code>命令可在系统上创建新组：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># /usr/sbin/groupadd shared</span>
+<span class="token comment"># tail /etc/group</span>
+haldaemon:x:68:
+xfs:x:43:
+gdm:x:42:
+rich:x:500:
+mama:x:501:
+katie:x:502:
+jessica:x:503:
+mysql:x:27:
+test:x:504:
+shared:x:505:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在创建新组时，默认没有用户被分配到该组。 <code>groupadd</code>命令没有提供将用户添加到组中的选项，但可以用<code>usermod</code>命令来弥补这一点:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># /usr/sbin/usermod -G shared rich</span>
+<span class="token comment"># /usr/sbin/usermod -G shared test</span>
+<span class="token comment"># tail /etc/group</span>
+haldaemon:x:68:
+xfs:x:43:
+gdm:x:42:
+rich:x:500:
+mama:x:501:
+katie:x:502:
+jessica:x:503:
+mysql:x:27:
+test:x:504:
+shared:x:505:rich, <span class="token builtin class-name">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<p><strong>警告</strong> 为用户账户分配组时要格外小心。如果加了<code>-g</code>选项，指定的组名会替换掉该账户的默认组。<code> -G</code>选项则将该组添加到用户的属组的列表里，不会影响默认组。  </p>
+<hr>
+<h4 id="7-2-3-修改组"><a href="#7-2-3-修改组" class="headerlink" title="7.2.3 修改组"></a>7.2.3 修改组</h4><p><code>groupmod</code>命令可以修改已有组的GID（加<code>-g</code>选项）或组名（加<code>-n</code>选项）。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># /usr/sbin/groupmod -n sharing shared</span>
+<span class="token comment"># tail /etc/group</span>
+haldaemon:x:68:7.3 
+xfs:x:43:
+gdm:x:42:
+rich:x:500:
+mama:x:501:
+katie:x:502:
+jessica:x:503:
+mysql:x:27:
+test:x:504:
+sharing:x:505:test,rich<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="7-3-理解文件权限"><a href="#7-3-理解文件权限" class="headerlink" title="7.3 理解文件权限"></a>7.3 理解文件权限</h3><h4 id="7-3-1-使用文件权限符"><a href="#7-3-1-使用文件权限符" class="headerlink" title="7.3.1 使用文件权限符"></a>7.3.1 使用文件权限符</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">myh@VM-16-11-debian:/tmp/test$ <span class="token function">ls</span> -alF
+total <span class="token number">36</span>
+drwxr-xr-x <span class="token number">2</span> root root  <span class="token number">4096</span> Jan <span class="token number">25</span> <span class="token number">14</span>:29 ./
+drwxrwxrwt <span class="token number">9</span> root root <span class="token number">20480</span> Feb  <span class="token number">8</span> 06:43 <span class="token punctuation">..</span>/
+-rw-r--r-- <span class="token number">1</span> root root     <span class="token number">0</span> Jan <span class="token number">25</span> <span class="token number">14</span>:28 cho
+-rw-r--r-- <span class="token number">1</span> root root    <span class="token number">22</span> Jan <span class="token number">25</span> <span class="token number">14</span>:29 makefile
+-rw-r--r-- <span class="token number">1</span> root root    <span class="token number">68</span> Jan <span class="token number">23</span> <span class="token number">20</span>:14 test1.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果的第一个字段就是描述文件和目录权限的编码。这个字段的<font color="#FF5E3A" size="3">第一个字符代表了对象的类型</font>：  </p>
+<ul>
+<li><code> -</code>代表文件</li>
+<li><code> d</code>代表目录</li>
+<li><code> l</code>代表链接</li>
+<li><code> c</code>代表字符型设备</li>
+<li><code> b</code>代表块设备</li>
+<li><code> n</code>代表网络设备  </li>
+</ul>
+<p>之后有3组三字符的编码。每一组定义了3种访问权限：  </p>
+<ul>
+<li><code> r</code>代表对象是可读的</li>
+<li><code> w</code>代表对象是可写的</li>
+<li><code> x</code>代表对象是可执行的    </li>
+</ul>
+<p><font color="#FF5E3A" size="3">若没有某种权限，在该权限位会出现单破折线</font>。  这3组权限分别对应对象的3个安全级别：  </p>
+<ul>
+<li> 对象的属主</li>
+<li> 对象的属组</li>
+<li> 系统其他用户  </li>
+</ul>
+<p><img src="E:\myblog\source_posts\Linux学习-第七章.assets\7.1-16443213724431.png"></p>
+<p>对应如下：</p>
+<ul>
+<li> rwx：文件的属主（设为登录名rich）</li>
+<li> rwx：文件的属组（设为组名rich）</li>
+<li> r-x：系统上其他人。  </li>
+</ul>
+<p>说明登录名为rich的用户可以读取、写入以及执行这个文件（可以看作有全部权限）。类似地， rich组的成员也可以读取、写入和执行这个文件。然而不属于rich组的其他用户只能读取和执行这个文件： w被单破折线取代了，说明这个安全级别没有写入权限。  </p>
+<h4 id="7-3-2-默认文件权限"><a href="#7-3-2-默认文件权限" class="headerlink" title="7.3.2 默认文件权限"></a>7.3.2 默认文件权限</h4><p><code>umask</code>命令用来设置所创建文件和目录的默认权限。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">touch</span> newfile
+$ <span class="token function">ls</span> -al newfile
+-rw-r--r-- <span class="token number">1</span> rich rich <span class="token number">0</span> Sep <span class="token number">20</span> <span class="token number">19</span>:16 newfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><code>touch</code>命令用分配给的用户账户的默认权限创建了这个文件。<code> umask</code>命令可以显示和设置这个默认权限。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">umask</span>
+0022
+$<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>第一位代表了一项特别的安全特性，叫作粘着位（ sticky bit）。这部分内容会在7.5节详述。  </p>
+<p>后面的3位表示文件或目录对应的<code>umask</code>八进制值。要理解<code>umask</code>是怎么工作的，得先理解<font color="#FF5E3A" size="3">八进制模式的安全性设置</font>。  </p>
+<p>八进制模式的安全性设置先获取这3个rwx权限的值，然后将其转换成3位二进制值，用一个八进制值来表示。在这个二进制表示中，每个位置代表一个二进制位。因此，如果读权限是唯一置位的权限，权限值就是r–，转换成二进制值就是100，代表的八进制值是4。 </p>
+<p>Linux系统上默认的八进制的<code>umask</code>值是0022，而我所创建的文件的八进制权限却是644，这是如何得来的呢？ </p>
+<p><font color="red" size="3"><code>umask</code>值只是个掩码，它会屏蔽掉不想授予该安全级别的权限。</font>要把<code>umask</code>值从<font color="#FF5E3A" size="3">对象的全权限值</font>中减掉。文件的全权限的值是666（所有用户都有读和写的权限）；目录的则是777（所有用户都有读、写、执行权限）。   </p>
+<p>在上例中，文件一开始的权限是666， 减去<code>umask</code>值022之后， 剩下的文件权限就成了644。 </p>
+<p>可以用<code>umask</code>命令为默认<code>umask</code>设置指定一个新值：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">umask</span> 026
+$ <span class="token function">touch</span> newfile2
+$ <span class="token function">ls</span> -l newfile2
+-rw-r----- <span class="token number">1</span> rich rich <span class="token number">0</span> Sep <span class="token number">20</span> <span class="token number">19</span>:46 newfile2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​      </p>
+<h3 id="7-4-改变安全性设置"><a href="#7-4-改变安全性设置" class="headerlink" title="7.4 改变安全性设置"></a>7.4 改变安全性设置</h3><p>如果已经创建了一个目录或文件，需要改变它的安全性设置，在Linux系统上有一些工具能够完成这项任务。</p>
+<h4 id="7-4-1-改变权限"><a href="#7-4-1-改变权限" class="headerlink" title="7.4.1 改变权限"></a>7.4.1 改变权限</h4><p><code>chmod</code>命令用来改变文件和目录的安全性设置。 </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> options mode <span class="token function">file</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p> mode参数可以使用八进制模式或符号模式进行安全性设置。 一般用八进制模式就可以了。 </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">chmod</span> <span class="token number">760</span> newfile
+$ <span class="token function">ls</span> -l newfile
+-rwxrw---- <span class="token number">1</span> rich rich <span class="token number">0</span> Sep <span class="token number">20</span> <span class="token number">19</span>:16 newfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><code>options</code>为<code>chmod</code>命令提供了另外一些功能。 -R选项可以让权限的改变递归地作用到文件和子目录。  </p>
+<h4 id="7-4-2-改变所属关系"><a href="#7-4-2-改变所属关系" class="headerlink" title="7.4.2 改变所属关系"></a>7.4.2 改变所属关系</h4><p><code>chown</code>命令用来改变文件的属主，<code>chgr</code>p命令用来改变文件的默认属组。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chown</span> options owner<span class="token punctuation">[</span>.group<span class="token punctuation">]</span> <span class="token function">file</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可用登录名或UID来指定文件的新属主。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># chown dan newfile</span>
+<span class="token comment"># ls -l newfile</span>
+-rw-rw-r-- <span class="token number">1</span> dan rich <span class="token number">0</span> Sep <span class="token number">20</span> <span class="token number">19</span>:16 newfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p> <code> chown</code>命令也支持同时改变文件的属主和属组。 ：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># chown dan.shared newfile</span>
+<span class="token comment"># ls -l newfile</span>
+-rw-rw-r-- <span class="token number">1</span> dan shared <span class="token number">0</span> Sep <span class="token number">20</span> <span class="token number">19</span>:16 newfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>如果Linux系统采用和用户登录名匹配的组名，可以只用一个条目就改变二者：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># chown test. newfile</span>
+<span class="token comment"># ls -l newfile</span>
+-rw-rw-r-- <span class="token number">1</span> <span class="token builtin class-name">test</span> <span class="token builtin class-name">test</span> <span class="token number">0</span> Sep <span class="token number">20</span> <span class="token number">19</span>:16 newfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><code>chown</code>命令采用一些不同的选项参数。<code> -R</code>选项配合通配符可以递归地改变子目录和文件的所属关系。<code> -h</code>选项可以改变该文件的所有符号链接文件的所属关系。  </p>
+<hr>
+<p><strong>说明</strong> 只有root用户能够改变文件的属主。任何属主都可以改变文件的属组，但前提是属主必须<br>是原属组和目标属组的成员。  </p>
+<hr>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">chgrp</span> shared newfile
+$ <span class="token function">ls</span> -l newfile
+-rw-rw-r-- <span class="token number">1</span> rich shared <span class="token number">0</span> Sep <span class="token number">20</span> <span class="token number">19</span>:16 newfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>用户账户必须是这个文件的属主，除了能够更换属组之外，还得是新组的成员。  </p>
 <hr>
 <p><font color="#FF9999" size="3">文章参考：Linux命令行与shell脚本编程大全.第3版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux7/202202062048582.jpg" style="zoom:150%;">
@@ -1735,7 +1903,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">24.7k</span>&nbsp;字
+                class="white-color">26.7k</span>&nbsp;字
             
             
             
