@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux学习-第二章, 计算机 网络安全 渗透测试">
+    <meta name="keywords" content="Linux学习-第八章, 计算机 网络安全 渗透测试">
     <meta name="description" content="本科 | 软件工程 | 网络安全">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Linux学习-第二章 | huhu</title>
+    <title>Linux学习-第八章 | huhu</title>
 
     <link rel="icon" type="image/jpeg" href="/medias/tx.jpg">
 
@@ -429,12 +429,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux学习-第二章</h1>
+                    <h1 class="description center-align post-title">Linux学习-第八章</h1>
                 </div>
             </div>
         </div>
@@ -580,28 +580,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-15
+                    2022-02-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-06
+                    2022-02-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    810
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    3 分
                 </div>
                 
 
@@ -619,278 +619,96 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="第二章：基本的-bash-shell-命令"><a href="#第二章：基本的-bash-shell-命令" class="headerlink" title="第二章：基本的 bash shell 命令"></a>第二章：基本的 bash shell 命令</h2><h3 id="2-1浏览文件系统"><a href="#2-1浏览文件系统" class="headerlink" title="2.1浏览文件系统"></a>2.1浏览文件系统</h3><h4 id="2-1-1-Linux文件系统"><a href="#2-1-1-Linux文件系统" class="headerlink" title="2.1.1 Linux文件系统"></a>2.1.1 Linux文件系统</h4><p>Linux不同于WIndows，在路径名中不使用驱动器盘符。  </p>
-<p>Linux将文件存储在<font color="#FF5E2A" size="4"><strong>单个目录结构</strong></font>中，这个目录被称为<font color="#FF5E2A" size="4"><strong>虚拟目录（ virtual directory）</strong></font>。虚拟目录将安装在PC上的所有存储设备的文件路径纳入单个目录结构中。Linux虚拟目录结构<strong>只包含一个称为<font color="#FF5E2A" size="4">根（ root）目录</font>的基础目录</strong>。根目录下的目录和文件会按照访问它们的目录路径一一列出，这点跟Windows类似。  </p>
-<p>在Linux PC上安装的<strong>第一块硬盘</strong>称为根驱动器。<strong>根驱动器包含了虚拟目录的核心</strong>，其他目录都是从那里开始构建的。Linux会在根驱动器上创建一些特别的目录，我们称之为<strong>挂载点（ mount point）</strong>。<font color="#FF5E2A" size="4">挂载点是虚拟目录中用于分配额外存储设备的目录</font>。虚拟目录会让文件和目录出现在这些挂载点目录中，然而<strong>实际上它们却存储在另外一个驱动器</strong>中。 </p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635094.png"></p>
-<p>如图Disk1硬盘和虚拟目录的根目录关联起来。Disk2硬盘就可以挂载到虚拟目录结构中的任何地方。在这个例子中，第二块硬盘被挂载到了/home位置，home这个目录就是一个挂载点，用户目录都位于这个位置。</p>
-<p>​                                                                                        <strong>常见的Linux目录名称</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center"><strong>/</strong></th>
-<th align="center">虚拟目录的根目录。通常不会在这里存储文件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">/bin</td>
-<td align="center">二进制目录，存放许多用户级的GNU工具</td>
-</tr>
-<tr>
-<td align="center">/bot</td>
-<td align="center">启动目录，存放启动文件</td>
-</tr>
-<tr>
-<td align="center">/dev</td>
-<td align="center">设备目录， Linux在这里创建设备节点</td>
-</tr>
-<tr>
-<td align="center"><strong>/etc</strong></td>
-<td align="center"><strong>系统配置文件目录</strong></td>
-</tr>
-<tr>
-<td align="center"><strong>/home</strong></td>
-<td align="center">主目录， Linux在这里创建<strong>用户目录</strong></td>
-</tr>
-<tr>
-<td align="center">/lib</td>
-<td align="center">库目录，存放系统和应用程序的库文件</td>
-</tr>
-<tr>
-<td align="center">/media</td>
-<td align="center">媒体目录，可移动媒体设备的常用<strong>挂载点</strong></td>
-</tr>
-<tr>
-<td align="center">/mnt</td>
-<td align="center">挂载目录，另一个可移动媒体设备的常用挂载点</td>
-</tr>
-<tr>
-<td align="center">/opt</td>
-<td align="center">可选目录，常用于存放<strong>第三方软件包和数据文件</strong></td>
-</tr>
-<tr>
-<td align="center"><strong>/proc</strong></td>
-<td align="center">进程目录，存放现有硬件及当前<strong>进程的相关信息</strong></td>
-</tr>
-<tr>
-<td align="center"><strong>/root</strong></td>
-<td align="center"><strong>root用户的主目录</strong></td>
-</tr>
-<tr>
-<td align="center">/sbin</td>
-<td align="center">系统二进制目录，存放许多GNU管理员级工具</td>
-</tr>
-<tr>
-<td align="center">/run</td>
-<td align="center">运行目录，存放系统运作时的运行时数据</td>
-</tr>
-<tr>
-<td align="center">/srv</td>
-<td align="center">服务目录，存放本地服务的相关文件</td>
-</tr>
-<tr>
-<td align="center">/sys</td>
-<td align="center">系统目录，存放系统硬件信息的相关文件</td>
-</tr>
-<tr>
-<td align="center"><strong>/tmp</strong></td>
-<td align="center">临时目录，<strong>可以在该目录中创建和删除临时工作文件</strong></td>
-</tr>
-<tr>
-<td align="center">/usr</td>
-<td align="center">用户二进制目录，大量用户级的GNU工具和数据文件都存储在这里</td>
-</tr>
-<tr>
-<td align="center"><strong>/var</strong></td>
-<td align="center">可变目录，用以存放经常变化的文件，比如<strong>日志文件</strong></td>
-</tr>
-</tbody></table>
-<h4 id="2-1-2-遍历目录"><a href="#2-1-2-遍历目录" class="headerlink" title="2.1.2 遍历目录"></a>2.1.2 遍历目录</h4><p>在Linux文件系统上，可以使用<font color="#FF5E2A" size="2">切换目录命令cd将shell会话切换到另一个目录</font>。 cd命令的格式非常简单：<strong>cd destination</strong><br>cd命令可接受单个参数destination，用以指定想切换到的目录名。<strong>如果没有为cd命令指定目标路径，它将切换到用户主目录。</strong><br>destination参数可以用两种方式表示：一种是使用<strong>绝对文件路径</strong>，另一种是使用<strong>相对文件路径</strong>。</p>
-<p><strong>1.绝对文件路径</strong></p>
-<p>​            <font color="#FF5E2A" size="2">对文件路径总是以正斜线（ /）作为起始，指明虚拟文件系统的根目录。</font>  </p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928215.png" style="zoom:200%;">
-
-<p>如图刚开始是在/root目录中，如果切换到usr/bin目录中，就直接使用 cd /usr/bin，（一定最开始是根目录！）</p>
-<p>这里的 <strong>pwd 是显示当前所在的位置</strong>的命令。</p>
-<p><strong>2.相对文件路径</strong></p>
-<p>就是基于你目前所在的目录进行相对的移动。</p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928216.png" style="zoom:150%;">
-
-<p>如图，刚开始在usr目录中，要进入usr的lib目录中，则可以直接 cd lib 。（ls 是显示当前目录下的文件和子目录，后面会讲。）</p>
-<p>有两个特殊字符可用于相对文件路径中：</p>
+                <h2 id="第八章：安装软件程序"><a href="#第八章：安装软件程序" class="headerlink" title="第八章：安装软件程序"></a>第八章：安装软件程序</h2><h3 id="8-1-包管理基础"><a href="#8-1-包管理基础" class="headerlink" title="8.1 包管理基础"></a>8.1 包管理基础</h3><p>软件包存储在服务器上，可以利用本地Linux系统上的<strong>PMS</strong>工具通过互联网访问。这些服务器称为仓库（ repository）。可以用PMS工具来搜索新的软件包，或者是更新系统上已安装软件包。  </p>
+<p>PMS利用一个数据库来记录各种相关内容：  </p>
 <ul>
-<li> <strong>单点符（ .）</strong>，表示当前目录；</li>
-<li> <strong>双点符（ ..）</strong>，表示当前目录的父目录。</li>
+<li> Linux系统上已安装了什么软件包；</li>
+<li> 每个包安装了什么文件；</li>
+<li> 每个已安装软件包的版本  </li>
 </ul>
-<p>重点就是双点符，可以较为方便的在相对文件路径中使用：</p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928217.png" style="zoom:150%;">
-
-
-
-<h3 id="2-2-文件和目录列表"><a href="#2-2-文件和目录列表" class="headerlink" title="2.2 文件和目录列表"></a>2.2 文件和目录列表</h3><h4 id="2-2-1-基本列表功能"><a href="#2-2-1-基本列表功能" class="headerlink" title="2.2.1 基本列表功能"></a>2.2.1 基本列表功能</h4><p><strong><code>ls [path]</code> - 列出文件</strong></p>
-<p>该程序<code>ls</code>允许您列出<strong>目录中的文件和其子目录</strong>。它可以传递许多不同的参数（或“标志”）来控制输出。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635096.png"></p>
-<p><strong><code>ls -F</code></strong>  带-F参数的ls命令<strong>轻松区分文件和目录</strong>  </p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635097.png"></p>
-<p>Linux经常<strong>采用隐藏文件来保存配置信息</strong>。在Linux上，隐藏文件通常是<strong>文件名以点号开始</strong>的文件。这些文件并<strong>没有</strong>在默认的ls命令输出中显示出来，因此我们称其为<font color="#FF5E3A" size="3">隐藏文件</font>。  </p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635098.png"></p>
-<p>ls支持选项合并如：<code>ls -Fa</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635100.png"></p>
-<p><strong><code>ls -l</code> 显示附加信息，长列表输出</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635101.png" style="zoom:150%;">
-
+<p>软件包通常会依赖其他的包，为了前者能够正常运行，被依赖的包必须提前安装在系统中。PMS工具将会检测这些依赖关系，并在安装需要的包之前<strong>先安装好所有额外的软件包</strong>。  </p>
+<p>Linux中广泛使用的两种主要的PMS基础工具是dpkg和rpm。  </p>
+<h3 id="8-2-基于-Debian-的系统"><a href="#8-2-基于-Debian-的系统" class="headerlink" title="8.2 基于 Debian 的系统"></a>8.2 基于 Debian 的系统</h3><p>dpkg命令是基于Debian系PMS工具的核心。包含在这个PMS中的其他工具有：  </p>
 <ul>
-<li><p> 文件类型，比如目录（ d）、文件（ -）、字符型文件（ c）或块设备（ b）；</p>
-</li>
-<li><p> 文件的权限；</p>
-</li>
-<li><p>文件的硬链接总数；</p>
-</li>
-<li><p> 文件属主的用户名；</p>
-</li>
-<li><p> 文件属组的组名；</p>
-</li>
-<li><p> 文件的大小（以<strong>字节</strong>为单位）；</p>
-</li>
-<li><p> 文件的上次<strong>修改时间</strong>；</p>
-</li>
-<li><p> 文件名或目录名。  </p>
-</li>
+<li> apt-get</li>
+<li> apt-cache</li>
+<li> aptitude  </li>
 </ul>
-<h4 id="2-2-2-过滤输出列表"><a href="#2-2-2-过滤输出列表" class="headerlink" title="2.2.2 过滤输出列表"></a>2.2.2 过滤输出列表</h4><p>当要输出指定文件或者指定开头等的文件时，可以使用过滤查询：<code>ls -l x</code> ，过滤器就是一个进行简单文本匹配的字符串。可以在要用的命令行参数之后添加这个过滤器  。<strong>同时支持通配符匹配</strong>。</p>
-<ul>
-<li><p> 问号（ ?）代表<strong>一个</strong>字符；</p>
-</li>
-<li><p> 星号（ *）代表<strong>零个或多个</strong>字符。  </p>
-</li>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux/202202092003585.png"></p>
+<h3 id="8-3-基于-Red-Hat-的系统"><a href="#8-3-基于-Red-Hat-的系统" class="headerlink" title="8.3 基于 Red Hat 的系统"></a>8.3 基于 Red Hat 的系统</h3><ul>
+<li> yum：在Red Hat和Fedora中使用。</li>
+<li> urpm：在Mandriva中使用。</li>
+<li> zypper：在openSUSE中使用。  </li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635102.png" style="zoom:150%;">
+<h4 id="8-3-1-列出已安装包"><a href="#8-3-1-列出已安装包" class="headerlink" title="8.3.1 列出已安装包"></a>8.3.1 列出已安装包</h4><p>找出系统上已安装的包  ：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum list installed<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>输出的信息可能会在屏幕上一闪而过，所以最好是将已安装包的列表重定向到一个文件中。可以用more或less命令（或一个GUI编辑器）按照需要查看这个列表。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum list installed <span class="token operator">&gt;</span> installed_software<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>  yum擅长找出某个特定软件包的详细信息：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum list xterm</span>
+Loaded plugins: langpacks, presto, refresh-packagekit
+Adding en_US to language list
+Available Packages
+xterm.i686 <span class="token number">253</span>-1.el6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以通过一条简单的命令查看包是否已安装:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum list installed xterm</span>
+Loaded plugins: refresh-packagekit
+Error: No matching Packages to list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>  果需要找出系统上的某个特定文件属于哪个软件包，万能的yum可以做到！</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#yum provides file_name</span>
+
+<span class="token comment"># yum provides /etc/yum.conf</span>
+Loaded plugins: fastestmirror, refresh-packagekit, security
+Determining fastest mirrors
+* base: mirror.web-ster.com
+* extras: centos.chi.host-engine.com
+* updates: mirror.umd.edu
+yum-3.2.29-40.el6.centos.noarch <span class="token builtin class-name">:</span> RPM package installer/updater/manager
+Repo <span class="token builtin class-name">:</span> base
+Matched from:
+Filename <span class="token builtin class-name">:</span> /etc/yum.conf
+yum-3.2.29-43.el6.centos.noarch <span class="token builtin class-name">:</span> RPM package installer/updater/manager
+Repo <span class="token builtin class-name">:</span> updates
+Matched from:
+Filename <span class="token builtin class-name">:</span> /etc/yum.conf
+yum-3.2.29-40.el6.centos.noarch <span class="token builtin class-name">:</span> RPM package installer/updater/manager
+Repo <span class="token builtin class-name">:</span> installed
+Matched from:
+Other <span class="token builtin class-name">:</span> Provides-match: /etc/yum.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h4 id="2-2-3-tree"><a href="#2-2-3-tree" class="headerlink" title="2.2.3 tree"></a>2.2.3 tree</h4><p>还有一个遍历文件功能指令tree,能较好地展示文件之间的层级结构，将本目录中的文件、子目录、子目录中的文件都以树形展示出来：（Debian 版本没有这个指令，可以<code>apt-get tree</code>安装），不要尝试<code>tree /</code>,除非你觉着很炫酷hhhh</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635103.png"></p>
-<h3 id="2-3-处理文件"><a href="#2-3-处理文件" class="headerlink" title="2.3 处理文件"></a>2.3 处理文件</h3><h4 id="2-3-1-创建文件"><a href="#2-3-1-创建文件" class="headerlink" title="2.3.1 创建文件"></a>2.3.1 创建文件</h4><p><strong>touch</strong>命令轻松创建<strong>空文件</strong>（<strong>注意是空文件，不代表可以是空目录哦</strong>）。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">touch</span> test_one<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635104.png" style="zoom:150%;">
+<h4 id="8-3-2-用-yum-安装软件"><a href="#8-3-2-用-yum-安装软件" class="headerlink" title="8.3.2 用 yum 安装软件"></a>8.3.2 用 yum 安装软件</h4><p>在Linux系统上， #表明你是以root用户身份登录的。应该只有在运行管理性的任务时才临时切换到root用户（比如安装和更新软件）。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum <span class="token function">install</span> package_name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
-<h4 id="2-3-2-复制文件"><a href="#2-3-2-复制文件" class="headerlink" title="2.3.2 复制文件"></a>2.3.2 复制文件</h4><p><strong>cp</strong>命令将文件或目录从一个位置复制到另一个位置  。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cp</span> <span class="token operator">&lt;</span>source<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>destination<span class="token operator">&gt;</span> - 复制文件
--i选项，强制shell询问是否需要覆盖已有文件。
--R参数，可以用它在一条命令中递归地复制整个目录的内容<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="8-3-3-用-yum-更新软件"><a href="#8-3-3-用-yum-更新软件" class="headerlink" title="8.3.3 用 yum 更新软件"></a>8.3.3 用 yum 更新软件</h4><p>要列出所有已安装包的可用更新，输入如下命令：  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum list updates<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635105.png"></p>
-<p>可以看到加上 -i 选项，就会强制询问是否覆盖，<strong>最好每次都带上</strong>，写 yes/no 就可。可以看到修改时间没变。</p>
-<p>cp命令的-<strong>R参数</strong>。可以用它在一条命令中<strong>递归地复制整个目录的内容</strong>。  </p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635106.png" style="zoom:150%;">
+<p>如果发现某个特定软件包需要更新，输入如下命令：  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum update package_name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-
-
-<h4 id="2-3-3-移动和重命名文件"><a href="#2-3-3-移动和重命名文件" class="headerlink" title="2.3.3 移动和重命名文件"></a>2.3.3 移动和重命名文件</h4><p>在Linux中，<strong>重命名文件称为移动（ moving）</strong> 。 mv命令可以将文件和目录移动到另一个位置或重新命名。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Moving a file "into" another file is how you rename files</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># mv test_file test_file1</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># ls -F</span>
-test2/	testdir/  test_file1  test_file2
-
-<span class="token comment"># Move file into directory</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># mv test_file1 testdir/</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># tree</span>
-<span class="token builtin class-name">.</span>
-├── test2
-│   ├── test_file
-│   └── test_file2
-├── testdir
-│   └── test_file1
-└── test_file2
-
-<span class="token number">2</span> directories, <span class="token number">4</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果想对更新列表中的所有包进行更新，只要输入如下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum update  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
-<h4 id="2-3-4-删除文件"><a href="#2-3-4-删除文件" class="headerlink" title="2.3.4 删除文件"></a>2.3.4 删除文件</h4><p>在Linux中，删除（ deleting）叫作移除（ removing） 。 bash shell中删除文件的命令是 <strong>rm</strong>。  -+</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token variable"><span class="token variable">`</span><span class="token function">rm</span> <span class="token operator">&lt;</span>filename<span class="token operator">&gt;</span><span class="token variable">`</span></span> - 永久删除文件
--i命令参数提示你是不是要真的删除该文件
--r参数删除目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="8-3-4-用-yum-卸载软件"><a href="#8-3-4-用-yum-卸载软件" class="headerlink" title="8.3.4 用 yum 卸载软件"></a>8.3.4 用 yum 卸载软件</h4><p>只删除软件包而保留配置文件和数据文件，就用如下命令：  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum remove package_name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test/test2<span class="token comment"># rm -i test_file</span>
-rm: remove regular empty <span class="token function">file</span> <span class="token string">'test_file'</span>? y
-root@VM-16-11-debian:/tmp/test/test2<span class="token comment"># ls -l</span>
-total <span class="token number">0</span>
--rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jan <span class="token number">16</span> <span class="token number">15</span>:35 test_file2
-
--r参数删除目录：
-root@VM-16-11-debian:/tmp/test<span class="token comment"># rm -r test2</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># tree</span>
-<span class="token builtin class-name">.</span>
-├── testdir
-│   └── test_file1
-└── test_file2
-
-<span class="token number">1</span> directory, <span class="token number">2</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>要删除软件和它所有的文件，就用erase选项：  </p>
+<pre class="line-numbers language-none"><code class="language-none">yum erase package_name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
-<h3 id="2-4-处理目录"><a href="#2-4-处理目录" class="headerlink" title="2.4 处理目录"></a>2.4 处理目录</h3><h4 id="2-4-1-创建目录"><a href="#2-4-1-创建目录" class="headerlink" title="2.4.1 创建目录"></a>2.4.1 创建目录</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">mkdir</span> New_Dir
--p参数：同时创建多个目录和子目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># mkdir -p test2/test3</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># tree</span>
-<span class="token builtin class-name">.</span>
-├── test2
-│   └── test3
-├── testdir
-│   └── test_file1
-└── test_file2
-
-<span class="token number">3</span> directories, <span class="token number">2</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="2-4-2-删除目录"><a href="#2-4-2-删除目录" class="headerlink" title="2.4.2 删除目录"></a>2.4.2 删除目录</h4><p>rmdir命令<strong>只删除空目录</strong>。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">rmdir</span> mydir<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># rmdir test2</span>
-rmdir: failed to remove <span class="token string">'test2'</span><span class="token builtin class-name">:</span> Directory not empty<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="2-5-查看文件"><a href="#2-5-查看文件" class="headerlink" title="2.5 查看文件"></a>2.5 查看文件</h3><h4 id="2-5-1-查看文件类型"><a href="#2-5-1-查看文件类型" class="headerlink" title="2.5.1  查看文件类型"></a>2.5.1  查看文件类型</h4><p>在显示文件内容之前，应该先了解一下文件的类型。如果打开了一个二进制文件，你会在屏幕上看到各种乱码，甚至会把你的终端仿真器挂起。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">file</span> my_file<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># file testdir</span>
-testdir: directory<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="2-5-2-查看整个文件"><a href="#2-5-2-查看整个文件" class="headerlink" title="2.5.2 查看整个文件"></a>2.5.2 查看整个文件</h4><p><strong><code>cat &lt;filename&gt;</code> - 打印文件</strong></p>
-<p>要将文件的内容快速转储到控制台，请使用<code>cat</code>.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cat</span> file1
--n参数会给所有的行加上行号。
--b参数会给只是文本的行加上行号。
-The quick brown fox jumped over the lazy dog.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p><strong><code>more</code>命令</strong></p>
-<p><code>cat</code>命令的主要缺陷是：一旦运行，你就无法控制后面的操作。为了解决这个问题，开发人员编写了<code>more</code>命令。 <code>more</code>命令会显示文本文件的内容，但会在显示每页数据之后停下来。 可以通过按空格键或回车键以逐行向前的方式浏览文本文件。浏览完之后，按q键退出。 </p>
-<p><strong><code>less</code>命令</strong></p>
-<p><strong><code>less &lt;filename&gt;</code> - 显示和滚动文件</strong></p>
-<p><code>less</code>如果您想查看一个不完全适合一个屏幕的长文件的内容，该程序很有用。要在运行后退出，请按 <code>q</code>。</p>
-<p>你可以用更少的时间做很多其他的事情，但一件有用的事情是能够搜索。您可以搜索<code>/banana</code>以查找文件中“香蕉”的所有实例。</p>
-<h4 id="2-5-3-查看部分文件"><a href="#2-5-3-查看部分文件" class="headerlink" title="2.5.3 查看部分文件"></a>2.5.3 查看部分文件</h4><ol>
-<li><p><strong><code>tail</code>命令</strong><br>tail命令会显示文件最后几行的内容（文件的“尾部”）。默认情况下，它会显示文件的末尾10行。  可以向tail命令中加入-n参数来修改所显示的行数:  <code>tail -2 text</code> 。</p>
-</li>
-<li><p><strong><code>head</code>命令</strong>  </p>
-<p>head命令，顾名思义，会显示文件开头那些行的内容。默认情况下，它会显示文件前10行的文本。同理可以加入 -n 参数指定行数。 </p>
-</li>
-</ol>
 <hr>
-<p>本章的学习就到这啦，下章将继续讨论bash shell的命令，并了解更多管理Linux系统时经常用到的高级系统管理命令。  </p>
-<p><font color="#FF9999" size="2">文章参考：Linux命令行与shell脚本编程大全.第2版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928218.jpg"></p>
+<p><font color="#FF9999" size="3">文章参考：Linux命令行与shell脚本编程大全.第3版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux/202202092003587.jpg" style="zoom:150%;">
 
                 
             </div>
@@ -917,7 +735,7 @@ The quick brown fox jumped over the lazy dog.<span aria-hidden="true" class="lin
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://huhu-myh.github.io/posts/myh10005.html">https://huhu-myh.github.io/posts/myh10005.html</a>
+                    <a href="https://huhu-myh.github.io/posts/myh10015.html">https://huhu-myh.github.io/posts/myh10015.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1432,30 +1250,30 @@ new Valine({
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/myh10006.html">
+                <a href="/posts/myh10016.html">
                     <div class="card-image">
                         
-                        <img src="/medias/img/5.jpg" class="responsive-img" alt="Linux登录mysql报错">
+                        <img src="/medias/img/15.jpg" class="responsive-img" alt="Linux学习-第九章">
                         
-                        <span class="card-title">Linux登录mysql报错</span>
+                        <span class="card-title">Linux学习-第九章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            linux登陆mysql报错~。
+                            本章该学习构建基本脚本啦~。
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-09
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
-                                    运维
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
                             
                             
@@ -1480,30 +1298,30 @@ new Valine({
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/myh10004.html">
+                <a href="/posts/myh10014.html">
                     <div class="card-image">
                         
-                        <img src="/medias/img/3.jpg" class="responsive-img" alt="buuctf练习[1-10]">
+                        <img src="/medias/img/13.jpg" class="responsive-img" alt="Linux学习-第七章">
                         
-                        <span class="card-title">buuctf练习[1-10]</span>
+                        <span class="card-title">Linux学习-第七章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            准备一天一题buu~。
+                            本章学习Linux的文件权限~。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF/" class="post-category">
-                                    CTF
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
                             
                             
@@ -1513,8 +1331,8 @@ new Valine({
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/buu%E7%BB%83%E4%B9%A0/">
-                        <span class="chip bg-color">buu练习</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>

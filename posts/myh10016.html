@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux学习-第二章, 计算机 网络安全 渗透测试">
+    <meta name="keywords" content="Linux学习-第九章, 计算机 网络安全 渗透测试">
     <meta name="description" content="本科 | 软件工程 | 网络安全">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Linux学习-第二章 | huhu</title>
+    <title>Linux学习-第九章 | huhu</title>
 
     <link rel="icon" type="image/jpeg" href="/medias/tx.jpg">
 
@@ -429,12 +429,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux学习-第二章</h1>
+                    <h1 class="description center-align post-title">Linux学习-第九章</h1>
                 </div>
             </div>
         </div>
@@ -580,28 +580,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-15
+                    2022-02-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-06
+                    2022-02-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    4 分
                 </div>
                 
 
@@ -619,278 +619,88 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="第二章：基本的-bash-shell-命令"><a href="#第二章：基本的-bash-shell-命令" class="headerlink" title="第二章：基本的 bash shell 命令"></a>第二章：基本的 bash shell 命令</h2><h3 id="2-1浏览文件系统"><a href="#2-1浏览文件系统" class="headerlink" title="2.1浏览文件系统"></a>2.1浏览文件系统</h3><h4 id="2-1-1-Linux文件系统"><a href="#2-1-1-Linux文件系统" class="headerlink" title="2.1.1 Linux文件系统"></a>2.1.1 Linux文件系统</h4><p>Linux不同于WIndows，在路径名中不使用驱动器盘符。  </p>
-<p>Linux将文件存储在<font color="#FF5E2A" size="4"><strong>单个目录结构</strong></font>中，这个目录被称为<font color="#FF5E2A" size="4"><strong>虚拟目录（ virtual directory）</strong></font>。虚拟目录将安装在PC上的所有存储设备的文件路径纳入单个目录结构中。Linux虚拟目录结构<strong>只包含一个称为<font color="#FF5E2A" size="4">根（ root）目录</font>的基础目录</strong>。根目录下的目录和文件会按照访问它们的目录路径一一列出，这点跟Windows类似。  </p>
-<p>在Linux PC上安装的<strong>第一块硬盘</strong>称为根驱动器。<strong>根驱动器包含了虚拟目录的核心</strong>，其他目录都是从那里开始构建的。Linux会在根驱动器上创建一些特别的目录，我们称之为<strong>挂载点（ mount point）</strong>。<font color="#FF5E2A" size="4">挂载点是虚拟目录中用于分配额外存储设备的目录</font>。虚拟目录会让文件和目录出现在这些挂载点目录中，然而<strong>实际上它们却存储在另外一个驱动器</strong>中。 </p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635094.png"></p>
-<p>如图Disk1硬盘和虚拟目录的根目录关联起来。Disk2硬盘就可以挂载到虚拟目录结构中的任何地方。在这个例子中，第二块硬盘被挂载到了/home位置，home这个目录就是一个挂载点，用户目录都位于这个位置。</p>
-<p>​                                                                                        <strong>常见的Linux目录名称</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center"><strong>/</strong></th>
-<th align="center">虚拟目录的根目录。通常不会在这里存储文件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">/bin</td>
-<td align="center">二进制目录，存放许多用户级的GNU工具</td>
-</tr>
-<tr>
-<td align="center">/bot</td>
-<td align="center">启动目录，存放启动文件</td>
-</tr>
-<tr>
-<td align="center">/dev</td>
-<td align="center">设备目录， Linux在这里创建设备节点</td>
-</tr>
-<tr>
-<td align="center"><strong>/etc</strong></td>
-<td align="center"><strong>系统配置文件目录</strong></td>
-</tr>
-<tr>
-<td align="center"><strong>/home</strong></td>
-<td align="center">主目录， Linux在这里创建<strong>用户目录</strong></td>
-</tr>
-<tr>
-<td align="center">/lib</td>
-<td align="center">库目录，存放系统和应用程序的库文件</td>
-</tr>
-<tr>
-<td align="center">/media</td>
-<td align="center">媒体目录，可移动媒体设备的常用<strong>挂载点</strong></td>
-</tr>
-<tr>
-<td align="center">/mnt</td>
-<td align="center">挂载目录，另一个可移动媒体设备的常用挂载点</td>
-</tr>
-<tr>
-<td align="center">/opt</td>
-<td align="center">可选目录，常用于存放<strong>第三方软件包和数据文件</strong></td>
-</tr>
-<tr>
-<td align="center"><strong>/proc</strong></td>
-<td align="center">进程目录，存放现有硬件及当前<strong>进程的相关信息</strong></td>
-</tr>
-<tr>
-<td align="center"><strong>/root</strong></td>
-<td align="center"><strong>root用户的主目录</strong></td>
-</tr>
-<tr>
-<td align="center">/sbin</td>
-<td align="center">系统二进制目录，存放许多GNU管理员级工具</td>
-</tr>
-<tr>
-<td align="center">/run</td>
-<td align="center">运行目录，存放系统运作时的运行时数据</td>
-</tr>
-<tr>
-<td align="center">/srv</td>
-<td align="center">服务目录，存放本地服务的相关文件</td>
-</tr>
-<tr>
-<td align="center">/sys</td>
-<td align="center">系统目录，存放系统硬件信息的相关文件</td>
-</tr>
-<tr>
-<td align="center"><strong>/tmp</strong></td>
-<td align="center">临时目录，<strong>可以在该目录中创建和删除临时工作文件</strong></td>
-</tr>
-<tr>
-<td align="center">/usr</td>
-<td align="center">用户二进制目录，大量用户级的GNU工具和数据文件都存储在这里</td>
-</tr>
-<tr>
-<td align="center"><strong>/var</strong></td>
-<td align="center">可变目录，用以存放经常变化的文件，比如<strong>日志文件</strong></td>
-</tr>
-</tbody></table>
-<h4 id="2-1-2-遍历目录"><a href="#2-1-2-遍历目录" class="headerlink" title="2.1.2 遍历目录"></a>2.1.2 遍历目录</h4><p>在Linux文件系统上，可以使用<font color="#FF5E2A" size="2">切换目录命令cd将shell会话切换到另一个目录</font>。 cd命令的格式非常简单：<strong>cd destination</strong><br>cd命令可接受单个参数destination，用以指定想切换到的目录名。<strong>如果没有为cd命令指定目标路径，它将切换到用户主目录。</strong><br>destination参数可以用两种方式表示：一种是使用<strong>绝对文件路径</strong>，另一种是使用<strong>相对文件路径</strong>。</p>
-<p><strong>1.绝对文件路径</strong></p>
-<p>​            <font color="#FF5E2A" size="2">对文件路径总是以正斜线（ /）作为起始，指明虚拟文件系统的根目录。</font>  </p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928215.png" style="zoom:200%;">
+                <h2 id="第九章：构建基本脚本"><a href="#第九章：构建基本脚本" class="headerlink" title="第九章：构建基本脚本"></a>第九章：构建基本脚本</h2><h3 id="9-1-使用多个命令"><a href="#9-1-使用多个命令" class="headerlink" title="9.1 使用多个命令"></a>9.1 使用多个命令</h3><p>shell脚本的关键在于<font color="#FF5E3A" size="3">输入多个命令并处理每个命令的结果</font>，甚至需要将一个命令的结果传给另一个命令。 shell可以让你将多个命令串起来，一次执行完成。  </p>
+<p>如果要<font color="#FF5E3A" size="3">两个命令一起运行</font>，可以把它们放在同一行中，彼此间用<strong>分号</strong>隔开：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">myh@VM-16-11-debian:~$ <span class="token function">date</span><span class="token punctuation">;</span><span class="token function">who</span>
+Wed 09 Feb <span class="token number">2022</span> 08:15:29 PM HKT
+myh      pts/1        <span class="token number">2022</span>-02-09 <span class="token number">20</span>:00 <span class="token punctuation">(</span><span class="token number">120.242</span>.132.71<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>如图刚开始是在/root目录中，如果切换到usr/bin目录中，就直接使用 cd /usr/bin，（一定最开始是根目录！）</p>
-<p>这里的 <strong>pwd 是显示当前所在的位置</strong>的命令。</p>
-<p><strong>2.相对文件路径</strong></p>
-<p>就是基于你目前所在的目录进行相对的移动。</p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928216.png" style="zoom:150%;">
+<p>这就是个简单的脚本，只用到了两个bash shell命令。  </p>
+<p>这种技术对于小型脚本尚可，但它有一个很大的缺陷：每次运行之前，你都必须在命令提示符下输入整个命令。可以将这些<font color="#FF5E3A" size="3">命令组合成一个简单的文本文件</font>，这样就不需要在命令行中手动输入了。在需要运行这些命令时，只用运行这个文本文件就行了。  </p>
+<h3 id="9-2-创建-shell-脚本文件"><a href="#9-2-创建-shell-脚本文件" class="headerlink" title="9.2 创建 shell 脚本文件"></a>9.2 创建 shell 脚本文件</h3><p>在创建shell脚本文件<code>touch test.sh</code>时，<font color="#FF5E3A" size="3">必须在文件的第一行指定要使用的shell</font>。其格式为：  </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>如图，刚开始在usr目录中，要进入usr的lib目录中，则可以直接 cd lib 。（ls 是显示当前目录下的文件和子目录，后面会讲。）</p>
-<p>有两个特殊字符可用于相对文件路径中：</p>
+<p>在通常的shell脚本中，井号（ #）用作注释行。 shell并不会处理shell脚本中的注释行。然而，shell脚本文件的第一行是个例外， #后面的惊叹号会告诉shell用哪个shell来运行脚本。  </p>
+<p>在指定了shell之后，就可以在文件的每一行中输入命令，然后加一个回车符：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token operator">!</span>/bin/bash
+<span class="token comment"># This script displays the date and who's logged on</span>
+<span class="token function">date</span>
+<span class="token function">who</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以根据需要，使用分号将两个命令放在一行上，但在shell脚本中，你可以在独立的行中书写命令。 shell会按根据命令在文件中出现的顺序进行处理。  </p>
+<p>现在脚本就变写好了。如果直接运行结果可能不太好：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ test1
+bash: test1: <span class="token builtin class-name">command</span> not found<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>第一个障碍是让bash shell能找到你的脚本文件。 shell会通过PATH环境变量来查找命令。快速查看一下PATH环境变量就可以弄清问题所在。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">echo</span> <span class="token environment constant">$PATH</span>
+/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/bin:/usr/bin
+:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/user/bin <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>让shell找到test1脚本，只需采取以下两种作法之一：   </p>
 <ul>
-<li> <strong>单点符（ .）</strong>，表示当前目录；</li>
-<li> <strong>双点符（ ..）</strong>，表示当前目录的父目录。</li>
+<li> 将shell脚本文件所处的目录添加到PATH环境变量中；</li>
+<li> 在提示符中用绝对或相对文件路径来引用shell脚本文件。  </li>
 </ul>
-<p>重点就是双点符，可以较为方便的在相对文件路径中使用：</p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928217.png" style="zoom:150%;">
+<p>在这个例子中，我们将用第二种方式将脚本文件的确切位置告诉shell。记住，为了引用当前目录下的文件，可以在shell中使用单点操作符。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ ./test1
+bash: ./test1: Permission denied<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>shell指明了还没有执行文件的权限。快速查看一下文件权限就能找到问题所在：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">ls</span> -l test1
+-rw-rw-r-- <span class="token number">1</span> user user <span class="token number">73</span> Sep <span class="token number">24</span> <span class="token number">19</span>:56 test1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p> 下一步是通过chmod命令（参见第7章）赋予文件属主执行文件的权限 :</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># chmod 760 test1.sh</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># ./test1.sh</span>
+Wed 09 Feb <span class="token number">2022</span> 08:36:03 PM HKT
+myh      pts/1        <span class="token number">2022</span>-02-09 <span class="token number">20</span>:00 <span class="token punctuation">(</span><span class="token number">120.242</span>.132.71<span class="token punctuation">)</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># ls -l</span>
+total <span class="token number">12</span>
+-rw-r--r-- <span class="token number">1</span> root root  <span class="token number">0</span> Jan <span class="token number">25</span> <span class="token number">14</span>:28 cho
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">22</span> Jan <span class="token number">25</span> <span class="token number">14</span>:29 makefile
+-rwxrw---- <span class="token number">1</span> root root <span class="token number">21</span> Feb  <span class="token number">9</span> <span class="token number">20</span>:33 test1.sh
+-rw-r--r-- <span class="token number">1</span> myh  root <span class="token number">76</span> Feb  <span class="token number">8</span> <span class="token number">20</span>:32 test1.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h3 id="2-2-文件和目录列表"><a href="#2-2-文件和目录列表" class="headerlink" title="2.2 文件和目录列表"></a>2.2 文件和目录列表</h3><h4 id="2-2-1-基本列表功能"><a href="#2-2-1-基本列表功能" class="headerlink" title="2.2.1 基本列表功能"></a>2.2.1 基本列表功能</h4><p><strong><code>ls [path]</code> - 列出文件</strong></p>
-<p>该程序<code>ls</code>允许您列出<strong>目录中的文件和其子目录</strong>。它可以传递许多不同的参数（或“标志”）来控制输出。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635096.png"></p>
-<p><strong><code>ls -F</code></strong>  带-F参数的ls命令<strong>轻松区分文件和目录</strong>  </p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635097.png"></p>
-<p>Linux经常<strong>采用隐藏文件来保存配置信息</strong>。在Linux上，隐藏文件通常是<strong>文件名以点号开始</strong>的文件。这些文件并<strong>没有</strong>在默认的ls命令输出中显示出来，因此我们称其为<font color="#FF5E3A" size="3">隐藏文件</font>。  </p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635098.png"></p>
-<p>ls支持选项合并如：<code>ls -Fa</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635100.png"></p>
-<p><strong><code>ls -l</code> 显示附加信息，长列表输出</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635101.png" style="zoom:150%;">
+<h4 id="9-3-显示消息"><a href="#9-3-显示消息" class="headerlink" title="9.3 显示消息"></a>9.3 显示消息</h4><p><code>echo</code>命令可以显示文本消息来告诉脚本用户脚本正在做什么:</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token operator">!</span>/bin/bash
+<span class="token comment"># This script displays the date and who's logged on</span>
+<span class="token builtin class-name">echo</span> This is a test.
+<span class="token function">date</span>
+<span class="token function">who</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<ul>
-<li><p> 文件类型，比如目录（ d）、文件（ -）、字符型文件（ c）或块设备（ b）；</p>
-</li>
-<li><p> 文件的权限；</p>
-</li>
-<li><p>文件的硬链接总数；</p>
-</li>
-<li><p> 文件属主的用户名；</p>
-</li>
-<li><p> 文件属组的组名；</p>
-</li>
-<li><p> 文件的大小（以<strong>字节</strong>为单位）；</p>
-</li>
-<li><p> 文件的上次<strong>修改时间</strong>；</p>
-</li>
-<li><p> 文件名或目录名。  </p>
-</li>
-</ul>
-<h4 id="2-2-2-过滤输出列表"><a href="#2-2-2-过滤输出列表" class="headerlink" title="2.2.2 过滤输出列表"></a>2.2.2 过滤输出列表</h4><p>当要输出指定文件或者指定开头等的文件时，可以使用过滤查询：<code>ls -l x</code> ，过滤器就是一个进行简单文本匹配的字符串。可以在要用的命令行参数之后添加这个过滤器  。<strong>同时支持通配符匹配</strong>。</p>
-<ul>
-<li><p> 问号（ ?）代表<strong>一个</strong>字符；</p>
-</li>
-<li><p> 星号（ *）代表<strong>零个或多个</strong>字符。  </p>
-</li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635102.png" style="zoom:150%;">
+<p>​    默认情况下，不需要使用引号将要显示的文本字符串划定出来。但有时在字符串中出现引号的话需要用另外一种来将字符串划定起来。        </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">echo</span> <span class="token string">"This is a test to see if you're paying attention"</span>
+This is a <span class="token builtin class-name">test</span> to see <span class="token keyword">if</span> you<span class="token string">'re paying attention
+$ echo '</span>Rich says <span class="token string">"scripting is easy"</span>.'
+Rich says <span class="token string">"scripting is easy"</span><span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>如果想把文本字符串和命令输出显示在同一行中，该怎么办呢？可以用<code>echo</code>语句的<code>-n</code>参数。只要将第一个<code>echo</code>语句改成这样就行：  </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token operator">!</span>/bin/bash
+<span class="token comment"># This script displays the date and who's logged on</span>
+<span class="token builtin class-name">echo</span> -n <span class="token string">"The time and date are: "</span>
+<span class="token function">date</span>
+<span class="token builtin class-name">echo</span> -n <span class="token string">"Let's see who's logged into the system: "</span>
+<span class="token function">who</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>输出如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># ./test1.sh</span>
+The <span class="token function">time</span> and data are: Wed 09 Feb <span class="token number">2022</span> 08:52:32 PM HKT
+Let<span class="token string">'s see who'</span>s logged into the system: myh      pts/1        <span class="token number">2022</span>-02-09 <span class="token number">20</span>:00 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="2-2-3-tree"><a href="#2-2-3-tree" class="headerlink" title="2.2.3 tree"></a>2.2.3 tree</h4><p>还有一个遍历文件功能指令tree,能较好地展示文件之间的层级结构，将本目录中的文件、子目录、子目录中的文件都以树形展示出来：（Debian 版本没有这个指令，可以<code>apt-get tree</code>安装），不要尝试<code>tree /</code>,除非你觉着很炫酷hhhh</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635103.png"></p>
-<h3 id="2-3-处理文件"><a href="#2-3-处理文件" class="headerlink" title="2.3 处理文件"></a>2.3 处理文件</h3><h4 id="2-3-1-创建文件"><a href="#2-3-1-创建文件" class="headerlink" title="2.3.1 创建文件"></a>2.3.1 创建文件</h4><p><strong>touch</strong>命令轻松创建<strong>空文件</strong>（<strong>注意是空文件，不代表可以是空目录哦</strong>）。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">touch</span> test_one<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635104.png" style="zoom:150%;">
-
-
-
-<h4 id="2-3-2-复制文件"><a href="#2-3-2-复制文件" class="headerlink" title="2.3.2 复制文件"></a>2.3.2 复制文件</h4><p><strong>cp</strong>命令将文件或目录从一个位置复制到另一个位置  。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cp</span> <span class="token operator">&lt;</span>source<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>destination<span class="token operator">&gt;</span> - 复制文件
--i选项，强制shell询问是否需要覆盖已有文件。
--R参数，可以用它在一条命令中递归地复制整个目录的内容<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635105.png"></p>
-<p>可以看到加上 -i 选项，就会强制询问是否覆盖，<strong>最好每次都带上</strong>，写 yes/no 就可。可以看到修改时间没变。</p>
-<p>cp命令的-<strong>R参数</strong>。可以用它在一条命令中<strong>递归地复制整个目录的内容</strong>。  </p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buuctf/202201161635106.png" style="zoom:150%;">
-
-
-
-<h4 id="2-3-3-移动和重命名文件"><a href="#2-3-3-移动和重命名文件" class="headerlink" title="2.3.3 移动和重命名文件"></a>2.3.3 移动和重命名文件</h4><p>在Linux中，<strong>重命名文件称为移动（ moving）</strong> 。 mv命令可以将文件和目录移动到另一个位置或重新命名。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Moving a file "into" another file is how you rename files</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># mv test_file test_file1</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># ls -F</span>
-test2/	testdir/  test_file1  test_file2
-
-<span class="token comment"># Move file into directory</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># mv test_file1 testdir/</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># tree</span>
-<span class="token builtin class-name">.</span>
-├── test2
-│   ├── test_file
-│   └── test_file2
-├── testdir
-│   └── test_file1
-└── test_file2
-
-<span class="token number">2</span> directories, <span class="token number">4</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="2-3-4-删除文件"><a href="#2-3-4-删除文件" class="headerlink" title="2.3.4 删除文件"></a>2.3.4 删除文件</h4><p>在Linux中，删除（ deleting）叫作移除（ removing） 。 bash shell中删除文件的命令是 <strong>rm</strong>。  -+</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token variable"><span class="token variable">`</span><span class="token function">rm</span> <span class="token operator">&lt;</span>filename<span class="token operator">&gt;</span><span class="token variable">`</span></span> - 永久删除文件
--i命令参数提示你是不是要真的删除该文件
--r参数删除目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test/test2<span class="token comment"># rm -i test_file</span>
-rm: remove regular empty <span class="token function">file</span> <span class="token string">'test_file'</span>? y
-root@VM-16-11-debian:/tmp/test/test2<span class="token comment"># ls -l</span>
-total <span class="token number">0</span>
--rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jan <span class="token number">16</span> <span class="token number">15</span>:35 test_file2
-
--r参数删除目录：
-root@VM-16-11-debian:/tmp/test<span class="token comment"># rm -r test2</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># tree</span>
-<span class="token builtin class-name">.</span>
-├── testdir
-│   └── test_file1
-└── test_file2
-
-<span class="token number">1</span> directory, <span class="token number">2</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="2-4-处理目录"><a href="#2-4-处理目录" class="headerlink" title="2.4 处理目录"></a>2.4 处理目录</h3><h4 id="2-4-1-创建目录"><a href="#2-4-1-创建目录" class="headerlink" title="2.4.1 创建目录"></a>2.4.1 创建目录</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">mkdir</span> New_Dir
--p参数：同时创建多个目录和子目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># mkdir -p test2/test3</span>
-root@VM-16-11-debian:/tmp/test<span class="token comment"># tree</span>
-<span class="token builtin class-name">.</span>
-├── test2
-│   └── test3
-├── testdir
-│   └── test_file1
-└── test_file2
-
-<span class="token number">3</span> directories, <span class="token number">2</span> files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="2-4-2-删除目录"><a href="#2-4-2-删除目录" class="headerlink" title="2.4.2 删除目录"></a>2.4.2 删除目录</h4><p>rmdir命令<strong>只删除空目录</strong>。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">rmdir</span> mydir<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># rmdir test2</span>
-rmdir: failed to remove <span class="token string">'test2'</span><span class="token builtin class-name">:</span> Directory not empty<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="2-5-查看文件"><a href="#2-5-查看文件" class="headerlink" title="2.5 查看文件"></a>2.5 查看文件</h3><h4 id="2-5-1-查看文件类型"><a href="#2-5-1-查看文件类型" class="headerlink" title="2.5.1  查看文件类型"></a>2.5.1  查看文件类型</h4><p>在显示文件内容之前，应该先了解一下文件的类型。如果打开了一个二进制文件，你会在屏幕上看到各种乱码，甚至会把你的终端仿真器挂起。  </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">file</span> my_file<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># file testdir</span>
-testdir: directory<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="2-5-2-查看整个文件"><a href="#2-5-2-查看整个文件" class="headerlink" title="2.5.2 查看整个文件"></a>2.5.2 查看整个文件</h4><p><strong><code>cat &lt;filename&gt;</code> - 打印文件</strong></p>
-<p>要将文件的内容快速转储到控制台，请使用<code>cat</code>.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cat</span> file1
--n参数会给所有的行加上行号。
--b参数会给只是文本的行加上行号。
-The quick brown fox jumped over the lazy dog.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p><strong><code>more</code>命令</strong></p>
-<p><code>cat</code>命令的主要缺陷是：一旦运行，你就无法控制后面的操作。为了解决这个问题，开发人员编写了<code>more</code>命令。 <code>more</code>命令会显示文本文件的内容，但会在显示每页数据之后停下来。 可以通过按空格键或回车键以逐行向前的方式浏览文本文件。浏览完之后，按q键退出。 </p>
-<p><strong><code>less</code>命令</strong></p>
-<p><strong><code>less &lt;filename&gt;</code> - 显示和滚动文件</strong></p>
-<p><code>less</code>如果您想查看一个不完全适合一个屏幕的长文件的内容，该程序很有用。要在运行后退出，请按 <code>q</code>。</p>
-<p>你可以用更少的时间做很多其他的事情，但一件有用的事情是能够搜索。您可以搜索<code>/banana</code>以查找文件中“香蕉”的所有实例。</p>
-<h4 id="2-5-3-查看部分文件"><a href="#2-5-3-查看部分文件" class="headerlink" title="2.5.3 查看部分文件"></a>2.5.3 查看部分文件</h4><ol>
-<li><p><strong><code>tail</code>命令</strong><br>tail命令会显示文件最后几行的内容（文件的“尾部”）。默认情况下，它会显示文件的末尾10行。  可以向tail命令中加入-n参数来修改所显示的行数:  <code>tail -2 text</code> 。</p>
-</li>
-<li><p><strong><code>head</code>命令</strong>  </p>
-<p>head命令，顾名思义，会显示文件开头那些行的内容。默认情况下，它会显示文件前10行的文本。同理可以加入 -n 参数指定行数。 </p>
-</li>
-</ol>
-<hr>
-<p>本章的学习就到这啦，下章将继续讨论bash shell的命令，并了解更多管理Linux系统时经常用到的高级系统管理命令。  </p>
-<p><font color="#FF9999" size="2">文章参考：Linux命令行与shell脚本编程大全.第2版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux2/202201151928218.jpg"></p>
+<p><code>echo</code>命令是shell脚本中与用户交互的重要工具。你会发现在很多地方都能用到它，尤其是需要显示脚本中变量的值的时候。  </p>
 
                 
             </div>
@@ -917,7 +727,7 @@ The quick brown fox jumped over the lazy dog.<span aria-hidden="true" class="lin
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://huhu-myh.github.io/posts/myh10005.html">https://huhu-myh.github.io/posts/myh10005.html</a>
+                    <a href="https://huhu-myh.github.io/posts/myh10016.html">https://huhu-myh.github.io/posts/myh10016.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1428,40 +1238,42 @@ new Valine({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/myh10006.html">
+                <a href="/posts/myh10016.html">
                     <div class="card-image">
                         
-                        <img src="/medias/img/5.jpg" class="responsive-img" alt="Linux登录mysql报错">
+                        <img src="/medias/img/15.jpg" class="responsive-img" alt="Linux学习-第九章">
                         
-                        <span class="card-title">Linux登录mysql报错</span>
+                        <span class="card-title">Linux学习-第九章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            linux登陆mysql报错~。
+                            本章该学习构建基本脚本啦~。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
-                                    运维
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1480,30 +1292,30 @@ new Valine({
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/myh10004.html">
+                <a href="/posts/myh10015.html">
                     <div class="card-image">
                         
-                        <img src="/medias/img/3.jpg" class="responsive-img" alt="buuctf练习[1-10]">
+                        <img src="/medias/img/14.jpg" class="responsive-img" alt="Linux学习-第八章">
                         
-                        <span class="card-title">buuctf练习[1-10]</span>
+                        <span class="card-title">Linux学习-第八章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            准备一天一题buu~。
+                            本章学习Linux中如何安装软件程序~。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF/" class="post-category">
-                                    CTF
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
                             
                             
@@ -1513,8 +1325,8 @@ new Valine({
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/buu%E7%BB%83%E4%B9%A0/">
-                        <span class="chip bg-color">buu练习</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
