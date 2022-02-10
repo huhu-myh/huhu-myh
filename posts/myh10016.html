@@ -587,21 +587,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-09
+                    2022-02-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    11 分
                 </div>
                 
 
@@ -701,6 +701,152 @@ The <span class="token function">time</span> and data are: Wed 09 Feb <span clas
 Let<span class="token string">'s see who'</span>s logged into the system: myh      pts/1        <span class="token number">2022</span>-02-09 <span class="token number">20</span>:00 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p><code>echo</code>命令是shell脚本中与用户交互的重要工具。你会发现在很多地方都能用到它，尤其是需要显示脚本中变量的值的时候。  </p>
+<h3 id="9-4-使用变量"><a href="#9-4-使用变量" class="headerlink" title="9.4 使用变量"></a>9.4 使用变量</h3><h4 id="9-4-1-环境变量"><a href="#9-4-1-环境变量" class="headerlink" title="9.4.1 环境变量"></a>9.4.1 环境变量</h4><p>在环境变量名称之前加上美元符（ $）来使用这些环境变量:</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@VM-16-11-debian:/tmp/test<span class="token comment"># cat test2.sh </span>
+<span class="token comment">#!/bin/bash</span>
+<span class="token comment"># Display the user information from the system.</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"User info for userid: <span class="token environment constant">$USER</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token environment constant">UID</span><span class="token builtin class-name">:</span> <span class="token environment constant">$UID</span>
+<span class="token builtin class-name">echo</span> <span class="token environment constant">HOME</span><span class="token builtin class-name">:</span> <span class="token environment constant">$HOME</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># chmod 764 test2.sh </span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># ls -l</span>
+total <span class="token number">16</span>
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jan <span class="token number">25</span> <span class="token number">14</span>:28 cho
+-rw-r--r-- <span class="token number">1</span> root root  <span class="token number">22</span> Jan <span class="token number">25</span> <span class="token number">14</span>:29 makefile
+-rwxrw---- <span class="token number">1</span> root root <span class="token number">106</span> Feb  <span class="token number">9</span> <span class="token number">20</span>:52 test1.sh
+-rw-r--r-- <span class="token number">1</span> myh  root  <span class="token number">76</span> Feb  <span class="token number">8</span> <span class="token number">20</span>:32 test1.txt
+-rwxrw-r-- <span class="token number">1</span> root root <span class="token number">127</span> Feb <span class="token number">10</span> <span class="token number">19</span>:45 test2.sh
+root@VM-16-11-debian:/tmp/test<span class="token comment"># ./test2.sh</span>
+User info <span class="token keyword">for</span> userid: myh
+<span class="token environment constant">UID</span><span class="token builtin class-name">:</span> <span class="token number">0</span>
+<span class="token environment constant">HOME</span><span class="token builtin class-name">:</span> /root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>echo命令中的环境变量会在脚本运行时替换成当前值。  </p>
+<h4 id="9-4-2-用户变量"><a href="#9-4-2-用户变量" class="headerlink" title="9.4.2 用户变量"></a>9.4.2 用户变量</h4><p>定义变量允许临时存储数据并在整个脚本中使用，从而使shell脚本看起来更像一个真正的计算机程序。  </p>
+<p>用户变量可以是：</p>
+<ul>
+<li>任何由字母、数字或下划线组成的文本字符串，长度不超过20个。</li>
+<li>区分大小写。</li>
+<li>使用等号将值赋给用户变量。在变量、等号和值之间不能出现空格</li>
+</ul>
+<p>shell脚本会自动决定变量值的数据类型。在脚本的整个生命周期里， shell脚本中定义的变量会一直保持着它们的值，但在shell脚本结束时会被删除掉。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># cat test3.sh </span>
+<span class="token comment">#!/bin/bash</span>
+<span class="token comment">#This is a test.</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>myh
+<span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$name</span> love Linux!"</span>
+
+root@VM-16-11-debian:/tmp/test<span class="token comment"># ./test3.sh </span>
+myh love Linux<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>重要的是要记住，<font color="#FF5E3A" size="3">引用一个变量值时需要使用美元符，而引用变量来对其进行赋值时则不要使用美元符</font>。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cat</span> test4
+<span class="token comment">#!/bin/bash</span>
+<span class="token comment"># assigning a variable value to another variable</span>
+<span class="token assign-left variable">value1</span><span class="token operator">=</span><span class="token number">10</span>
+<span class="token assign-left variable">value2</span><span class="token operator">=</span><span class="token variable">$value1</span>
+<span class="token builtin class-name">echo</span> The resulting value is <span class="token variable">$value2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="9-4-3-命令替换"><a href="#9-4-3-命令替换" class="headerlink" title="9.4.3 命令替换"></a>9.4.3 命令替换</h4><p>从命令输出中提取信息，并将其赋给变量：</p>
+<ul>
+<li>反引号字符（ `）  </li>
+<li>$()格式  </li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cat</span> test5
+<span class="token comment">#!/bin/bash</span>
+<span class="token assign-left variable">testing</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">date</span><span class="token variable">)</span></span>
+<span class="token builtin class-name">echo</span> <span class="token string">"The date and time are: "</span> <span class="token variable">$testing</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>变量testing获得了date命令的输出，然后使用echo语句显示出它的值。运行这个shell脚本生成如下输出：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ ./test5
+The <span class="token function">date</span> and <span class="token function">time</span> are: Mon Jan <span class="token number">31</span> <span class="token number">20</span>:10:25 EDT <span class="token number">2014</span>
+$<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>  下面这个例子很常见，它在脚本中通过命令替换获得当前日期并用它来生成唯一文件名：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment"># copy the /usr/bin directory listing to a log file</span>
+<span class="token assign-left variable">today</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%y%m%d<span class="token variable">)</span></span>
+<span class="token function">ls</span> /usr/bin -al <span class="token operator">&gt;</span> log.<span class="token variable">$today</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>today变量是被赋予格式化后的date命令的输出。这是提取日期信息来生成日志文件名常用的一种技术。 <code>+%y%m%d</code>格式告诉date命令将日期显示为两位数的年月日的组合。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># date +%y%m%d</span>
+<span class="token number">220210</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这个脚本将日期值赋给一个变量，之后再将其作为文件名的一部分。文件自身含有目录列表的<strong>重定向输出</strong>（将在9.5节详细讨论）。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">-rw-r--r-- <span class="token number">1</span> user user <span class="token number">769</span> Jan <span class="token number">31</span> <span class="token number">20</span>:17 log.220210<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>日志文件采用$today变量的值作为文件名的一部分。日志文件的内容是<code>/usr/bin</code>目录内容的列表输出。如果脚本在明天运行，日志文件名会是log.140201，就这样为新的一天创建一个新文件。 </p>
+<h3 id="9-5-重定向输入和输出"><a href="#9-5-重定向输入和输出" class="headerlink" title="9.5 重定向输入和输出"></a>9.5 重定向输入和输出</h3><p>bash shell提供了几个操作符，可以将命令的输出重定向到另一个位置（比如文件）。重定向可以用于输入，也可以用于输出，可以将文件重定向到命令输入。  </p>
+<h4 id="9-5-1-输出重定向"><a href="#9-5-1-输出重定向" class="headerlink" title="9.5.1 输出重定向"></a>9.5.1 输出重定向</h4><p>最基本的重定向将命令的输出发送到一个文件中。 bash shell用大于号（<code> &gt;</code>）来完成这项功能： </p>
+<p> <code>command &gt; outputfile  </code></p>
+<p>之前显示器上出现的命令输出会被保存到指定的输出文件中。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># date &gt; test4</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># ls -l test4</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">32</span> Feb <span class="token number">10</span> <span class="token number">20</span>:23 test4
+root@VM-16-11-debian:/tmp/test<span class="token comment"># cat test4</span>
+Thu <span class="token number">10</span> Feb <span class="token number">2022</span> 08:23:20 PM HKT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果输出文件已经存在了，<font color="#FF5E3A" size="3">重定向操作符会用新的文件数据覆盖已有文件</font>。  </p>
+<p>要将命令的输出追加到已有文件中 ，用双大于号（<code> &gt;&gt;</code>）来追加数据：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># who &gt;&gt; test4</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># ls -l test4</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">88</span> Feb <span class="token number">10</span> <span class="token number">20</span>:25 test4
+root@VM-16-11-debian:/tmp/test<span class="token comment"># cat test4</span>
+Thu <span class="token number">10</span> Feb <span class="token number">2022</span> 08:23:20 PM HKT
+myh      pts/0        <span class="token number">2022</span>-02-10 <span class="token number">19</span>:42 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="9-5-2-输入重定向"><a href="#9-5-2-输入重定向" class="headerlink" title="9.5.2 输入重定向"></a>9.5.2 输入重定向</h4><p>输入重定向将文件的内容重定向到命令，而非将命令的输出重定向到文件。  </p>
+<p>输入重定向符号是小于号（ <code>&lt;</code>）： <code>command &lt; inputfile </code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># wc &lt; test4</span>
+ <span class="token number">2</span> <span class="token number">12</span> <span class="token number">88</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>wc命令可以对对数据中的文本进行计数。默认情况下，它会输出3个值 ：</p>
+<ul>
+<li> 文本的行数</li>
+<li> 文本的词数</li>
+<li> 文本的字节数  </li>
+</ul>
+<h3 id="9-6-管道"><a href="#9-6-管道" class="headerlink" title="9.6 管道"></a>9.6 管道</h3><p><font color="#FF5E3A" size="3">将一个命令的输出作为另一个命令的输入</font>可以用重定向来实现，但较为繁琐：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
+root@VM-16-11-debian:/tmp/test<span class="token comment"># ls / &gt; test5.txt</span>
+root@VM-16-11-debian:/tmp/test<span class="token comment"># cat test5.txt </span>
+bin
+boot
+……
+
+root@VM-16-11-debian:/tmp/test<span class="token comment"># sort &lt; test5.txt </span>
+bin
+boot
+……
+
+<span class="token comment">#可能这个例子不太合理之时演示大致意思</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以通过管道连接（ piping）<code>| </code>： <code>command1 | command2  </code></p>
+<p>Linux系统会同时运行这两个命令，在系统内部将它们连接起来。<font color="#FF5E3A" size="3">在第一个命令产生输出的同时，输出会被立即送给第二个命令</font>。数据传输不会用到任何中间文件或缓冲区。  </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@VM-16-11-debian:/tmp/test<span class="token comment"># ls / | sort</span>
+bin
+boot
+data
+……<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以搭配使用重定向和管道来将输出保存到文件中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">rpm</span> -qa <span class="token operator">|</span> <span class="token function">sort</span> <span class="token operator">&gt;</span> rpm.list
+$ <span class="token function">more</span> rpm.list
+abrt-1.1.14-1.fc14.i686
+abrt-addon-ccpp-1.1.14-1.fc14.i686
+abrt-addon-kerneloops-1.1.14-1.fc14.i686<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>到目前为止，管道最流行的用法之一是将命令产生的大量输出通过管道传送给<code>more</code>命令。<br>这对<code>ls</code>命令来说尤为常见 ：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux/202202102046394.png"></p>
+<p><code>ls -l</code>命令产生了目录中所有文件的长列表。对包含大量文件的目录来说，这个列表会相当长。通过将输出管道连接到<code>more</code>命令，可以强制输出在一屏数据显示后停下来。  </p>
+<hr>
+<p><font color="#FF9999" size="3">文章参考：Linux命令行与shell脚本编程大全.第3版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p>
+<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux/202202102046395.jpg" style="zoom:150%;">
 
                 
             </div>
@@ -1566,7 +1712,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">29.3k</span>&nbsp;字
+                class="white-color">31.4k</span>&nbsp;字
             
             
             
