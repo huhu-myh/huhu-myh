@@ -40,9 +40,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
-<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="huhu" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="huhu" type="application/atom+xml">
 </head>
 
 
@@ -594,7 +594,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    909
+                    908
                 </div>
                 
 
@@ -619,9 +619,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>hello</p>
-<hr>
-<h2 id="31-网鼎杯-2018-Fakebook"><a href="#31-网鼎杯-2018-Fakebook" class="headerlink" title="31.[网鼎杯 2018]Fakebook"></a>31.[网鼎杯 2018]Fakebook</h2><p>这个题考察的还是比较好的，细细研究一下。考察的主要是SQL注入，SSRF读取文件，union select知识点。</p>
+                <h2 id="31-网鼎杯-2018-Fakebook"><a href="#31-网鼎杯-2018-Fakebook" class="headerlink" title="31.[网鼎杯 2018]Fakebook"></a>31.[网鼎杯 2018]Fakebook</h2><p>这个题考察的还是比较好的，细细研究一下。考察的主要是SQL注入，SSRF读取文件，union select知识点。</p>
 <p>首先随便注册个账号，这个博客必须是地址，好像有个<code>.</code>就行。然后就登陆进去了。这是可以看到用户名是可以点的，眼要好使😉：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu4/202202131040181.png"></p>
 <p>点进去进入到view.php就是自己的信息界面，但是发现后面有个参数，那就试试注入，<code>1'</code>出现报错就存在SQL注入，直接给出相关payload:</p>
