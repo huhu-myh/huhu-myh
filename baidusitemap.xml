@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://huhu-myh.github.io/posts/myh10019.html</loc>
+    <lastmod>2022-02-15</lastmod>
+  </url>
+  <url>
+    <loc>https://huhu-myh.github.io/posts/myh10006.html</loc>
+    <lastmod>2022-02-15</lastmod>
+  </url>
+  <url>
     <loc>https://huhu-myh.github.io/posts/myh10018.html</loc>
-    <lastmod>2022-02-13</lastmod>
+    <lastmod>2022-02-14</lastmod>
   </url>
   <url>
     <loc>https://huhu-myh.github.io/posts/myh10017.html</loc>
@@ -66,10 +74,6 @@
   </url>
   <url>
     <loc>https://huhu-myh.github.io/posts/myh10001.html</loc>
-    <lastmod>2022-01-16</lastmod>
-  </url>
-  <url>
-    <loc>https://huhu-myh.github.io/posts/myh10006.html</loc>
     <lastmod>2022-01-16</lastmod>
   </url>
 </urlset> 
