@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="资源分享, 计算机 网络安全 渗透测试">
+    <meta name="keywords" content="数据库：第一章, 计算机 网络安全 渗透测试">
     <meta name="description" content="本科 | 软件工程 | 网络安全">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>资源分享 | huhu</title>
+    <title>数据库：第一章 | huhu</title>
 
     <link rel="icon" type="image/jpeg" href="/medias/tx.jpg">
 
@@ -429,12 +429,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928014621.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">资源分享</h1>
+                    <h1 class="description center-align post-title">数据库：第一章</h1>
                 </div>
             </div>
         </div>
@@ -553,12 +553,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/PostgreSQL/">
+                                <span class="chip bg-color">PostgreSQL</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -567,28 +580,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-19
+                    2022-02-22
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-13
+                    2022-02-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -606,7 +619,64 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>hello</p>
+<hr>
+<h2 id="第一章：数据库系统基础"><a href="#第一章：数据库系统基础" class="headerlink" title="第一章：数据库系统基础"></a>第一章：数据库系统基础</h2><h3 id="1-1-数据库及其系统的概念"><a href="#1-1-数据库及其系统的概念" class="headerlink" title="1.1 数据库及其系统的概念"></a>1.1 数据库及其系统的概念</h3><h4 id="1-1-1-数据库的定义"><a href="#1-1-1-数据库的定义" class="headerlink" title="1.1.1 数据库的定义"></a>1.1.1 数据库的定义</h4><p>数据库是⼀种依照特定<font color="#FF5E3A" size="3">数据模型</font>组织、存储和管理数据的<font color="#FF5E3A" size="3">⽂件集合</font>。在信息系统中，数据库的基本作⽤是组织与存储系统数据，并为系统软件从中存取数据提供⽀持。</p>
+<p>与⽂件系统中普通数据⽂件有明显不同，数据库⽂件具有如下特点：</p>
+<ul>
+<li>数据⼀般不重复存放。</li>
+<li>可⽀持多个应⽤程序并发访问。</li>
+<li>数据结构独⽴于使⽤它的应⽤程序。</li>
+<li>对数据增、删、改、查操作均由<font color="#FF5E3A" size="3">数据库系统软件</font>进⾏管理和控制。</li>
+</ul>
+<h4 id="1-1-2-数据模型"><a href="#1-1-2-数据模型" class="headerlink" title="1.1.2 数据模型"></a>1.1.2 数据模型</h4><p>数据模型是⼀种<font color="#FF5E3A" size="3">描述事物对象数据特征及其结构的形式化表⽰</font>， 通常由数据结构、数据操作、数据约束3个部分组成。</p>
+<ul>
+<li>数据结构⽤于描述事物对象的<font color="#FF5E3A" size="3">静态特征</font>，其中包括事物对象 的属性数据、数据类型、数据组织⽅式等。</li>
+<li>数据操作⽤于描述事物对象的<font color="#FF5E3A" size="3">动态特征</font>，即对事物对象的属性数据可进⾏的数据操作，如插⼊、更新、删除和查询等。</li>
+<li>数据约束⽤于描述事物对象的数据之间语义的联系，以及数 据取值范围等规则，从⽽确保数据的完整性、⼀致性和有效性。</li>
+</ul>
+<p>传统数据库先后使⽤的数据模型主要有层次数据模型、⽹状数据 模型、关系数据模型。<font color="#FF5E3A" size="3">它们之间的 根本区别在于数据之间的联系⽅式不同，即数据记录之间的联系⽅式 不同</font>。</p>
+<ul>
+<li>层次数据模型每个数据结点存储⼀个数据记录， 数据结点之间通过链接指针进⾏联系。</li>
+<li>⽹状数据模型结点之间的联系也使⽤链接指针 来实现，但⽹状数据模型可以表⽰数据结点之间的多个从属关系，同 时也可以表⽰数据结点之间的横向关系。</li>
+<li>在关系数据模型中，<font color="#FF5E3A" size="3">多个⼆维表可通过相同属性列的⼀致性约束进⾏数据关联</font>。</li>
+</ul>
+<p><img src="E:\myblog\source_posts\数据库：第一章.assets\1.1.png"></p>
+<h4 id="1-1-3-数据库系统的组成"><a href="#1-1-3-数据库系统的组成" class="headerlink" title="1.1.3 数据库系统的组成"></a>1.1.3 数据库系统的组成</h4><p>数据库系统由⽤户、数据库应⽤程序、数据库管理系统和数据库4个部分所组成。</p>
+<p><img src="E:\myblog\source_posts\数据库：第一章.assets\1.2.png"></p>
+<ul>
+<li>⽤户</li>
+</ul>
+<p>⽤户可分为最终⽤户和DBA（DataBase Administrator）⽤户两类。</p>
+<p>最终⽤户通过操作数据库应⽤程序处理业务，并利⽤程序存取数据库信息。</p>
+<p>DBA⽤户是⼀ 种专门进⾏数据库管理与运⾏维护的系统⽤户。</p>
+<ul>
+<li>数据库应⽤程序</li>
+</ul>
+<p>数据库应⽤程序是⼀种<font color="#FF5E3A" size="3">在DBMS⽀持下对数据库进⾏访问和处理</font>的应⽤程序。</p>
+<ul>
+<li>数据库管理系统</li>
+</ul>
+<p>数据库管理系统是⼀类⽤于创建、操纵和管理数据库的<font color="#FF5E3A" size="3">系统软件</font>。数据库管理系统与操作系统⼀样都属于系统平台软件。</p>
+<p><img src="E:\myblog\source_posts\数据库：第一章.assets\1.3.png"></p>
+<p>操作界⾯层由若⼲管理⼯具和应⽤程序API组 成，它们分别<font color="#FF5E3A" size="3">为⽤户和应⽤程序访问数据库提供接⼝界⾯。</font></p>
+<ul>
+<li>数据库</li>
+</ul>
+<p>数据库是存放系统各类数据的容器。该容器按照⼀定的数据模型组织与存储数据。</p>
+<p><img src="E:\myblog\source_posts\数据库：第一章.assets\1.4.png"></p>
+<p>在关系数据库中，数据库元数据、索引数据、运⾏数据等存放在 系统表中，⽤户数据则只能存放在⽤户表中。</p>
+<p>在关系数据库中，<font color="#FF5E3A" size="3">各个关系表的表名称、列名 称、列数据类型、数据约束规则等都是元数据</font>，这些描述数据库结构的数据需要存放在数据库的系统表中。</p>
+<hr>
+<p>注：[结构化数据、半结构化数据、非结构化数据讲解]([简述结构化数据、非结构化数据、半结构化数据 - 知乎 (zhihu.com)](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/190892308#:~:text=">https://zhuanlan.zhihu.com/p/190892308#:~:text=</a> 结构化数据与非结构化数据两者之间最大的区别在于分析的便利性。,针对结构化数据存在成熟的分析工具，但用于挖掘非结构化数据的分析工具正处于萌芽和发展阶段。 除此之外，非结构化数据比结构化数据要多得多，随着网络技术的发展，特别是Internet和其技术的飞快发展，使得非结构化数据的数量日趋增大。))</p>
+<hr>
+<h3 id="1-2-数据库应用系统"><a href="#1-2-数据库应用系统" class="headerlink" title="1.2 数据库应用系统"></a>1.2 数据库应用系统</h3><p>借助数据库进 ⾏信息化处理的计算机应⽤系统被称为数据库应⽤系统。</p>
+<h4 id="1-2-1-数据库应用系统类型"><a href="#1-2-1-数据库应用系统类型" class="headerlink" title="1.2.1 数据库应用系统类型"></a>1.2.1 数据库应用系统类型</h4><ol>
+<li>业务处理系统</li>
+<li>管理信息系统</li>
+<li>决策⽀持系统</li>
+</ol>
+
                 
             </div>
             <hr/>
@@ -622,7 +692,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">huhu</a>
+                    <a href="/about" rel="external nofollow noreferrer">myh</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -632,7 +702,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://huhu-myh.github.io/resource/index.html">https://huhu-myh.github.io/resource/index.html</a>
+                    <a href="https://huhu-myh.github.io/posts/myh10020.html">https://huhu-myh.github.io/posts/myh10020.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -645,7 +715,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">huhu</a>
+                    <a href="/about" target="_blank">myh</a>
                     !
                 </span>
             </div>
@@ -669,7 +739,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/PostgreSQL/">
+                                    <span class="chip bg-color">PostgreSQL</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1144,34 +1218,45 @@ new Valine({
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/resource/index.html">
+                <a href="/posts/myh10020.html">
                     <div class="card-image">
                         
+                        <img src="/medias/img/19.jpg" class="responsive-img" alt="数据库：第一章">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928014621.jpg" class="responsive-img" alt="资源分享">
-                        
-                        <span class="card-title">资源分享</span>
+                        <span class="card-title">数据库：第一章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            数据库学习第一章~。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-22
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            huhu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PostgreSQL/">
+                        <span class="chip bg-color">PostgreSQL</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1179,37 +1264,47 @@ new Valine({
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/resource/index.html">
+                <a href="/posts/myh10019.html">
                     <div class="card-image">
                         
+                        <img src="/medias/img/18.jpg" class="responsive-img" alt="Vscode配置PHP开发环境">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928014621.jpg" class="responsive-img" alt="资源分享">
-                        
-                        <span class="card-title">资源分享</span>
+                        <span class="card-title">Vscode配置PHP开发环境</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            讲一下Vscode配置PHP环境~。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-15
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            huhu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    运维
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PHP/">
+                        <span class="chip bg-color">PHP</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
