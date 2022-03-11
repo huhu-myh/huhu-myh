@@ -6,7 +6,7 @@
   <link href="https://huhu-myh.github.io/atom.xml" rel="self"/>
   
   <link href="https://huhu-myh.github.io/"/>
-  <updated>2022-03-06T07:54:28.560Z</updated>
+  <updated>2022-03-11T06:25:12.999Z</updated>
   <id>https://huhu-myh.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>服务器搭建邮箱系统</title>
+    <link href="https://huhu-myh.github.io/posts/myh10023.html"/>
+    <id>https://huhu-myh.github.io/posts/myh10023.html</id>
+    <published>2022-03-10T15:45:36.000Z</published>
+    <updated>2022-03-11T06:25:12.999Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="服务器搭建宝塔邮局系统"><a href="#服务器搭建宝塔邮局系统" class="headerlink" title="服务器搭建宝塔邮局系统"></a>服务器搭建宝塔邮局系统</h2><h3 id="1-开放端口"><a href="#1-开放端口" class="headerlink" title="1.开放端口"></a>1.开放端口</h3><pre class="line-numbers language-none"><code class="language-none">放行端口:[25]Mail-Server放行端口:[587]Mail-Server放行端口:[993]Mail-Server放行端口:[995]Mail-Server放行端口:[465]Mail-Server放行端口:[143]Mail-Server放行端口:[110]Mail-Server<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>这几个都是邮箱系统常用的端口号。这里记得一定要<font color="red" size="3">在服务器管理页面的防火墙处开放端口</font>，否则可能收不到从qq、gmail等发送的邮件。</p><h3 id="2-安装宝塔邮局系统"><a href="#2-安装宝塔邮局系统" class="headerlink" title="2.安装宝塔邮局系统"></a>2.安装宝塔邮局系统</h3><p>总共需要安装两个软件：</p><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202203111424972.png"></p><h3 id="3-部署邮局系统"><a href="#3-部署邮局系统" class="headerlink" title="3.部署邮局系统"></a>3.部署邮局系统</h3><h4 id="3-1-初始进入页面会输入主机名，输入一级域名即可"><a href="#3-1-初始进入页面会输入主机名，输入一级域名即可" class="headerlink" title="3.1 初始进入页面会输入主机名，输入一级域名即可"></a>3.1 初始进入页面会输入主机名，输入一级域名即可</h4><h4 id="3-2-添加邮箱域名"><a href="#3-2-添加邮箱域名" class="headerlink" title="3.2 添加邮箱域名"></a>3.2 添加邮箱域名</h4><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202203111424974.png"></p><p>可以看到下面有提示：</p><ol><li>邮箱域名只支持一级域名：就是 xxx.com 或 xxx.xyz 等，只能是一级域名</li><li>输入域名A记录，也就是你的子域名形式，类似：yyy.xxx.com等，一般mail.xxx.com就可。</li></ol><h3 id="4-添加对应的域名解析"><a href="#4-添加对应的域名解析" class="headerlink" title="4.添加对应的域名解析"></a>4.添加对应的域名解析</h3><p>进入域名控制台进行相应的解析操作。</p><p>首先添加A记录：</p><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202203111424975.png"></p><p>然后是MX记录：</p><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202203111424976.png"></p><p>还需添加TXT记录，这个按照上面的提示来就好：</p><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202203111424977.png"></p><h3 id="5、创建SSL"><a href="#5、创建SSL" class="headerlink" title="5、创建SSL"></a>5、创建SSL</h3><p>这个按照手动解析步骤一步一步添加域名记录值就好，<font color="red" size="3">申请证书也是必须的，否则可能接收不到消息！</font></p><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202203111424978.png"></p><h3 id="6、创建用户"><a href="#6、创建用户" class="headerlink" title="6、创建用户"></a>6、创建用户</h3><p>在部署好域名之后如图：</p><p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202203111424979.png"></p><p>之后点击用户管理就可以添加用户然后收发邮件了，就有了自己域名的邮箱系统！</p><hr><p>搭建的过程还是比较容易的，重点还是要理解几个域名解析的作用，搞清楚其中的原理，明白A记录等的作用，这样搭建的时候就不会容易错，同时记得开端口！</p><p>还可以搭建独立的邮局系统，使用EwoMail,具体搭建教程可见：<a href="https://ld246.com/article/1572762728304">https://ld246.com/article/1572762728304</a></p><hr><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/yunwei/202203111424980.jpg" style="zoom:150%;">]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="linux" scheme="https://huhu-myh.github.io/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://huhu-myh.github.io/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>梨视频爬取项目代码</title>
@@ -469,30 +493,6 @@
     
     
     <category term="buu练习" scheme="https://huhu-myh.github.io/tags/buu%E7%BB%83%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux学习-第一章</title>
-    <link href="https://huhu-myh.github.io/posts/myh10002.html"/>
-    <id>https://huhu-myh.github.io/posts/myh10002.html</id>
-    <published>2022-01-14T10:52:58.000Z</published>
-    <updated>2022-01-17T08:17:52.641Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="第一章：初识Linux"><a href="#第一章：初识Linux" class="headerlink" title="第一章：初识Linux"></a>第一章：初识Linux</h2><h3 id="1-1-shell"><a href="#1-1-shell" class="headerlink" title="1.1 shell"></a>1.1 shell</h3><p>​         Linux shell是一种特殊的<font color="#FF5E3A" size="4">交互式工具</font>。它为用户提供了启动程序、管理文件系统中的文件以及运行在Linux系统上的进程的途径。 shell的<font color="#FF5E3A" size="4">核心是命令行提示符</font>。命令行提示符是shell负责交互的部分。它允许你<strong>输入文本命令，然后解释命令，并在内核中执行</strong>。  </p><p>​        shell包含了一组内部命令，用这些命令可以完成诸如复制文件、移动文件、重命名文件、显示和终止系统中正运行的程序等操作。 shell也允许你在命令行提示符中输入程序的名称，它会将程序名传递给内核以启动它。</p><p>​        也可以将<strong>多个shell命令放入文件中</strong>作为程序执行，这些文件被称作<strong>shell脚本</strong>。你在命令行上执行的任何命令都可放进一个shell脚本中作为一组命令执行。这为创建那种需要把几个命令放在一起来工作的工具提供了便利。</p><p>​        linux有好几种版本的shell，默认的是bash shell。</p><h3 id="1-2-Linux系统分类"><a href="#1-2-Linux系统分类" class="headerlink" title="1.2 Linux系统分类"></a>1.2 Linux系统分类</h3><p>​        Linux主要的系统可以分为两类：<strong>Debian</strong>和<strong>Redhat</strong>，话有一些其他的自由发布的版本。</p><p>​        Debian系列主要有Debian、Ubuntu等。</p><p>​        Redhat系列主要有Redhat、CentOs等。</p><p>​        <strong>不同的系统版本某些命令可能是不一样的</strong>，比如 Debian 使用 <font color="#FF5E3A" size="4">apt-get</font>来安装包，但CentOs使用 <font color="#FF5E3A" size="4">yum</font>。</p><hr><p>第一张就是简要介绍一下什么是linux shell以及常见的发行版本。下一章，将详细讲解shell的使用。</p><p><font color="#FF9999" size="3">文章参考：Linux命令行与shell脚本编程大全.第3版 by 布鲁姆，布雷斯纳汉 (z-lib.org)</font></p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/linux1/202201150952192.jpg" alt="hello">]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
-      
-    
-    
-    
-    <category term="学习" scheme="https://huhu-myh.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="linux" scheme="https://huhu-myh.github.io/tags/linux/"/>
     
   </entry>
   
