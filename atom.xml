@@ -6,7 +6,7 @@
   <link href="https://huhu-myh.github.io/atom.xml" rel="self"/>
   
   <link href="https://huhu-myh.github.io/"/>
-  <updated>2022-03-27T13:45:40.666Z</updated>
+  <updated>2022-03-30T08:32:33.233Z</updated>
   <id>https://huhu-myh.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://huhu-myh.github.io/posts/myh10026.html"/>
     <id>https://huhu-myh.github.io/posts/myh10026.html</id>
     <published>2022-03-27T12:32:21.000Z</published>
-    <updated>2022-03-27T13:45:40.666Z</updated>
+    <updated>2022-03-30T08:32:33.233Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="流密码"><a href="#流密码" class="headerlink" title="流密码"></a>流密码</h2><h3 id="1、流密码的概念"><a href="#1、流密码的概念" class="headerlink" title="1、流密码的概念"></a>1、流密码的概念</h3><p>在密码学中，<strong>流密码</strong>（英语：<strong>Stream cipher</strong>），又译为<strong>流加密</strong>、<strong>资料流加密</strong>，是一种<a href="https://zh.wikipedia.org/wiki/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86">对称加密</a>算法，加密和解密双方使用相同伪随机加密数据流（pseudo-random stream）作为<a href="https://zh.wikipedia.org/wiki/%E5%AF%86%E9%92%A5">密钥</a>，<a href="https://zh.wikipedia.org/wiki/%E6%98%8E%E6%96%87">明文</a>数据每次与密钥数据流顺次对应加密，得到<a href="https://zh.wikipedia.org/wiki/%E5%AF%86%E6%96%87">密文</a>数据流。实践中数据通常是一个<a href="https://zh.wikipedia.org/wiki/%E4%BD%8D">位</a>（bit）并用<a href="https://zh.wikipedia.org/wiki/%E5%BC%82%E6%88%96">异或</a>（xor）操作加密。</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="流密码-持续更新"><a href="#流密码-持续更新" class="headerlink" title="流密码(持续更新)"></a>流密码(持续更新)</h2><h3 id="1、流密码的概念"><a href="#1、流密码的概念" class="headerlink" title="1、流密码的概念"></a>1、流密码的概念</h3><p>在密码学中，<strong>流密码</strong>（英语：<strong>Stream cipher</strong>），又译为<strong>流加密</strong>、<strong>资料流加密</strong>，是一种<a href="https://zh.wikipedia.org/wiki/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86">对称加密</a>算法，加密和解密双方使用相同伪随机加密数据流（pseudo-random stream）作为<a href="https://zh.wikipedia.org/wiki/%E5%AF%86%E9%92%A5">密钥</a>，<a href="https://zh.wikipedia.org/wiki/%E6%98%8E%E6%96%87">明文</a>数据每次与密钥数据流顺次对应加密，得到<a href="https://zh.wikipedia.org/wiki/%E5%AF%86%E6%96%87">密文</a>数据流。实践中数据通常是一个<a href="https://zh.wikipedia.org/wiki/%E4%BD%8D">位</a>（bit）并用<a href="https://zh.wikipedia.org/wiki/%E5%BC%82%E6%88%96">异或</a>（xor）操作加密。</p>]]></content>
     
     
       
